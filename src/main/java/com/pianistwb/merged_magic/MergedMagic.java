@@ -3,7 +3,6 @@ package com.pianistwb.merged_magic;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.neoforge.common.NeoForge;
 
 @Mod(MergedMagic.MODID)
 public class MergedMagic {
@@ -19,6 +18,5 @@ public class MergedMagic {
 
 
     public MergedMagic(IEventBus modEventBus, ModContainer modContainer) {
-        NeoForge.EVENT_BUS.register(this);
     }
 }
