@@ -1,8 +1,8 @@
 package com.pianistwb.merged_magic.events;
 
 import com.pianistwb.merged_magic.MergedMagic;
+import com.pianistwb.merged_magic.datacomponents.MergeLevel;
 import com.pianistwb.merged_magic.items.MergableItem;
-import com.pianistwb.merged_magic.util.MergedMagicUtil;
 
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -18,12 +18,12 @@ public class ForgeEvents {
 			ItemStack itemStacked = event.getStackedOnItem();
 			ItemStack itemCarried = event.getCarriedItem();
 
-			if(itemStacked.getItem() instanceof MergableItem stacked && stacked == itemCarried.getItem() && MergedMagicUtil.itemLevelsValid(itemStacked, itemCarried)) {				
-				ItemStack newItem = MergedMagicUtil.levelItem(itemStacked);
+			if(itemStacked.getItem() instanceof MergableItem stacked && stacked == itemCarried.getItem() && MergeLevel.itemLevelsValid(itemStacked, itemCarried)) {				
+				MergeLevel.levelItem(itemStacked);
 				event.getCarriedSlotAccess().set(ItemStack.EMPTY);
-				event.getSlot().set(newItem);
+				event.getSlot().set(itemStacked);
 				event.setCanceled(true);
-				MergedMagicUtil.triggerLevelSound(event.getPlayer(), newItem);
+				MergeLevel.triggerLevelSound(event.getPlayer(), itemStacked);
 			}
 		}
 	}

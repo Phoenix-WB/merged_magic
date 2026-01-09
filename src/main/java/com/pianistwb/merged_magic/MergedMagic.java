@@ -1,6 +1,7 @@
 package com.pianistwb.merged_magic;
 
 import com.mojang.logging.LogUtils;
+import com.pianistwb.merged_magic.datacomponents.MergedMagicDataComponents;
 import com.pianistwb.merged_magic.items.MergedMagicCreativeTabs;
 import com.pianistwb.merged_magic.items.MergedMagicItems;
 
@@ -16,5 +17,6 @@ public class MergedMagic {
 	public MergedMagic(IEventBus modEventBus, ModContainer modContainer) {
 		MergedMagicItems.ITEMS.register(modEventBus);
 		MergedMagicCreativeTabs.TABS.register(modEventBus);
+		MergedMagicDataComponents.DATA_COMPONENTS.register(modEventBus);
 	}
 }
