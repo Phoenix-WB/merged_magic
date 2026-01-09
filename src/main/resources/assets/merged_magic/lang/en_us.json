@@ -1,3 +1,9 @@
 {
+	"item.merged_magic.bronze_star": "Bronze Star",
+	"item.merged_magic.silver_star": "Silver Star",
+	"item.merged_magic.gold_star": "Gold Star",
 
+	"item.merged_magic.broom": "Broom",
+	
+	"itemGroup.merged_magic_items": "Merged Magic Items"
 }
