@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "S  ",
+    " S ",
+    "BBB"
+  ],
+  "key": {
+    "S": "minecraft:stick",
+    "B": "minecraft:hay_block"
+  },
+  "result": {
+    "id": "merged_magic:broom",
+    "count": 1
+  }
+}

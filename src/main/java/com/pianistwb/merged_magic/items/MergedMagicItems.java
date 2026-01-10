@@ -19,6 +19,6 @@ public class MergedMagicItems {
 	public static final DeferredItem<Item> GOLD_STAR = ITEMS.registerItem("gold_star", Item::new);
 
 	public static final DeferredHolder<Item, MergableItem> BROOM = ITEMS.registerItem("broom",
-			properties -> new MergableItem(
-					properties.component(MergedMagicDataComponents.MERGE_LEVEL, new MergeLevel(1))));
+			properties -> new BroomItem(
+					properties.component(MergedMagicDataComponents.BASIC_MERGE_LEVEL, new MergeLevel(1))));
 }
