@@ -32,10 +32,10 @@ public record MergeLevel(int level) {
 	public static void triggerLevelSound(Player player, ItemStack stack) {
 		int level = stack.get(MergedMagicDataComponents.BASIC_MERGE_LEVEL).level;
 		if (level == 3) {
-			player.level().playSound(null, player.blockPosition(), SoundEvents.TOTEM_USE, SoundSource.PLAYERS, 0.5F,
+			player.level().playSound(null, player.blockPosition(), SoundEvents.TOTEM_USE, SoundSource.PLAYERS, 0.3F,
 					1.3F);
 		} else
-			player.level().playSound(null, player.blockPosition(), SoundEvents.ANVIL_USE, SoundSource.PLAYERS, 6.0F,
+			player.level().playSound(null, player.blockPosition(), SoundEvents.ANVIL_USE, SoundSource.PLAYERS, 0.7F,
 					1.2F);
 	}
 }
