@@ -27,7 +27,7 @@ public class BroomItem extends MergableItem {
 		if (!player.level().isClientSide()) {
 			ItemCooldowns cooldowns = player.getCooldowns();
 			if (!cooldowns.isOnCooldown(stack) && !player.canCollideWith(interactionTarget)) {
-				int mergeLevel = stack.get(MergedMagicDataComponents.BASIC_MERGE_LEVEL).level();
+				int mergeLevel = stack.get(MergedMagicDataComponents.MERGE_LEVEL).mergeLevel();
 
 				Vec3 viewVector = player.getViewVector(1.0F);
 				double d0 = Math.sqrt(viewVector.x() * viewVector.x() + viewVector.z() * viewVector.z());
@@ -54,7 +54,7 @@ public class BroomItem extends MergableItem {
 
 	@Override
 	public int getBurnTime(ItemStack itemStack, @Nullable RecipeType<?> recipeType, FuelValues fuelValues) {
-		int mergeLevel = itemStack.get(MergedMagicDataComponents.BASIC_MERGE_LEVEL).level();
+		int mergeLevel = itemStack.get(MergedMagicDataComponents.MERGE_LEVEL).mergeLevel();
 		if (mergeLevel == 2) {
 			return 600;
 		} else if (mergeLevel == 3) {
