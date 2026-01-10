@@ -12,6 +12,6 @@ public class MergedMagicDataComponents {
 	public static final DeferredRegister.DataComponents DATA_COMPONENTS = DeferredRegister
 			.createDataComponents(Registries.DATA_COMPONENT_TYPE, MergedMagic.MODID);
 
-	public static final Supplier<DataComponentType<MergeLevel>> BASIC_MERGE_LEVEL = DATA_COMPONENTS.registerComponentType(
-			"basic", builder -> builder.persistent(MergeLevel.BASIC_CODEC).networkSynchronized(MergeLevel.BASIC_STREAM_CODEC));
+	public static final Supplier<DataComponentType<MergeLevel>> MERGE_LEVEL = DATA_COMPONENTS.registerComponentType(
+			"merge_level", builder -> builder.persistent(MergeLevel.CODEC).networkSynchronized(MergeLevel.STREAM_CODEC));
 }

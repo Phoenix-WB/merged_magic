@@ -20,5 +20,5 @@ public class MergedMagicItems {
 
 	public static final DeferredHolder<Item, MergableItem> BROOM = ITEMS.registerItem("broom",
 			properties -> new MergableItem(
-					properties.component(MergedMagicDataComponents.BASIC_MERGE_LEVEL, new MergeLevel(1))));
+					properties.component(MergedMagicDataComponents.MERGE_LEVEL, new MergeLevel(1))));
 }
