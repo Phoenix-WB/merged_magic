@@ -1,0 +1,8 @@
+{
+    "model": {
+        "type": "merged_magic:merged_render_type",
+        "model": "merged_magic:item/dolphins_breath",
+        "tints": [],
+        "render_type": "translucent_item"
+    }
+}

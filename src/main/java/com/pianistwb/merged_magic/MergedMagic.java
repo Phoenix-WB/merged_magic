@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import com.pianistwb.merged_magic.datacomponents.MergedMagicDataComponents;
 import com.pianistwb.merged_magic.items.MergedMagicCreativeTabs;
 import com.pianistwb.merged_magic.items.MergedMagicItems;
+import com.pianistwb.merged_magic.items.loot.MergedMagicLootModifiers;
 
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -18,5 +19,6 @@ public class MergedMagic {
 		MergedMagicItems.ITEMS.register(modEventBus);
 		MergedMagicCreativeTabs.TABS.register(modEventBus);
 		MergedMagicDataComponents.DATA_COMPONENTS.register(modEventBus);
+		MergedMagicLootModifiers.LOOT_MODIFIERS.register(modEventBus);
 	}
 }
