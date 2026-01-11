@@ -20,5 +20,6 @@ public class MergedMagicCreativeTabs {
 					.icon(() -> MergedMagicItems.BROOM.get().getDefaultInstance())
 					.displayItems((parameters, output) -> {
 						output.accept(MergedMagicItems.BROOM.get());
+						output.accept(MergedMagicItems.DOLPHINS_BREATH.get());
 					}).build());
 }
