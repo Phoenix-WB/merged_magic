@@ -7,11 +7,10 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
-public record MergeLevel(int mergeLevel) {	
+public record MergeLevel(int mergeLevel) {
 	public static final Codec<MergeLevel> CODEC = RecordCodecBuilder.create(instance -> instance
 			.group(Codec.INT.fieldOf("level").forGetter(MergeLevel::mergeLevel)).apply(instance, MergeLevel::new));
 
@@ -25,17 +24,14 @@ public record MergeLevel(int mergeLevel) {
 
 	public static void levelItem(ItemStack stack) {
 		int mergelevel = stack.get(MergedMagicDataComponents.MERGE_LEVEL).mergeLevel;
-		stack.update(MergedMagicDataComponents.MERGE_LEVEL, new MergeLevel(1),
-				level -> new MergeLevel(mergelevel + 1));
+		stack.update(MergedMagicDataComponents.MERGE_LEVEL, new MergeLevel(1), level -> new MergeLevel(mergelevel + 1));
 	}
 
 	public static void triggerLevelSound(Player player, ItemStack stack) {
 		int level = stack.get(MergedMagicDataComponents.MERGE_LEVEL).mergeLevel;
 		if (level == 3) {
-			player.level().playSound(null, player.blockPosition(), SoundEvents.TOTEM_USE, SoundSource.PLAYERS, 0.3F,
-					1.3F);
+			player.playSound(SoundEvents.TOTEM_USE, 0.15F, 1.3F);
 		} else
-			player.level().playSound(null, player.blockPosition(), SoundEvents.ANVIL_USE, SoundSource.PLAYERS, 0.7F,
-					1.2F);
+			player.playSound(SoundEvents.ANVIL_USE, 0.7F, 1.2F);
 	}
 }

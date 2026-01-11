@@ -14,7 +14,7 @@ public class ForgeEvents {
 	//Items
 	@SubscribeEvent
 	public static void onClickItem(ItemStackedOnOtherEvent event) {
-		if(!event.getPlayer().level().isClientSide()) {
+		if(!event.getPlayer().level().isClientSide() || event.getPlayer().isCreative()) {
 			ItemStack itemStacked = event.getStackedOnItem();
 			ItemStack itemCarried = event.getCarriedItem();
 
