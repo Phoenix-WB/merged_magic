@@ -1,0 +1,11 @@
+{
+	"type": "merged_magic:simple_magic_addition_loot_modifier",
+	"conditions": [
+		{
+			"condition": "neoforge:loot_table_id",
+			"loot_table_id": "minecraft:chests/underwater_ruin_small"
+		}
+	],
+	"item": "merged_magic:dolphins_breath",
+	"probability": 0.1
+}
