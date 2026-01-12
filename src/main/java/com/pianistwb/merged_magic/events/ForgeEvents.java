@@ -1,9 +1,9 @@
 package com.pianistwb.merged_magic.events;
 
 import com.pianistwb.merged_magic.MergedMagic;
-import com.pianistwb.merged_magic.datacomponents.MergeLevel;
 import com.pianistwb.merged_magic.items.MergableItem;
 import com.pianistwb.merged_magic.registry.MobEffectRegistry;
+import com.pianistwb.merged_magic.util.MergeUtil;
 
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -24,12 +24,12 @@ public class ForgeEvents {
 			ItemStack itemCarried = event.getCarriedItem();
 
 			if (itemStacked.getItem() instanceof MergableItem stacked && stacked == itemCarried.getItem()
-					&& MergeLevel.itemLevelsValid(itemStacked, itemCarried)) {
-				MergeLevel.levelItem(itemStacked);
+					&& MergeUtil.itemLevelsValid(itemStacked, itemCarried)) {
+				MergeUtil.levelItem(itemStacked);
 				event.getCarriedSlotAccess().set(ItemStack.EMPTY);
 				event.getSlot().set(itemStacked);
 				event.setCanceled(true);
-				MergeLevel.triggerLevelSound(event.getPlayer(), itemStacked);
+				MergeUtil.triggerLevelSound(event.getPlayer(), itemStacked);
 			}
 		}
 	}
