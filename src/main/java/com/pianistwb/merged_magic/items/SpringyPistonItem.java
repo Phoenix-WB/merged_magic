@@ -1,7 +1,8 @@
 package com.pianistwb.merged_magic.items;
 
-import com.pianistwb.merged_magic.datacomponents.MergedMagicDataComponents;
-import com.pianistwb.merged_magic.effect.MergedMagicMobEffects;
+import com.pianistwb.merged_magic.registry.DataComponentRegistry;
+import com.pianistwb.merged_magic.registry.MobEffectRegistry;
+import com.pianistwb.merged_magic.util.MergeStat;
 
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
@@ -14,32 +15,37 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
 public class SpringyPistonItem extends MergableItem {
+	private final MergeStat<Double> velocity = new MergeStat<>(0.9D, 1.0D, 1.1D);
+	private final MergeStat<Integer> cooldown = new MergeStat<>(150, 125, 100);
+
 	public SpringyPistonItem(Properties properties) {
 		super(properties);
 	}
-	
+
 	@Override
 	public InteractionResult use(Level level, Player player, InteractionHand hand) {
 		ItemStack stack = player.getItemInHand(hand);
 		ItemCooldowns cooldowns = player.getCooldowns();
-		
-		if(!cooldowns.isOnCooldown(stack) && player.onGround()) {
-			int mergeLevel = stack.get(MergedMagicDataComponents.MERGE_LEVEL).mergeLevel();
-			
-			player.addDeltaMovement(new Vec3(0,0.8+0.1*mergeLevel,0));
+
+		if (!cooldowns.isOnCooldown(stack) && player.onGround()) {
+			int mergeLevel = stack.get(DataComponentRegistry.MERGE_LEVEL).mergeLevel();
+
+			player.addDeltaMovement(new Vec3(0, velocity.getMergeStatForLevel(mergeLevel), 0));
 			player.hurtMarked = true;
-			
-			cooldowns.addCooldown(stack, 150 - (mergeLevel-1)*25);
+
+			player.playSound(SoundEvents.PISTON_EXTEND);
+
+			if (!level.isClientSide()) {
+				player.addEffect(new MobEffectInstance(MobEffectRegistry.CRUTCHED, 40 * mergeLevel));
+			}
 			
 			player.playSound(SoundEvents.PISTON_EXTEND);
-			
-			if(!level.isClientSide()) {
-				player.addEffect(new MobEffectInstance(MergedMagicMobEffects.CRUTCHED, 40*mergeLevel));
-			}
+
+			cooldowns.addCooldown(stack, cooldown.getMergeStatForLevel(mergeLevel));
 			
 			return InteractionResult.SUCCESS;
 		}
-		
+
 		return InteractionResult.PASS;
 	}
 }

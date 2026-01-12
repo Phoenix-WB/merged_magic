@@ -1,13 +1,17 @@
-package com.pianistwb.merged_magic.items;
+package com.pianistwb.merged_magic.registry;
 
 import com.pianistwb.merged_magic.MergedMagic;
+import com.pianistwb.merged_magic.items.AmethystMirrorItem;
+import com.pianistwb.merged_magic.items.BroomItem;
+import com.pianistwb.merged_magic.items.DolphinsBreathItem;
+import com.pianistwb.merged_magic.items.SpringyPistonItem;
 
 import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-public class MergedMagicItems {
+public class ItemRegistry {
 	public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MergedMagic.MODID);
 
 	// Items for texture purposes

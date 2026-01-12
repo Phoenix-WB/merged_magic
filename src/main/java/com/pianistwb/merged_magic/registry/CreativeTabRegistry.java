@@ -1,4 +1,4 @@
-package com.pianistwb.merged_magic.items;
+package com.pianistwb.merged_magic.registry;
 
 import com.pianistwb.merged_magic.MergedMagic;
 
@@ -9,7 +9,7 @@ import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-public class MergedMagicCreativeTabs {
+public class CreativeTabRegistry {
 	public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB,
 			MergedMagic.MODID);
 
@@ -17,11 +17,11 @@ public class MergedMagicCreativeTabs {
 			"merged_magic_items",
 			() -> CreativeModeTab.builder().title(Component.translatable("itemGroup.merged_magic_items"))
 					.withTabsBefore(CreativeModeTabs.COMBAT)
-					.icon(() -> MergedMagicItems.BROOM.get().getDefaultInstance())
+					.icon(() -> ItemRegistry.BROOM.get().getDefaultInstance())
 					.displayItems((parameters, output) -> {
-						output.accept(MergedMagicItems.BROOM.get());
-						output.accept(MergedMagicItems.DOLPHINS_BREATH.get());
-						output.accept(MergedMagicItems.SPRINGY_PISTON.get());
-						output.accept(MergedMagicItems.AMETHYST_MIRROR.get());
+						output.accept(ItemRegistry.BROOM.get());
+						output.accept(ItemRegistry.DOLPHINS_BREATH.get());
+						output.accept(ItemRegistry.SPRINGY_PISTON.get());
+						output.accept(ItemRegistry.AMETHYST_MIRROR.get());
 					}).build());
 }
