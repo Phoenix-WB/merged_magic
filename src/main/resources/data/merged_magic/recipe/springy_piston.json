@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IOI",
+    "ITI",
+    "IXI"
+  ],
+  "key": {
+    "I": "minecraft:scaffolding",
+    "T": "minecraft:piston",
+    "X": "#minecraft:buttons",
+    "O": "minecraft:slime_block"
+  },
+  "result": {
+    "id": "merged_magic:springy_piston",
+    "count": 1
+  }
+}
