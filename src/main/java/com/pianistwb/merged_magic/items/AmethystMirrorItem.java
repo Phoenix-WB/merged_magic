@@ -1,6 +1,6 @@
 package com.pianistwb.merged_magic.items;
 
-import com.pianistwb.merged_magic.datacomponents.MergedMagicDataComponents;
+import com.pianistwb.merged_magic.registry.DataComponentRegistry;
 import com.pianistwb.merged_magic.util.EntityUtil;
 
 import net.minecraft.core.BlockPos;
@@ -31,7 +31,7 @@ public class AmethystMirrorItem extends MergableItem {
 		if (!cooldowns.isOnCooldown(stack)) {
 			BlockPos pos = player.blockPosition();
 			int lighting = level.getLightEngine().getRawBrightness(pos, 0);
-			int mergeLevel = stack.get(MergedMagicDataComponents.MERGE_LEVEL).mergeLevel();
+			int mergeLevel = stack.get(DataComponentRegistry.MERGE_LEVEL).mergeLevel();
 
 			if (!level.isClientSide()) {
 				if (lighting > 8) {

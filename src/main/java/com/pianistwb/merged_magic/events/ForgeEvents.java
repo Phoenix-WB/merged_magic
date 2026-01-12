@@ -2,8 +2,8 @@ package com.pianistwb.merged_magic.events;
 
 import com.pianistwb.merged_magic.MergedMagic;
 import com.pianistwb.merged_magic.datacomponents.MergeLevel;
-import com.pianistwb.merged_magic.effect.MergedMagicMobEffects;
 import com.pianistwb.merged_magic.items.MergableItem;
+import com.pianistwb.merged_magic.registry.MobEffectRegistry;
 
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -39,11 +39,11 @@ public class ForgeEvents {
 	public static void onLivingIncomingDamage(LivingIncomingDamageEvent event) {
 		LivingEntity living = event.getEntity();
 
-		if (living.hasEffect(MergedMagicMobEffects.CRUTCHED)
+		if (living.hasEffect(MobEffectRegistry.CRUTCHED)
 				&& event.getSource() == living.level().damageSources().fall()) {
 			living.level().playSound(null, living.blockPosition(), SoundEvents.ITEM_BREAK.value(), SoundSource.PLAYERS);
 
-			living.removeEffect(MergedMagicMobEffects.CRUTCHED);
+			living.removeEffect(MobEffectRegistry.CRUTCHED);
 
 			event.setCanceled(true);
 		}

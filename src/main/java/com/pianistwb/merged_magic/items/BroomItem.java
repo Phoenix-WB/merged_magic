@@ -2,7 +2,7 @@ package com.pianistwb.merged_magic.items;
 
 import org.jspecify.annotations.Nullable;
 
-import com.pianistwb.merged_magic.datacomponents.MergedMagicDataComponents;
+import com.pianistwb.merged_magic.registry.DataComponentRegistry;
 
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
@@ -25,7 +25,7 @@ public class BroomItem extends MergableItem {
 			InteractionHand usedHand) {
 		ItemCooldowns cooldowns = player.getCooldowns();
 		if (!cooldowns.isOnCooldown(stack) && !player.canCollideWith(interactionTarget)) {
-			int mergeLevel = stack.get(MergedMagicDataComponents.MERGE_LEVEL).mergeLevel();
+			int mergeLevel = stack.get(DataComponentRegistry.MERGE_LEVEL).mergeLevel();
 
 			Vec3 viewVector = player.getViewVector(1.0F);
 			double d0 = Math.sqrt(viewVector.x() * viewVector.x() + viewVector.z() * viewVector.z());
@@ -51,7 +51,7 @@ public class BroomItem extends MergableItem {
 
 	@Override
 	public int getBurnTime(ItemStack itemStack, @Nullable RecipeType<?> recipeType, FuelValues fuelValues) {
-		int mergeLevel = itemStack.get(MergedMagicDataComponents.MERGE_LEVEL).mergeLevel();
+		int mergeLevel = itemStack.get(DataComponentRegistry.MERGE_LEVEL).mergeLevel();
 		if (mergeLevel == 2) {
 			return 600;
 		} else if (mergeLevel == 3) {

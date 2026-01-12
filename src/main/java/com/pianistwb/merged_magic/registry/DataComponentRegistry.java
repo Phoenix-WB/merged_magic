@@ -1,14 +1,15 @@
-package com.pianistwb.merged_magic.datacomponents;
+package com.pianistwb.merged_magic.registry;
 
 import java.util.function.Supplier;
 
 import com.pianistwb.merged_magic.MergedMagic;
+import com.pianistwb.merged_magic.datacomponents.MergeLevel;
 
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-public class MergedMagicDataComponents {
+public class DataComponentRegistry {
 	public static final DeferredRegister.DataComponents DATA_COMPONENTS = DeferredRegister
 			.createDataComponents(Registries.DATA_COMPONENT_TYPE, MergedMagic.MODID);
 

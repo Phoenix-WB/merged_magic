@@ -9,8 +9,8 @@ import com.google.common.collect.HashBiMap;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.pianistwb.merged_magic.datacomponents.MergedMagicDataComponents;
-import com.pianistwb.merged_magic.items.MergedMagicItems;
+import com.pianistwb.merged_magic.registry.DataComponentRegistry;
+import com.pianistwb.merged_magic.registry.ItemRegistry;
 
 import net.minecraft.client.color.item.ItemTintSource;
 import net.minecraft.client.color.item.ItemTintSources;
@@ -68,16 +68,16 @@ public record MergedRenderTypeModelWrapper(List<BakedQuad> quads, List<ItemTintS
 		layerState.prepareQuadList().addAll(this.quads);
 
 		if (displayContext == ItemDisplayContext.GUI || displayContext == ItemDisplayContext.GROUND || displayContext == ItemDisplayContext.ON_SHELF) {
-			int mergeLevel = stack.get(MergedMagicDataComponents.MERGE_LEVEL).mergeLevel();
+			int mergeLevel = stack.get(DataComponentRegistry.MERGE_LEVEL).mergeLevel();
 
 			if (mergeLevel == 1) {
-				itemModelResolver.appendItemLayers(renderState, MergedMagicItems.BRONZE_STAR.get().getDefaultInstance(),
+				itemModelResolver.appendItemLayers(renderState, ItemRegistry.BRONZE_STAR.get().getDefaultInstance(),
 						displayContext, level, owner, seed);
 			} else if (mergeLevel == 2) {
-				itemModelResolver.appendItemLayers(renderState, MergedMagicItems.SILVER_STAR.get().getDefaultInstance(),
+				itemModelResolver.appendItemLayers(renderState, ItemRegistry.SILVER_STAR.get().getDefaultInstance(),
 						displayContext, level, owner, seed);
 			} else if (mergeLevel == 3) {
-				itemModelResolver.appendItemLayers(renderState, MergedMagicItems.GOLD_STAR.get().getDefaultInstance(),
+				itemModelResolver.appendItemLayers(renderState, ItemRegistry.GOLD_STAR.get().getDefaultInstance(),
 						displayContext, level, owner, seed);
 			}
 		}

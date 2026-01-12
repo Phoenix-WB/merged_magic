@@ -3,7 +3,7 @@ package com.pianistwb.merged_magic.items;
 import java.util.function.Consumer;
 
 import com.pianistwb.merged_magic.datacomponents.MergeLevel;
-import com.pianistwb.merged_magic.datacomponents.MergedMagicDataComponents;
+import com.pianistwb.merged_magic.registry.DataComponentRegistry;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -20,7 +20,7 @@ public class MergableItem extends Item {
 	MutableComponent desc;
 
 	public MergableItem(Properties properties) {
-		super(properties.stacksTo(1).component(MergedMagicDataComponents.MERGE_LEVEL, new MergeLevel(1)));
+		super(properties.stacksTo(1).component(DataComponentRegistry.MERGE_LEVEL, new MergeLevel(1)));
 	}
 
 	@Override

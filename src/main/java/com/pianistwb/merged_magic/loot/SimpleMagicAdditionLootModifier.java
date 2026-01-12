@@ -1,4 +1,4 @@
-package com.pianistwb.merged_magic.items.loot;
+package com.pianistwb.merged_magic.loot;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;

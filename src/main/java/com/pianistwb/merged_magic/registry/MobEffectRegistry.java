@@ -1,4 +1,4 @@
-package com.pianistwb.merged_magic.effect;
+package com.pianistwb.merged_magic.registry;
 
 import com.pianistwb.merged_magic.MergedMagic;
 
@@ -8,7 +8,7 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-public class MergedMagicMobEffects {
+public class MobEffectRegistry {
 	public static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(BuiltInRegistries.MOB_EFFECT,
 			MergedMagic.MODID);
 
