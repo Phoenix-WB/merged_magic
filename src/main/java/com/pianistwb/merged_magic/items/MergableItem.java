@@ -2,23 +2,45 @@ package com.pianistwb.merged_magic.items;
 
 import java.util.function.Consumer;
 
+import com.pianistwb.merged_magic.datacomponents.MergeLevel;
+import com.pianistwb.merged_magic.datacomponents.MergedMagicDataComponents;
+
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipDisplay;
 
-public abstract class MergableItem extends Item {
+public class MergableItem extends Item {
+	Identifier descriptionId;
+	MutableComponent desc;
+
 	public MergableItem(Properties properties) {
-		super(properties.stacksTo(1));
+		super(properties.stacksTo(1).component(MergedMagicDataComponents.MERGE_LEVEL, new MergeLevel(1)));
 	}
 
 	@Override
 	public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay tooltipDisplay,
 			Consumer<Component> tooltipAdder, TooltipFlag flag) {
-		tooltipAdder.accept(Component.translatable(this.getDesc()).withStyle(ChatFormatting.GREEN));
+		tooltipAdder.accept(this.getDesc().withStyle(ChatFormatting.GREEN));
 	}
 
-	public abstract String getDesc();
+	public MutableComponent getDesc() {
+		if (this.desc == null) {
+			this.desc = Component.translatable(
+					"tooltip." + getIdentifier().getNamespace() + "." + getIdentifier().getPath() + "." + "desc");
+		}
+		return desc;
+	}
+
+	public Identifier getIdentifier() {
+		if (this.descriptionId == null) {
+			this.descriptionId = BuiltInRegistries.ITEM.getKey(this);
+		}
+		return this.descriptionId;
+	}
 }

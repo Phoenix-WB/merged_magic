@@ -42,9 +42,4 @@ public class SpringyPistonItem extends MergableItem {
 		
 		return InteractionResult.PASS;
 	}
-
-	@Override
-	public String getDesc() {
-		return "tooltip.merged_magic.springy_piston";
-	}
 }

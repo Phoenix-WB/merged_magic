@@ -6,12 +6,18 @@
 	"item.merged_magic.broom": "Broom",
 	"item.merged_magic.dolphins_breath": "Dolphin's Breath",
 	"item.merged_magic.springy_piston": "Springy Piston",
+	"item.merged_magic.amethyst_mirror": "Amethyst Mirror",
+	"item.merged_magic.prospectors_dish": "Prospector's Dish",
+	"item.merged_magic.trapseed_sack": "Trapseed Sack",
 	
 	"effect.merged_magic.crutched": "Crutched",
 	
 	"itemGroup.merged_magic_items": "Merged Magic Items",
 	
-	"tooltip.merged_magic.broom": "Pushes entities",
-	"tooltip.merged_magic.dolphins_breath": "Grants water breathing at the water's surface",
-	"tooltip.merged_magic.springy_piston": "Launches the player off the ground and crutches their fall"
+	"tooltip.merged_magic.broom.desc": "Pushes entities",
+	"tooltip.merged_magic.dolphins_breath.desc": "Grants water breathing at the water's surface",
+	"tooltip.merged_magic.springy_piston.desc": "Launches the player off the ground and crutches their fall",
+	"tooltip.merged_magic.amethyst_mirror.desc": "Damages and lights undead mobs on fire, scaling with your area's lighting",
+	"tooltip.merged_magic.prospectors_dish.desc": "Samples closest ores within a radius",
+	"tooltip.merged_magic.trapseed_sack.desc": "Grows a few plants that slow down enemies"
 }

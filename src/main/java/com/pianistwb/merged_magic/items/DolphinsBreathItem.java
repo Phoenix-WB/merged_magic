@@ -51,9 +51,4 @@ public class DolphinsBreathItem extends MergableItem {
 	public static BlockPos twoAbove(BlockPos position) {
 		return new BlockPos(position.getX(), position.getY() + 2, position.getZ());
 	}
-
-	@Override
-	public String getDesc() {
-		return "tooltip.merged_magic.dolphins_breath";
-	}
 }

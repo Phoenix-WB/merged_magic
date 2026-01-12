@@ -34,15 +34,15 @@ public class ForgeEvents {
 		}
 	}
 
-	//Entities
+	// Entities
 	@SubscribeEvent
 	public static void onLivingIncomingDamage(LivingIncomingDamageEvent event) {
 		LivingEntity living = event.getEntity();
 
 		if (living.hasEffect(MergedMagicMobEffects.CRUTCHED)
 				&& event.getSource() == living.level().damageSources().fall()) {
-			living.level().playSound(null, living.blockPosition(),SoundEvents.ITEM_BREAK.value(), SoundSource.PLAYERS);
-			
+			living.level().playSound(null, living.blockPosition(), SoundEvents.ITEM_BREAK.value(), SoundSource.PLAYERS);
+
 			living.removeEffect(MergedMagicMobEffects.CRUTCHED);
 
 			event.setCanceled(true);
