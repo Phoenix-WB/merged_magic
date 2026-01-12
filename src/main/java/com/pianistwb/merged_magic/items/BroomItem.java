@@ -60,4 +60,9 @@ public class BroomItem extends MergableItem {
 
 		return 300;
 	}
+
+	@Override
+	public String getDesc() {
+		return "tooltip.merged_magic.broom";
+	}
 }

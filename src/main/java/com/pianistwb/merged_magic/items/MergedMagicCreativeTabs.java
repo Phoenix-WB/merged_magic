@@ -21,5 +21,6 @@ public class MergedMagicCreativeTabs {
 					.displayItems((parameters, output) -> {
 						output.accept(MergedMagicItems.BROOM.get());
 						output.accept(MergedMagicItems.DOLPHINS_BREATH.get());
+						output.accept(MergedMagicItems.SPRINGY_PISTON.get());
 					}).build());
 }

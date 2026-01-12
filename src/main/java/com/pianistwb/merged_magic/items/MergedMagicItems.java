@@ -21,7 +21,11 @@ public class MergedMagicItems {
 	public static final DeferredHolder<Item, BroomItem> BROOM = ITEMS.registerItem("broom", properties -> new BroomItem(
 			properties.component(MergedMagicDataComponents.MERGE_LEVEL, new MergeLevel(1))));
 
-	public static final DeferredHolder<Item, MergableItem> DOLPHINS_BREATH = ITEMS.registerItem("dolphins_breath",
+	public static final DeferredHolder<Item, DolphinsBreathItem> DOLPHINS_BREATH = ITEMS.registerItem("dolphins_breath",
 			properties -> new DolphinsBreathItem(
+					properties.component(MergedMagicDataComponents.MERGE_LEVEL, new MergeLevel(1))));
+
+	public static final DeferredHolder<Item, SpringyPistonItem> SPRINGY_PISTON = ITEMS.registerItem("springy_piston",
+			properties -> new SpringyPistonItem(
 					properties.component(MergedMagicDataComponents.MERGE_LEVEL, new MergeLevel(1))));
 }
