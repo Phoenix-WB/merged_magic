@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"XAX",
+		"AAA",
+		"XAX"
+	],
+	"key": {
+		"X": "minecraft:iron_ingot",
+		"A": "minecraft:amethyst_block"
+	},
+	"result": {
+		"id": "merged_magic:amethyst_mirror",
+		"count": 1
+	}
+}
