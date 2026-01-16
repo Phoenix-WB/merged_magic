@@ -17,7 +17,8 @@ import net.minecraft.world.level.block.entity.FuelValues;
 import net.minecraft.world.phys.Vec3;
 
 public class BroomItem extends MergableItem {
-	private final MergeStat<Double> sweepScaling = new MergeStat<>(0.6D, 0.9D, 1.2D);
+	private final MergeStat<Double> sweepScaling = new MergeStat<>(0.6D, 0.9D, 1.1D);
+	private final MergeStat<Integer> burnTime = new MergeStat<>(300, 600, 1200);
 	private final MergeStat<Integer> cooldown = new MergeStat<>(90, 70, 50);
 	
 	public BroomItem(Properties properties) {
@@ -57,12 +58,6 @@ public class BroomItem extends MergableItem {
 	@Override
 	public int getBurnTime(ItemStack itemStack, @Nullable RecipeType<?> recipeType, FuelValues fuelValues) {
 		int mergeLevel = itemStack.get(DataComponentRegistry.MERGE_LEVEL).mergeLevel();
-		if (mergeLevel == 2) {
-			return 600;
-		} else if (mergeLevel == 3) {
-			return 1200;
-		}
-
-		return 300;
+		return burnTime.getMergeStatForLevel(mergeLevel);
 	}
 }
