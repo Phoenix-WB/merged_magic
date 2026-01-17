@@ -8,7 +8,7 @@
 	"item.merged_magic.springy_piston": "Springy Piston",
 	"item.merged_magic.amethyst_mirror": "Amethyst Mirror",
 	"item.merged_magic.prospectors_pan": "Prospector's Pan",
-	"item.merged_magic.trapseed_sack": "Trapseed Sack",
+	"item.merged_magic.jungle_vine": "Jungle Vine",
 	
 	"effect.merged_magic.crutched": "Crutched",
 	
@@ -19,5 +19,5 @@
 	"tooltip.merged_magic.springy_piston.desc": "Launches the player off the ground and crutches their fall",
 	"tooltip.merged_magic.amethyst_mirror.desc": "Reflects your current positions lighting onto undead mobs around you, damaging them and setting them ablaze",
 	"tooltip.merged_magic.prospectors_pan.desc": "Samples high value ores within the area, then carves a path to the closest one",
-	"tooltip.merged_magic.trapseed_sack.desc": "Grows a few plants that slow down enemies"
+	"tooltip.merged_magic.jungle_vine.desc": "Consumes durability to place vines wherever the player climbs, regenerates durability over time and never breaks"
 }

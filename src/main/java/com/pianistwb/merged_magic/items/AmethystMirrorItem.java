@@ -17,8 +17,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 
 public class AmethystMirrorItem extends MergableItem {
-	private final MergeStat<Integer> radius = new MergeStat<>(3, 4, 7);
-	private final MergeStat<Integer> getLightingDamageIncrease = new MergeStat<>(0, 1, 2);
+	public final MergeStat<Integer> radius = new MergeStat<>(3, 4, 7);
+	public final MergeStat<Integer> getLightingDamageIncrease = new MergeStat<>(0, 1, 2);
 
 	public AmethystMirrorItem(Properties properties) {
 		super(properties);

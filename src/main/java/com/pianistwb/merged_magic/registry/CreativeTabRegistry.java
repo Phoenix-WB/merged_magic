@@ -24,5 +24,6 @@ public class CreativeTabRegistry {
 						output.accept(ItemRegistry.SPRINGY_PISTON.get());
 						output.accept(ItemRegistry.AMETHYST_MIRROR.get());
 						output.accept(ItemRegistry.PROSPECTORS_PAN.get());
+						output.accept(ItemRegistry.JUNGLE_VINE.get());
 					}).build());
 }

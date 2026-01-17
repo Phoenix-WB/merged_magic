@@ -4,6 +4,7 @@ import com.pianistwb.merged_magic.MergedMagic;
 import com.pianistwb.merged_magic.items.AmethystMirrorItem;
 import com.pianistwb.merged_magic.items.BroomItem;
 import com.pianistwb.merged_magic.items.DolphinsBreathItem;
+import com.pianistwb.merged_magic.items.JungleVineItem;
 import com.pianistwb.merged_magic.items.ProspectorsPanItem;
 import com.pianistwb.merged_magic.items.SpringyPistonItem;
 
@@ -34,6 +35,9 @@ public class ItemRegistry {
 	public static final DeferredHolder<Item, AmethystMirrorItem> AMETHYST_MIRROR = ITEMS.registerItem("amethyst_mirror",
 			AmethystMirrorItem::new);
 
-	public static final DeferredHolder<Item, ProspectorsPanItem> PROSPECTORS_PAN = ITEMS
-			.registerItem("prospectors_pan", ProspectorsPanItem::new);
+	public static final DeferredHolder<Item, ProspectorsPanItem> PROSPECTORS_PAN = ITEMS.registerItem("prospectors_pan",
+			ProspectorsPanItem::new);
+
+	public static final DeferredHolder<Item, JungleVineItem> JUNGLE_VINE = ITEMS.registerItem("jungle_vine",
+			properties -> new JungleVineItem(properties.durability(32)));
 }

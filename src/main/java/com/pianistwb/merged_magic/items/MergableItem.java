@@ -22,6 +22,10 @@ public class MergableItem extends Item {
 	public MergableItem(Properties properties) {
 		super(properties.stacksTo(1).component(DataComponentRegistry.MERGE_LEVEL, new MergeLevel(1)));
 	}
+	
+	public ItemStack getMergedStack(ItemStack stackedOn, ItemStack carried) {
+		return stackedOn;
+	}
 
 	@Override
 	public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay tooltipDisplay,
