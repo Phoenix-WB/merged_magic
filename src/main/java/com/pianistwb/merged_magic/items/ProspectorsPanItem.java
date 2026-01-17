@@ -32,7 +32,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 public class ProspectorsPanItem extends MergableItem {
-	public final MergeStat<Integer> radius = new MergeStat<>(4, 5, 6);
+	public final MergeStat<Integer> radius = new MergeStat<>(3, 4, 5);
 	public final MergeStat<Integer> cooldown = new MergeStat<>(200, 180, 160);
 
 	public ProspectorsPanItem(Properties properties) {
