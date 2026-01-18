@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_transmute",
+  "input": "merged_magic:hot_cocoa",
+  "material": "minecraft:cocoa_beans",
+  "result": {
+    "id": "merged_magic:hot_cocoa",
+    "components": {
+      "minecraft:damage": 0
+    }
+  }
+}

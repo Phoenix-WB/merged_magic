@@ -9,15 +9,22 @@
 	"item.merged_magic.amethyst_mirror": "Amethyst Mirror",
 	"item.merged_magic.prospectors_pan": "Prospector's Pan",
 	"item.merged_magic.jungle_vine": "Jungle Vine",
+	"item.merged_magic.hot_cocoa": "Hot Cocoa",
+	"item.merged_magic.target_frisbee": "Target Frisbee",
+	"item.merged_magic.hermes_boots": "Hermes Boots",
 	
 	"effect.merged_magic.crutched": "Crutched",
+	"effect.merged_magic.cocoa_buff": "Cocoa Buff",
 	
 	"itemGroup.merged_magic_items": "Merged Magic Items",
 	
 	"tooltip.merged_magic.broom.desc": "Pushes entities",
 	"tooltip.merged_magic.dolphins_breath.desc": "Grants water breathing at the water's surface",
-	"tooltip.merged_magic.springy_piston.desc": "Launches the player off the ground and crutches their fall",
+	"tooltip.merged_magic.springy_piston.desc": "Launches the player off the ground and temporarily crutches their fall",
 	"tooltip.merged_magic.amethyst_mirror.desc": "Reflects your current positions lighting onto undead mobs around you, damaging them and setting them ablaze",
 	"tooltip.merged_magic.prospectors_pan.desc": "Samples high value ores within the area, then carves a path to the closest one",
-	"tooltip.merged_magic.jungle_vine.desc": "Consumes durability to place vines wherever the player climbs, regenerates durability over time and never breaks"
+	"tooltip.merged_magic.jungle_vine.desc": "Consumes durability to place vines wherever the player climbs, regenerates durability over time and never breaks",
+	"tooltip.merged_magic.hot_cocoa.desc": "Protects the user from freezing and slowness when drunk, refill by crafting with cocoa beans",
+	"tooltip.merged_magic.target_frisbee.desc": "Throws a frisbee that glows a target, and makes them take 1.5x more projectile damage",
+	"tooltip.merged_magic.hermes_boots.desc": "When on the ground, grants you a quick speed boost and lasting levitation"
 }

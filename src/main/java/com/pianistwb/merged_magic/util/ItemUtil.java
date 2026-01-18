@@ -1,5 +1,7 @@
 package com.pianistwb.merged_magic.util;
 
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 public class ItemUtil {
@@ -17,5 +19,17 @@ public class ItemUtil {
 
 	public static void healStack(ItemStack stack, int amount) {
 		stack.setDamageValue(Math.max(stack.getDamageValue() - amount, 0));
+	}
+	
+	public static Item.Properties durableItem(Item.Properties properties, int maxDamage) {
+		properties.component(DataComponents.MAX_DAMAGE, maxDamage);
+		properties.component(DataComponents.DAMAGE, 0);
+		return properties;
+	}
+	
+	public static Item.Properties brokenItem(Item.Properties properties, int maxDamage) {
+		properties.component(DataComponents.MAX_DAMAGE, maxDamage);
+		properties.component(DataComponents.DAMAGE, maxDamage);
+		return properties;
 	}
 }

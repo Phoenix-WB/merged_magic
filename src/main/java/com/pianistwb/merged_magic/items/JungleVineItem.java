@@ -27,7 +27,7 @@ public class JungleVineItem extends MergableItem implements TicksInPlayerHand {
 	public final MergeStat<Integer> regrowth = new MergeStat<>(1, 2, 4);
 
 	public JungleVineItem(Properties properties) {
-		super(properties);
+		super(ItemUtil.durableItem(properties, 32));
 	}
 	
 	@Override

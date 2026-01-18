@@ -4,9 +4,12 @@ import com.pianistwb.merged_magic.MergedMagic;
 import com.pianistwb.merged_magic.items.AmethystMirrorItem;
 import com.pianistwb.merged_magic.items.BroomItem;
 import com.pianistwb.merged_magic.items.DolphinsBreathItem;
+import com.pianistwb.merged_magic.items.HermesBootsItem;
+import com.pianistwb.merged_magic.items.HotCocoaItem;
 import com.pianistwb.merged_magic.items.JungleVineItem;
 import com.pianistwb.merged_magic.items.ProspectorsPanItem;
 import com.pianistwb.merged_magic.items.SpringyPistonItem;
+import com.pianistwb.merged_magic.items.TargetFrisbeeItem;
 
 import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -39,5 +42,14 @@ public class ItemRegistry {
 			ProspectorsPanItem::new);
 
 	public static final DeferredHolder<Item, JungleVineItem> JUNGLE_VINE = ITEMS.registerItem("jungle_vine",
-			properties -> new JungleVineItem(properties.durability(32)));
+			JungleVineItem::new);
+
+	public static final DeferredHolder<Item, HotCocoaItem> HOT_COCOA_ITEM = ITEMS.registerItem("hot_cocoa",
+			HotCocoaItem::new);
+
+	public static final DeferredHolder<Item, TargetFrisbeeItem> TARGET_FRISBEE_ITEM = ITEMS
+			.registerItem("target_frisbee", TargetFrisbeeItem::new);
+
+	public static final DeferredHolder<Item, HermesBootsItem> HERMES_BOOTS_ITEM = ITEMS.registerItem("hermes_boots",
+			HermesBootsItem::new);
 }
