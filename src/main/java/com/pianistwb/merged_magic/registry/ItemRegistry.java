@@ -4,7 +4,7 @@ import com.pianistwb.merged_magic.MergedMagic;
 import com.pianistwb.merged_magic.items.AmethystMirrorItem;
 import com.pianistwb.merged_magic.items.BroomItem;
 import com.pianistwb.merged_magic.items.DolphinsBreathItem;
-import com.pianistwb.merged_magic.items.HermesBootsItem;
+import com.pianistwb.merged_magic.items.HermesShoesItem;
 import com.pianistwb.merged_magic.items.HotCocoaItem;
 import com.pianistwb.merged_magic.items.JungleVineItem;
 import com.pianistwb.merged_magic.items.ProspectorsPanItem;
@@ -50,6 +50,6 @@ public class ItemRegistry {
 	public static final DeferredHolder<Item, TargetFrisbeeItem> TARGET_FRISBEE_ITEM = ITEMS
 			.registerItem("target_frisbee", TargetFrisbeeItem::new);
 
-	public static final DeferredHolder<Item, HermesBootsItem> HERMES_BOOTS_ITEM = ITEMS.registerItem("hermes_boots",
-			HermesBootsItem::new);
+	public static final DeferredHolder<Item, HermesShoesItem> HERMES_SHOES_ITEM = ITEMS.registerItem("hermes_shoes",
+			HermesShoesItem::new);
 }

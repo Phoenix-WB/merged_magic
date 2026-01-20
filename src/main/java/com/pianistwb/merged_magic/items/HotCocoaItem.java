@@ -48,4 +48,9 @@ public class HotCocoaItem extends MergableItem {
 
 		return stack;
 	}
+	
+	@Override
+	public boolean isDurable() {
+		return true;
+	}
 }

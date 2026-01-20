@@ -70,6 +70,11 @@ public class JungleVineItem extends MergableItem implements TicksInPlayerHand {
 			ItemUtil.healStack(stack, regrowth.getMergeStatForLevel(mergeLevel));
 		}
 	}
+	
+	@Override
+	public boolean isDurable() {
+		return true;
+	}
 
 	public static boolean placeVines(Level level, BlockPos pos) {
 		BlockState vine = Blocks.VINE.defaultBlockState();

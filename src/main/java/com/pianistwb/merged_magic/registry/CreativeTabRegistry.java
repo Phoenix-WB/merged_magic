@@ -27,6 +27,6 @@ public class CreativeTabRegistry {
 						output.accept(ItemRegistry.JUNGLE_VINE.get());
 						output.accept(ItemRegistry.HOT_COCOA_ITEM.get());
 						output.accept(ItemRegistry.TARGET_FRISBEE_ITEM.get());
-						output.accept(ItemRegistry.HERMES_BOOTS_ITEM.get());
+						output.accept(ItemRegistry.HERMES_SHOES_ITEM.get());
 					}).build());
 }

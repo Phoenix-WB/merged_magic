@@ -1,7 +1,7 @@
 {
     "model": {
         "type": "merged_magic:merged_render_type",
-        "model": "merged_magic:item/hermes_boots",
+        "model": "merged_magic:item/hermes_shoes",
         "tints": [],
         "render_type": "translucent_item"
     }

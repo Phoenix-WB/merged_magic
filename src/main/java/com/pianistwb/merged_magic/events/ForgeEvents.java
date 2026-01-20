@@ -4,7 +4,7 @@ import com.pianistwb.merged_magic.MergedMagic;
 import com.pianistwb.merged_magic.items.MergableItem;
 import com.pianistwb.merged_magic.items.TicksInPlayerHand;
 import com.pianistwb.merged_magic.registry.MobEffectRegistry;
-import com.pianistwb.merged_magic.util.MergeUtil;
+import com.pianistwb.merged_magic.util.ItemUtil;
 
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -29,14 +29,14 @@ public class ForgeEvents {
 			ItemStack itemCarried = event.getCarriedItem();
 
 			if (itemStacked.getItem() instanceof MergableItem stacked && stacked == itemCarried.getItem()
-					&& MergeUtil.itemLevelsValid(itemStacked, itemCarried)) {
+					&& ItemUtil.itemLevelsValid(itemStacked, itemCarried)) {
 				ItemStack finalItem = stacked.getMergedStack(itemStacked, itemCarried);
-				
-				MergeUtil.levelItem(finalItem);
+
+				ItemUtil.levelItem(finalItem);
 				event.getCarriedSlotAccess().set(ItemStack.EMPTY);
 				event.getSlot().set(itemStacked);
 				event.setCanceled(true);
-				MergeUtil.triggerLevelSound(event.getPlayer(), finalItem);
+				ItemUtil.triggerLevelSound(event.getPlayer(), finalItem);
 			}
 		}
 	}
@@ -53,6 +53,10 @@ public class ForgeEvents {
 			living.removeEffect(MobEffectRegistry.CRUTCHED);
 
 			event.setCanceled(true);
+		}
+
+		if (event.getSource() == living.level().damageSources().mobProjectile(living, living)) {
+
 		}
 	}
 
