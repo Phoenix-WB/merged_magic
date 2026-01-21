@@ -23,10 +23,27 @@ public class MergableItem extends Item {
 		super(properties.stacksTo(1).component(DataComponentRegistry.MERGE_LEVEL, new MergeLevel(1)));
 	}
 
+	public ItemStack getMergedStack(ItemStack stackedOn, ItemStack carried) {
+		return stackedOn;
+	}
+
+	public boolean isDurable() {
+		return false;
+	}
+
 	@Override
 	public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay tooltipDisplay,
 			Consumer<Component> tooltipAdder, TooltipFlag flag) {
-		tooltipAdder.accept(this.getDesc().withStyle(ChatFormatting.GREEN));
+		if (flag.hasShiftDown()) {
+			tooltipAdder.accept(this.getDesc().withStyle(ChatFormatting.GREEN));
+			if (isDurable()) {
+				tooltipAdder
+						.accept(Component.translatable("tooltip.merged_magic.durable").withStyle(ChatFormatting.RED));
+			}
+		} else {
+			tooltipAdder
+					.accept(Component.translatable("tooltip.merged_magic.hold_shift").withStyle(ChatFormatting.GRAY));
+		}
 	}
 
 	public MutableComponent getDesc() {

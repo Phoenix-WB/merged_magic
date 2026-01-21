@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
 
 public class DolphinsBreathItem extends MergableItem {
-	private final MergeStat<Integer> waterBreathDuration = new MergeStat<>(300, 600, 900);
+	public final MergeStat<Integer> waterBreathDuration = new MergeStat<>(300, 600, 900);
 	
 	public DolphinsBreathItem(Properties properties) {
 		super(properties);

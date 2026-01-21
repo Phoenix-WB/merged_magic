@@ -14,11 +14,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUseAnimation;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.phys.AABB;
 
 public class AmethystMirrorItem extends MergableItem {
-	private final MergeStat<Integer> radius = new MergeStat<>(3, 4, 7);
-	private final MergeStat<Integer> getLightingDamageIncrease = new MergeStat<>(0, 1, 2);
+	public final MergeStat<Integer> radius = new MergeStat<>(3, 4, 7);
+	public final MergeStat<Integer> getLightingDamageIncrease = new MergeStat<>(0, 1, 2);
 
 	public AmethystMirrorItem(Properties properties) {
 		super(properties);
@@ -35,7 +36,8 @@ public class AmethystMirrorItem extends MergableItem {
 	public void onUseTick(Level level, LivingEntity livingEntity, ItemStack stack, int remainingUseDuration) {
 		if (livingEntity.tickCount % 10 == 0) {
 			BlockPos pos = livingEntity.blockPosition();
-			int lighting = level.getLightEngine().getRawBrightness(pos, 0);
+			int lighting = level.isBrightOutside() ? level.getBrightness(LightLayer.SKY, pos)
+					: level.getBrightness(LightLayer.BLOCK, pos);
 			int mergeLevel = stack.get(DataComponentRegistry.MERGE_LEVEL).mergeLevel();
 
 			if (!level.isClientSide()) {

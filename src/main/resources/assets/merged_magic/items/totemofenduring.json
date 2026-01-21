@@ -1,0 +1,8 @@
+{
+    "model": {
+        "type": "merged_magic:merged_render_type",
+        "model": "merged_magic:item/totem_of_enduring",
+        "tints": [],
+        "render_type": "translucent_item"
+    }
+}
