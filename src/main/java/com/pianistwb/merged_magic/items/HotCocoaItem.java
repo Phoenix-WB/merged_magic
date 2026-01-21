@@ -1,6 +1,5 @@
 package com.pianistwb.merged_magic.items;
 
-import com.pianistwb.merged_magic.registry.DataComponentRegistry;
 import com.pianistwb.merged_magic.registry.MobEffectRegistry;
 import com.pianistwb.merged_magic.util.ItemUtil;
 import com.pianistwb.merged_magic.util.MergeStat;
@@ -38,10 +37,10 @@ public class HotCocoaItem extends MergableItem {
 	@Override
 	public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity livingEntity) {
 		if (!level.isClientSide()) {
-			int mergeLevel = stack.get(DataComponentRegistry.MERGE_LEVEL).mergeLevel();
+			int mergeLevel = ItemUtil.getMergeStatForLevel(stack);
 
 			livingEntity.addEffect(
-					new MobEffectInstance(MobEffectRegistry.COCOA_BUFF, buffDuration.getMergeStatForLevel(mergeLevel)));
+					new MobEffectInstance(MobEffectRegistry.COCOA_BUFF, buffDuration.getStat(mergeLevel)));
 		}
 
 		ItemUtil.damageStack(stack, 1);

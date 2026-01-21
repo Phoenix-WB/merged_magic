@@ -14,8 +14,11 @@
 	"item.merged_magic.hermes_shoes": "Hermes Shoes",
 	"item.merged_magic.totem_of_enduring": "Totem of Enduring",
 	
+	"entity.merged_magic.target_frisbee": "Target Frisbee",
+	
 	"effect.merged_magic.crutched": "Crutched",
 	"effect.merged_magic.cocoa_buff": "Cocoa Buff",
+	"effect.merged_magic.targeted": "Targeted",
 	
 	"itemGroup.merged_magic_items": "Merged Magic Items",
 	
@@ -27,9 +30,9 @@
 	"tooltip.merged_magic.springy_piston.desc": "Launches the player off the ground and temporarily crutches their fall",
 	"tooltip.merged_magic.amethyst_mirror.desc": "Reflects your current positions lighting onto undead mobs around you, damaging them and setting them ablaze",
 	"tooltip.merged_magic.prospectors_pan.desc": "Samples high value ores within the area, then carves a path to the closest one",
-	"tooltip.merged_magic.jungle_vine.desc": "Places vines wherever the player climbs when in your main or off hand",
+	"tooltip.merged_magic.jungle_vine.desc": "Places vines wherever the player climbs when in either hand",
 	"tooltip.merged_magic.hot_cocoa.desc": "Protects the user from freezing and slowness when drunk, refill by crafting with cocoa beans",
-	"tooltip.merged_magic.target_frisbee.desc": "Throws a frisbee that glows a target, and makes them take 1.5x more projectile damage",
+	"tooltip.merged_magic.target_frisbee.desc": "Throws a frisbee that glows an enemy on hit, and makes them take 1.5x more arrow damage",
 	"tooltip.merged_magic.hermes_shoes.desc": "When in the air, flaps to grant the player more height, as well as levitation",
 	"tooltip.merged_magic.totem_of_enduring.desc": "When below half health, knocks nearby attackers into the air and grants resistance"
 }

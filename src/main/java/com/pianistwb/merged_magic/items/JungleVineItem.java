@@ -4,7 +4,6 @@ import java.util.function.Consumer;
 
 import org.jspecify.annotations.Nullable;
 
-import com.pianistwb.merged_magic.registry.DataComponentRegistry;
 import com.pianistwb.merged_magic.util.ItemUtil;
 import com.pianistwb.merged_magic.util.MergeStat;
 
@@ -66,8 +65,8 @@ public class JungleVineItem extends MergableItem implements TicksInPlayerHand {
 	@Override
 	public void inventoryTick(ItemStack stack, ServerLevel level, Entity entity, @Nullable EquipmentSlot slot) {
 		if (entity.tickCount % 60 == 0) {
-			int mergeLevel = stack.get(DataComponentRegistry.MERGE_LEVEL).mergeLevel();
-			ItemUtil.healStack(stack, regrowth.getMergeStatForLevel(mergeLevel));
+			int mergeLevel = ItemUtil.getMergeStatForLevel(stack);
+			ItemUtil.healStack(stack, regrowth.getStat(mergeLevel));
 		}
 	}
 	

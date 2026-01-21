@@ -18,4 +18,7 @@ public class MobEffectRegistry {
 
 	public static final DeferredHolder<MobEffect, CocoaBuffMobEffect> COCOA_BUFF = MOB_EFFECTS.register("cocoa_buff",
 			() -> new CocoaBuffMobEffect(MobEffectCategory.BENEFICIAL, 0x422619));
+
+	public static final DeferredHolder<MobEffect, MobEffect> TARGETED = MOB_EFFECTS.register("targeted",
+			() -> new MobEffect(MobEffectCategory.HARMFUL, 0xffe7e6));
 }

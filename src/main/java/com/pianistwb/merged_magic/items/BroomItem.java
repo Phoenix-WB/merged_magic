@@ -2,7 +2,7 @@ package com.pianistwb.merged_magic.items;
 
 import org.jspecify.annotations.Nullable;
 
-import com.pianistwb.merged_magic.registry.DataComponentRegistry;
+import com.pianistwb.merged_magic.util.ItemUtil;
 import com.pianistwb.merged_magic.util.MergeStat;
 
 import net.minecraft.sounds.SoundEvents;
@@ -30,7 +30,7 @@ public class BroomItem extends MergableItem {
 			InteractionHand usedHand) {
 		ItemCooldowns cooldowns = player.getCooldowns();
 		if (!cooldowns.isOnCooldown(stack) && !player.canCollideWith(interactionTarget)) {
-			int mergeLevel = stack.get(DataComponentRegistry.MERGE_LEVEL).mergeLevel();
+			int mergeLevel = ItemUtil.getMergeStatForLevel(stack);
 			
 			Vec3 viewVector = player.getViewVector(1.0F);
 			double d0 = Math.sqrt(viewVector.x() * viewVector.x() + viewVector.z() * viewVector.z());
@@ -39,7 +39,7 @@ public class BroomItem extends MergableItem {
 			if (d0 < 1.0E-5F) {
 				newMotion = Vec3.ZERO;
 			} else {
-				double scaling = sweepScaling.getMergeStatForLevel(mergeLevel);
+				double scaling = sweepScaling.getStat(mergeLevel);
 				newMotion = new Vec3(scaling * viewVector.x() / d0, 0.3, scaling * viewVector.z() / d0);
 			}
 
@@ -47,7 +47,7 @@ public class BroomItem extends MergableItem {
 
 			player.playSound(SoundEvents.BRUSH_GENERIC, 1.0F, 0.65F);
 			
-			cooldowns.addCooldown(stack, cooldown.getMergeStatForLevel(mergeLevel));
+			cooldowns.addCooldown(stack, cooldown.getStat(mergeLevel));
 			
 			return InteractionResult.SUCCESS;
 		}
@@ -57,7 +57,7 @@ public class BroomItem extends MergableItem {
 
 	@Override
 	public int getBurnTime(ItemStack itemStack, @Nullable RecipeType<?> recipeType, FuelValues fuelValues) {
-		int mergeLevel = itemStack.get(DataComponentRegistry.MERGE_LEVEL).mergeLevel();
-		return burnTime.getMergeStatForLevel(mergeLevel);
+		int mergeLevel = ItemUtil.getMergeStatForLevel(itemStack);
+		return burnTime.getStat(mergeLevel);
 	}
 }

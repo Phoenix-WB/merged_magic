@@ -1,6 +1,6 @@
 package com.pianistwb.merged_magic.items;
 
-import com.pianistwb.merged_magic.registry.DataComponentRegistry;
+import com.pianistwb.merged_magic.util.ItemUtil;
 import com.pianistwb.merged_magic.util.MagicUtil;
 import com.pianistwb.merged_magic.util.MergeStat;
 
@@ -38,11 +38,11 @@ public class AmethystMirrorItem extends MergableItem {
 			BlockPos pos = livingEntity.blockPosition();
 			int lighting = level.isBrightOutside() ? level.getBrightness(LightLayer.SKY, pos)
 					: level.getBrightness(LightLayer.BLOCK, pos);
-			int mergeLevel = stack.get(DataComponentRegistry.MERGE_LEVEL).mergeLevel();
+			int mergeLevel = ItemUtil.getMergeStatForLevel(stack);
 
 			if (!level.isClientSide()) {
 				if (lighting > 8) {
-					int radiusBlocks = radius.getMergeStatForLevel(mergeLevel);
+					int radiusBlocks = radius.getStat(mergeLevel);
 					AABB radiusBox = MagicUtil.getSquareRadius(pos, radiusBlocks);
 					level.getEntities(livingEntity, radiusBox,
 							entity -> entity instanceof LivingEntity living
@@ -52,7 +52,7 @@ public class AmethystMirrorItem extends MergableItem {
 							.forEach(monster -> {
 								if (livingEntity.tickCount % 40 == 0) {
 									monster.hurt(level.damageSources().onFire(), getBaseLightingDamage(lighting)
-											+ getLightingDamageIncrease.getMergeStatForLevel(mergeLevel));
+											+ getLightingDamageIncrease.getStat(mergeLevel));
 								}
 
 								if (!monster.isOnFire()) {

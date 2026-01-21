@@ -3,6 +3,7 @@ package com.pianistwb.merged_magic;
 import com.mojang.logging.LogUtils;
 import com.pianistwb.merged_magic.registry.CreativeTabRegistry;
 import com.pianistwb.merged_magic.registry.DataComponentRegistry;
+import com.pianistwb.merged_magic.registry.EntityTypeRegistry;
 import com.pianistwb.merged_magic.registry.ItemRegistry;
 import com.pianistwb.merged_magic.registry.LootModifierRegistry;
 import com.pianistwb.merged_magic.registry.MobEffectRegistry;
@@ -18,6 +19,7 @@ public class MergedMagic {
 
 	public MergedMagic(IEventBus modEventBus, ModContainer modContainer) {
 		ItemRegistry.ITEMS.register(modEventBus);
+		EntityTypeRegistry.ENTITY_TYPES.register(modEventBus);
 		MobEffectRegistry.MOB_EFFECTS.register(modEventBus);
 		CreativeTabRegistry.TABS.register(modEventBus);
 		DataComponentRegistry.DATA_COMPONENTS.register(modEventBus);

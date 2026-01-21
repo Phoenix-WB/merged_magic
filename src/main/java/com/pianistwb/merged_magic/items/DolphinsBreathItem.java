@@ -1,6 +1,6 @@
 package com.pianistwb.merged_magic.items;
 
-import com.pianistwb.merged_magic.registry.DataComponentRegistry;
+import com.pianistwb.merged_magic.util.ItemUtil;
 import com.pianistwb.merged_magic.util.MergeStat;
 
 import net.minecraft.core.BlockPos;
@@ -30,12 +30,12 @@ public class DolphinsBreathItem extends MergableItem {
 
 		if (!cooldowns.isOnCooldown(stack) && player.isInWater()
 				&& level.getBlockState(twoAbove(player.blockPosition())).is(Blocks.AIR)) {
-			int mergeLevel = stack.get(DataComponentRegistry.MERGE_LEVEL).mergeLevel();
+			int mergeLevel = ItemUtil.getMergeStatForLevel(stack);
 
 			player.addDeltaMovement(new Vec3(0, 1, 0));
 			player.hurtMarked = true;
 
-			int duration = waterBreathDuration.getMergeStatForLevel(mergeLevel);
+			int duration = waterBreathDuration.getStat(mergeLevel);
 			
 			if(!level.isClientSide()) {
 				player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, duration));

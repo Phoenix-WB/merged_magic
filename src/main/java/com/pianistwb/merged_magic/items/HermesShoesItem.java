@@ -4,7 +4,6 @@ import org.jspecify.annotations.Nullable;
 
 import com.pianistwb.merged_magic.client.ClientParticles;
 import com.pianistwb.merged_magic.networking.ParticlePayload;
-import com.pianistwb.merged_magic.registry.DataComponentRegistry;
 import com.pianistwb.merged_magic.util.ItemUtil;
 import com.pianistwb.merged_magic.util.MergeStat;
 
@@ -36,7 +35,7 @@ public class HermesShoesItem extends MergableItem {
 		ItemCooldowns cooldowns = player.getCooldowns();
 
 		if (!player.onGround() && ItemUtil.isItemHealthy(stack) && !cooldowns.isOnCooldown(stack)) {
-			int mergeLevel = stack.get(DataComponentRegistry.MERGE_LEVEL).mergeLevel();
+			int mergeLevel = ItemUtil.getMergeStatForLevel(stack);
 
 			Vec3 mov = player.getDeltaMovement();
 			player.setDeltaMovement(mov.x(), 0.6D, mov.z());
@@ -51,7 +50,7 @@ public class HermesShoesItem extends MergableItem {
 				ClientParticles.runHermesBootsParticles(level, pos);
 			}
 
-			ItemUtil.damageStack(stack, damage.getMergeStatForLevel(mergeLevel));
+			ItemUtil.damageStack(stack, damage.getStat(mergeLevel));
 
 			player.playSound(SoundEvents.ENDER_DRAGON_FLAP);
 
@@ -66,8 +65,8 @@ public class HermesShoesItem extends MergableItem {
 	@Override
 	public void inventoryTick(ItemStack stack, ServerLevel level, Entity entity, @Nullable EquipmentSlot slot) {
 		if (entity.tickCount % 100 == 0) {
-			int mergeLevel = stack.get(DataComponentRegistry.MERGE_LEVEL).mergeLevel();
-			ItemUtil.healStack(stack, damage.getMergeStatForLevel(mergeLevel));
+			int mergeLevel = ItemUtil.getMergeStatForLevel(stack);
+			ItemUtil.healStack(stack, damage.getStat(mergeLevel));
 		}
 	}
 

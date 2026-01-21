@@ -1,7 +1,7 @@
 package com.pianistwb.merged_magic.items;
 
-import com.pianistwb.merged_magic.registry.DataComponentRegistry;
 import com.pianistwb.merged_magic.registry.MobEffectRegistry;
+import com.pianistwb.merged_magic.util.ItemUtil;
 import com.pianistwb.merged_magic.util.MergeStat;
 
 import net.minecraft.sounds.SoundEvents;
@@ -29,20 +29,20 @@ public class SpringyPistonItem extends MergableItem {
 		ItemCooldowns cooldowns = player.getCooldowns();
 
 		if (!cooldowns.isOnCooldown(stack) && player.onGround()) {
-			int mergeLevel = stack.get(DataComponentRegistry.MERGE_LEVEL).mergeLevel();
+			int mergeLevel = ItemUtil.getMergeStatForLevel(stack);
 
-			player.addDeltaMovement(new Vec3(0, velocity.getMergeStatForLevel(mergeLevel), 0));
+			player.addDeltaMovement(new Vec3(0, velocity.getStat(mergeLevel), 0));
 			player.hurtMarked = true;
 
 			player.playSound(SoundEvents.PISTON_EXTEND);
 
 			if (!level.isClientSide()) {
-				player.addEffect(new MobEffectInstance(MobEffectRegistry.CRUTCHED, crutching.getMergeStatForLevel(mergeLevel)));
+				player.addEffect(new MobEffectInstance(MobEffectRegistry.CRUTCHED, crutching.getStat(mergeLevel)));
 			}
 			
 			player.playSound(SoundEvents.PISTON_EXTEND);
 
-			cooldowns.addCooldown(stack, cooldown.getMergeStatForLevel(mergeLevel));
+			cooldowns.addCooldown(stack, cooldown.getStat(mergeLevel));
 			
 			return InteractionResult.SUCCESS;
 		}
