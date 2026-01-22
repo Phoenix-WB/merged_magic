@@ -16,7 +16,7 @@ import net.minecraft.world.item.ItemUseAnimation;
 import net.minecraft.world.level.Level;
 
 public class TargetFrisbeeItem extends MergableItem {
-	public final MergeStat<Float> scaling = new MergeStat<>(1F, 1.75F, 2.5F);
+	public final MergeStat<Float> scaling = new MergeStat<>(1.25F, 1.75F, 2.5F);
 	public final MergeStat<Integer> duration = new MergeStat<>(200, 300, 400);
 	public final MergeStat<Integer> cooldown = new MergeStat<>(200, 160, 140);
 
@@ -43,6 +43,10 @@ public class TargetFrisbeeItem extends MergableItem {
 			int mergeLevel = ItemUtil.getMergeStatForLevel(stack);
 			int usedTime = this.getUseDuration(stack, livingEntity) - timeLeft;
 			float velo = BowItem.getPowerForTime(usedTime) * scaling.getStat(mergeLevel);
+			
+			if(velo < 0.1) {
+				return false;
+			}
 
 			TargetFrisbee frisbee = new TargetFrisbee(level, livingEntity, duration.getStat(mergeLevel));
 			frisbee.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, velo, 0.8F);

@@ -16,10 +16,19 @@ import net.minecraft.world.item.component.Consumables;
 import net.minecraft.world.level.Level;
 
 public class HotCocoaItem extends MergableItem {
-	public final MergeStat<Integer> buffDuration = new MergeStat<>(200, 600, 1200);
+	public final MergeStat<Integer> buffDuration = new MergeStat<>(200, 240, 300);
+	public final MergeStat<Integer> damage = new MergeStat<>(15,5,3);
+	
+	public static final int HOT_COCOA_DURABILITY = 15;
 
 	public HotCocoaItem(Properties properties) {
-		super(ItemUtil.brokenItem(properties.component(DataComponents.CONSUMABLE, Consumables.DEFAULT_DRINK), 1));
+		super(ItemUtil.brokenItem(properties.component(DataComponents.CONSUMABLE, Consumables.DEFAULT_DRINK), HOT_COCOA_DURABILITY));
+	}
+	
+	@Override
+	public ItemStack getMergedStack(ItemStack stackedOn, ItemStack carried) {
+		stackedOn.setDamageValue(HOT_COCOA_DURABILITY);
+		return stackedOn;
 	}
 
 	@Override
@@ -36,14 +45,14 @@ public class HotCocoaItem extends MergableItem {
 
 	@Override
 	public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity livingEntity) {
-		if (!level.isClientSide()) {
-			int mergeLevel = ItemUtil.getMergeStatForLevel(stack);
+		int mergeLevel = ItemUtil.getMergeStatForLevel(stack);
 
+		if (!level.isClientSide()) {
 			livingEntity.addEffect(
 					new MobEffectInstance(MobEffectRegistry.COCOA_BUFF, buffDuration.getStat(mergeLevel)));
 		}
 
-		ItemUtil.damageStack(stack, 1);
+		ItemUtil.damageStack(stack, damage.getStat(mergeLevel));
 
 		return stack;
 	}

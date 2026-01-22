@@ -1,7 +1,5 @@
 package com.pianistwb.merged_magic.items;
 
-import java.util.function.Consumer;
-
 import org.jspecify.annotations.Nullable;
 
 import com.pianistwb.merged_magic.util.ItemUtil;
@@ -9,13 +7,10 @@ import com.pianistwb.merged_magic.util.MergeStat;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
@@ -33,12 +28,6 @@ public class JungleVineItem extends MergableItem implements TicksInPlayerHand {
 	public ItemStack getMergedStack(ItemStack stackedOn, ItemStack carried) {
 		stackedOn.setDamageValue(0);
 		return stackedOn;
-	}
-
-	@Override
-	public <T extends LivingEntity> int damageItem(ItemStack stack, int amount, @Nullable T entity,
-			Consumer<Item> onBroken) {
-		return stack.get(DataComponents.DAMAGE).intValue() == 1 ? 0 : amount;
 	}
 
 	@Override
