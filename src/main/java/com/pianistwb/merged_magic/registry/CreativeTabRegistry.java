@@ -31,5 +31,6 @@ public class CreativeTabRegistry {
 						output.accept(ItemRegistry.HERMES_SHOES_ITEM.get());
 						
 						//Normal Items
+						output.accept(ItemRegistry.CHOCOLATE_MILK_BUCKET.get());
 					}).build());
 }

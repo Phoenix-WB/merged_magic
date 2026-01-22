@@ -27,7 +27,10 @@ public class HotCocoaItem extends MergableItem {
 	
 	@Override
 	public ItemStack getMergedStack(ItemStack stackedOn, ItemStack carried) {
-		stackedOn.setDamageValue(HOT_COCOA_DURABILITY);
+		if(ItemUtil.isItemHealthy(stackedOn) || ItemUtil.isItemHealthy(carried)) {
+			ItemUtil.healStack(stackedOn, HOT_COCOA_DURABILITY);
+		}
+		
 		return stackedOn;
 	}
 

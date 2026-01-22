@@ -22,6 +22,11 @@ public class MergableItem extends Item {
 	public MergableItem(Properties properties) {
 		super(properties.stacksTo(1).component(DataComponentRegistry.MERGE_LEVEL, new MergeLevel(1)));
 	}
+	
+	@Override
+	public boolean isCombineRepairable(ItemStack stack) {
+		return false;
+	}
 
 	public ItemStack getMergedStack(ItemStack stackedOn, ItemStack carried) {
 		return stackedOn;

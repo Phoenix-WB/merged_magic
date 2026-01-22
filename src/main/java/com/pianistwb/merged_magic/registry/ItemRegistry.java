@@ -11,7 +11,10 @@ import com.pianistwb.merged_magic.items.ProspectorsPanItem;
 import com.pianistwb.merged_magic.items.SpringyPistonItem;
 import com.pianistwb.merged_magic.items.TargetFrisbeeItem;
 
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.Consumables;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -52,4 +55,9 @@ public class ItemRegistry {
 
 	public static final DeferredHolder<Item, HermesShoesItem> HERMES_SHOES_ITEM = ITEMS.registerItem("hermes_shoes",
 			HermesShoesItem::new);
+	
+	public static final DeferredHolder<Item, Item> CHOCOLATE_MILK_BUCKET = ITEMS.registerItem("chocolate_milk_bucket",
+			properties -> new Item(properties.craftRemainder(Items.BUCKET)
+					.component(DataComponents.CONSUMABLE, Consumables.MILK_BUCKET).usingConvertsTo(Items.BUCKET)
+					.stacksTo(1)));
 }
