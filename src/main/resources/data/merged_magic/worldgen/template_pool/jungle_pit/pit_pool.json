@@ -1,0 +1,14 @@
+{
+	"fallback": "minecraft:empty",
+	"elements": [
+		{
+			"weight": 1,
+			"element": {
+				"location": "merged_magic:jungle_pit/pit",
+				"processors": "merged_magic:remove_mossy_slabs",
+				"projection": "rigid",
+				"element_type": "minecraft:single_pool_element"
+			}
+		}
+	]
+}
