@@ -1,8 +1,24 @@
 {
-    "model": {
-        "type": "merged_magic:merged_render_type",
-        "model": "merged_magic:item/hot_cocoa",
-        "tints": [],
-        "render_type": "translucent_item"
-    }
+	"model": {
+		"type": "minecraft:condition",
+		"property": "minecraft:component",
+		"predicate": "minecraft:damage",
+		"value": {
+			"durability": 0
+		},
+		"on_true": {
+			"type": "merged_magic:merged_render_type",
+			"model": "merged_magic:item/hot_cocoa_unfilled",
+			"tints": [
+			],
+			"render_type": "translucent_item"
+		},
+		"on_false": {
+			"type": "merged_magic:merged_render_type",
+			"model": "merged_magic:item/hot_cocoa",
+			"tints": [
+			],
+			"render_type": "translucent_item"
+		}
+	}
 }

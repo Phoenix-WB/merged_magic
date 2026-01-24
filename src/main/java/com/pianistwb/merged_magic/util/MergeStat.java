@@ -11,7 +11,7 @@ public class MergeStat<V> {
 		this.levelThree = levelThree;
 	}
 
-	public V getMergeStatForLevel(int level) {
+	public V getStat(int level) {
 		switch (level) {
 		case 1:
 			return levelOne;

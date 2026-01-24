@@ -1,0 +1,11 @@
+{
+	"type": "minecraft:crafting_transmute",
+	"input": "merged_magic:chocolate_milk_bucket",
+	"material": "merged_magic:hot_cocoa",
+	"result": {
+		"id": "merged_magic:hot_cocoa",
+		"components": {
+			"minecraft:damage": 0
+		}
+	}
+}

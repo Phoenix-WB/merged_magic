@@ -9,6 +9,8 @@ import com.pianistwb.merged_magic.util.ItemUtil;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -20,7 +22,7 @@ import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
 @EventBusSubscriber(modid = MergedMagic.MODID)
-public class ForgeEvents {
+public class CommonEvents {
 	// Items
 	@SubscribeEvent
 	public static void onClickItem(ItemStackedOnOtherEvent event) {
@@ -45,9 +47,9 @@ public class ForgeEvents {
 	@SubscribeEvent
 	public static void onLivingIncomingDamage(LivingIncomingDamageEvent event) {
 		LivingEntity living = event.getEntity();
+		DamageSource source = event.getSource();
 
-		if (living.hasEffect(MobEffectRegistry.CRUTCHED)
-				&& event.getSource() == living.level().damageSources().fall()) {
+		if (living.hasEffect(MobEffectRegistry.CRUTCHED) && source == living.level().damageSources().fall()) {
 			living.level().playSound(null, living.blockPosition(), SoundEvents.ITEM_BREAK.value(), SoundSource.PLAYERS);
 
 			living.removeEffect(MobEffectRegistry.CRUTCHED);
@@ -55,8 +57,9 @@ public class ForgeEvents {
 			event.setCanceled(true);
 		}
 
-		if (event.getSource() == living.level().damageSources().mobProjectile(living, living)) {
-
+		if (living.hasEffect(MobEffectRegistry.TARGETED)
+				&& source.type() == living.level().registryAccess().getOrThrow(DamageTypes.ARROW).value()) {
+			event.setAmount(event.getAmount() * 1.5F);
 		}
 	}
 

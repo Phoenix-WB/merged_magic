@@ -19,6 +19,7 @@ public class CreativeTabRegistry {
 					.withTabsBefore(CreativeModeTabs.COMBAT)
 					.icon(() -> ItemRegistry.BROOM.get().getDefaultInstance())
 					.displayItems((parameters, output) -> {
+						//Mergable Items
 						output.accept(ItemRegistry.BROOM.get());
 						output.accept(ItemRegistry.DOLPHINS_BREATH.get());
 						output.accept(ItemRegistry.SPRINGY_PISTON.get());
@@ -28,5 +29,8 @@ public class CreativeTabRegistry {
 						output.accept(ItemRegistry.HOT_COCOA_ITEM.get());
 						output.accept(ItemRegistry.TARGET_FRISBEE_ITEM.get());
 						output.accept(ItemRegistry.HERMES_SHOES_ITEM.get());
+						
+						//Normal Items
+						output.accept(ItemRegistry.CHOCOLATE_MILK_BUCKET.get());
 					}).build());
 }

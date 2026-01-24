@@ -4,9 +4,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import com.pianistwb.merged_magic.registry.DataComponentRegistry;
+import com.pianistwb.merged_magic.util.ComponentUtil;
+import com.pianistwb.merged_magic.util.ItemUtil;
 import com.pianistwb.merged_magic.util.MagicUtil;
 import com.pianistwb.merged_magic.util.MergeStat;
+import com.pianistwb.merged_magic.util.StatNames;
+import com.pianistwb.merged_magic.util.StatUnits;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder.Reference;
@@ -37,6 +40,8 @@ public class ProspectorsPanItem extends MergableItem {
 
 	public ProspectorsPanItem(Properties properties) {
 		super(properties);
+		addMergeStat(StatNames.RADIUS, StatUnits.BLOCKS, radius, stat -> ComponentUtil.literal(stat));
+		addMergeStat(StatNames.COOLDOWN, StatUnits.SECONDS, cooldown, stat -> ComponentUtil.literal(stat / 20F));
 	}
 
 	@Override
@@ -45,12 +50,12 @@ public class ProspectorsPanItem extends MergableItem {
 		ItemCooldowns cooldowns = player.getCooldowns();
 
 		if (!cooldowns.isOnCooldown(stack)) {
-			int mergeLevel = stack.get(DataComponentRegistry.MERGE_LEVEL).mergeLevel();
+			int mergeLevel = ItemUtil.getMergeStatForLevel(stack);
 
 			if (!level.isClientSide()) {
 				BlockPos playerPos = player.blockPosition().above();
 
-				AABB radiusBox = MagicUtil.getSquareRadius(playerPos, radius.getMergeStatForLevel(mergeLevel));
+				AABB radiusBox = MagicUtil.getSquareRadius(playerPos, radius.getStat(mergeLevel));
 
 				BlockPos closestBlock = null;
 				double closestBlockDist = 0D;
@@ -129,7 +134,7 @@ public class ProspectorsPanItem extends MergableItem {
 
 			player.playSound(SoundEvents.SAND_BREAK);
 
-			cooldowns.addCooldown(stack, cooldown.getMergeStatForLevel(mergeLevel));
+			cooldowns.addCooldown(stack, cooldown.getStat(mergeLevel));
 
 			return InteractionResult.SUCCESS;
 		}

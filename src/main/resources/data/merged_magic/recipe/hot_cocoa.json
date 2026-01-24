@@ -1,11 +1,21 @@
 {
-  "type": "minecraft:crafting_transmute",
-  "input": "merged_magic:hot_cocoa",
-  "material": "minecraft:cocoa_beans",
-  "result": {
-    "id": "merged_magic:hot_cocoa",
-    "components": {
-      "minecraft:damage": 0
-    }
-  }
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"O O",
+		"#X#",
+		"OMO"
+	],
+	"key": {
+		"O": "minecraft:brick",
+		"#": "minecraft:red_wool",
+		"X": "merged_magic:chocolate_milk_bucket",
+		"M": "minecraft:magma_block"
+	},
+	"result": {
+		"id": "merged_magic:hot_cocoa",
+		"components": {
+			"minecraft:damage": 0
+		},
+		"count": 1
+	}
 }

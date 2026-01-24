@@ -1,8 +1,11 @@
 package com.pianistwb.merged_magic.items;
 
-import com.pianistwb.merged_magic.registry.DataComponentRegistry;
 import com.pianistwb.merged_magic.registry.MobEffectRegistry;
+import com.pianistwb.merged_magic.util.ComponentUtil;
+import com.pianistwb.merged_magic.util.ItemUtil;
 import com.pianistwb.merged_magic.util.MergeStat;
+import com.pianistwb.merged_magic.util.StatNames;
+import com.pianistwb.merged_magic.util.StatUnits;
 
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
@@ -21,6 +24,10 @@ public class SpringyPistonItem extends MergableItem {
 
 	public SpringyPistonItem(Properties properties) {
 		super(properties);
+		addMergeStat(StatNames.INITIAL_VELOCITY, StatUnits.BLOCKS_PER_TICK, velocity,
+				stat -> ComponentUtil.literal(stat));
+		addMergeStat(StatNames.EFFECT_DURATION, StatUnits.SECONDS, crutching, stat -> ComponentUtil.literal(stat));
+		addMergeStat(StatNames.COOLDOWN, StatUnits.SECONDS, cooldown, stat -> ComponentUtil.literal(stat / 20F));
 	}
 
 	@Override
@@ -29,21 +36,21 @@ public class SpringyPistonItem extends MergableItem {
 		ItemCooldowns cooldowns = player.getCooldowns();
 
 		if (!cooldowns.isOnCooldown(stack) && player.onGround()) {
-			int mergeLevel = stack.get(DataComponentRegistry.MERGE_LEVEL).mergeLevel();
+			int mergeLevel = ItemUtil.getMergeStatForLevel(stack);
 
-			player.addDeltaMovement(new Vec3(0, velocity.getMergeStatForLevel(mergeLevel), 0));
+			player.addDeltaMovement(new Vec3(0, velocity.getStat(mergeLevel), 0));
 			player.hurtMarked = true;
 
 			player.playSound(SoundEvents.PISTON_EXTEND);
 
 			if (!level.isClientSide()) {
-				player.addEffect(new MobEffectInstance(MobEffectRegistry.CRUTCHED, crutching.getMergeStatForLevel(mergeLevel)));
+				player.addEffect(new MobEffectInstance(MobEffectRegistry.CRUTCHED, crutching.getStat(mergeLevel)));
 			}
-			
+
 			player.playSound(SoundEvents.PISTON_EXTEND);
 
-			cooldowns.addCooldown(stack, cooldown.getMergeStatForLevel(mergeLevel));
-			
+			cooldowns.addCooldown(stack, cooldown.getStat(mergeLevel));
+
 			return InteractionResult.SUCCESS;
 		}
 
