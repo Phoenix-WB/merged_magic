@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		" X ",
+		"XOX",
+		" X "
+	],
+	"key": {
+		"X": "minecraft:target",
+		"O": "minecraft:phantom_membrane"
+	},
+	"result": {
+		"id": "merged_magic:target_frisbee",
+		"count": 1
+	}
+}

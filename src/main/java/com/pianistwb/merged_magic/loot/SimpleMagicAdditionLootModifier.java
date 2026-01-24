@@ -36,8 +36,6 @@ public class SimpleMagicAdditionLootModifier extends LootModifier {
 			generatedLoot.add(item.getDefaultInstance());
 		}
 		
-		generatedLoot.add(Items.DIRT.getDefaultInstance());
-
 		return generatedLoot;
 	}
 
