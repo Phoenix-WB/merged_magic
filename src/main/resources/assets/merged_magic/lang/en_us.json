@@ -25,7 +25,10 @@
 	"itemGroup.merged_magic_items": "Merged Magic Items",
 	
 	"tooltip.merged_magic.hold_shift": "Hold Shift for more info",
+	"tooltip.merged_magic.hold_ctrl": "Hold Ctrl for merge stats",
+	"tooltip.merged_magic.merge_stack": "Click this item on another %1$s of the same tier to merge (Gold tier is maximum)",
 	"tooltip.merged_magic.durable": "Has durability, but never breaks",
+	"tooltip.merged_magic.merge_stat": "%1$s: %2$s/%3$s/%4$s %5$s",
 	
 	"tooltip.merged_magic.broom.desc": "Pushes entities",
 	"tooltip.merged_magic.dolphins_breath.desc": "Grants water breathing at the water's surface",
@@ -33,8 +36,24 @@
 	"tooltip.merged_magic.amethyst_mirror.desc": "Reflects your current positions lighting onto undead mobs around you, damaging them and setting them ablaze",
 	"tooltip.merged_magic.prospectors_pan.desc": "Samples high value ores within the area, then carves a path to the closest one",
 	"tooltip.merged_magic.jungle_vine.desc": "Places vines wherever the player climbs when in either hand",
-	"tooltip.merged_magic.hot_cocoa.desc": "Protects the user from freezing and slowness when drunk, refill by crafting with cocoa beans",
+	"tooltip.merged_magic.hot_cocoa.desc": "Protects the user from freezing and slowness when drunk, refill by crafting with chocolate milk",
 	"tooltip.merged_magic.target_frisbee.desc": "Throws a frisbee that glows an enemy on hit, and makes them take 1.5x more arrow damage",
 	"tooltip.merged_magic.hermes_shoes.desc": "When in the air, flaps to grant the player more height, as well as levitation",
-	"tooltip.merged_magic.totem_of_enduring.desc": "When below half health, knocks nearby attackers into the air and grants resistance"
+	"tooltip.merged_magic.totem_of_enduring.desc": "When below half health, knocks nearby attackers into the air and grants resistance",
+	
+	"statUnit.merged_magic.blocks": "Blocks",
+	"statName.merged_magic.blocks_per_tick": "Blocks per Tick",
+	"statUnit.merged_magic.hearts": "Hearts",
+	"statUnit.merged_magic.seconds": "Seconds",
+	"statUnit.merged_magic.durability": "Durability",
+	"statUnit.merged_magic.durability_per_second": "Durability per Second",
+	
+	"statName.merged_magic.radius": "Radius",
+	"statName.merged_magic.damage_increase": "Damage Increase",
+	"statName.merged_magic.initial_velocity": "Initial Velocity",
+	"statName.merged_magic.burn_time": "Burn Time",
+	"statName.merged_magic.cooldown": "Cooldown",
+	"statName.merged_magic.effect_duration": "Effect Duration",
+	"statName.merged_magic.use_damage": "Use Damage",
+	"statName.merged_magic.repair": "Repair"
 }

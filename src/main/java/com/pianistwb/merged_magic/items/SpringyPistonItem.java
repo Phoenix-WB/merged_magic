@@ -1,8 +1,11 @@
 package com.pianistwb.merged_magic.items;
 
 import com.pianistwb.merged_magic.registry.MobEffectRegistry;
+import com.pianistwb.merged_magic.util.ComponentUtil;
 import com.pianistwb.merged_magic.util.ItemUtil;
 import com.pianistwb.merged_magic.util.MergeStat;
+import com.pianistwb.merged_magic.util.StatNames;
+import com.pianistwb.merged_magic.util.StatUnits;
 
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
@@ -21,6 +24,10 @@ public class SpringyPistonItem extends MergableItem {
 
 	public SpringyPistonItem(Properties properties) {
 		super(properties);
+		addMergeStat(StatNames.INITIAL_VELOCITY, StatUnits.BLOCKS_PER_TICK, velocity,
+				stat -> ComponentUtil.literal(stat));
+		addMergeStat(StatNames.EFFECT_DURATION, StatUnits.SECONDS, crutching, stat -> ComponentUtil.literal(stat));
+		addMergeStat(StatNames.COOLDOWN, StatUnits.SECONDS, cooldown, stat -> ComponentUtil.literal(stat / 20F));
 	}
 
 	@Override
@@ -39,11 +46,11 @@ public class SpringyPistonItem extends MergableItem {
 			if (!level.isClientSide()) {
 				player.addEffect(new MobEffectInstance(MobEffectRegistry.CRUTCHED, crutching.getStat(mergeLevel)));
 			}
-			
+
 			player.playSound(SoundEvents.PISTON_EXTEND);
 
 			cooldowns.addCooldown(stack, cooldown.getStat(mergeLevel));
-			
+
 			return InteractionResult.SUCCESS;
 		}
 

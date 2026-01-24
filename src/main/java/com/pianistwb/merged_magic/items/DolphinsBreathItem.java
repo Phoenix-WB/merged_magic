@@ -1,7 +1,10 @@
 package com.pianistwb.merged_magic.items;
 
+import com.pianistwb.merged_magic.util.ComponentUtil;
 import com.pianistwb.merged_magic.util.ItemUtil;
 import com.pianistwb.merged_magic.util.MergeStat;
+import com.pianistwb.merged_magic.util.StatNames;
+import com.pianistwb.merged_magic.util.StatUnits;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
@@ -18,9 +21,11 @@ import net.minecraft.world.phys.Vec3;
 
 public class DolphinsBreathItem extends MergableItem {
 	public final MergeStat<Integer> waterBreathDuration = new MergeStat<>(300, 600, 900);
-	
+
 	public DolphinsBreathItem(Properties properties) {
 		super(properties);
+		addMergeStat(StatNames.EFFECT_DURATION, StatUnits.SECONDS, waterBreathDuration,
+				stat -> ComponentUtil.literal(stat / 20F));
 	}
 
 	@Override
@@ -36,14 +41,14 @@ public class DolphinsBreathItem extends MergableItem {
 			player.hurtMarked = true;
 
 			int duration = waterBreathDuration.getStat(mergeLevel);
-			
-			if(!level.isClientSide()) {
+
+			if (!level.isClientSide()) {
 				player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, duration));
 			}
-			
+
 			player.playSound(SoundEvents.DOLPHIN_JUMP);
 			player.playSound(SoundEvents.DOLPHIN_AMBIENT);
-			
+
 			cooldowns.addCooldown(stack, duration + 300);
 
 			return InteractionResult.SUCCESS;

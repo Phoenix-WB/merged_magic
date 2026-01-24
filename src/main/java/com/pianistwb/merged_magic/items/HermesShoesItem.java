@@ -4,8 +4,11 @@ import org.jspecify.annotations.Nullable;
 
 import com.pianistwb.merged_magic.client.ClientParticles;
 import com.pianistwb.merged_magic.networking.ParticlePayload;
+import com.pianistwb.merged_magic.util.ComponentUtil;
 import com.pianistwb.merged_magic.util.ItemUtil;
 import com.pianistwb.merged_magic.util.MergeStat;
+import com.pianistwb.merged_magic.util.StatNames;
+import com.pianistwb.merged_magic.util.StatUnits;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -23,10 +26,11 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.network.PacketDistributor;
 
 public class HermesShoesItem extends MergableItem {
-	public final MergeStat<Integer> damage = new MergeStat<>(6, 3, 2);
+	public final MergeStat<Integer> useDamage = new MergeStat<>(6, 3, 2);
 
 	public HermesShoesItem(Properties properties) {
 		super(ItemUtil.durableItem(properties, 6));
+		addMergeStat(StatNames.USE_DAMAGE, StatUnits.DURABILITY, useDamage, stat -> ComponentUtil.literal(stat));
 	}
 
 	@Override
@@ -50,7 +54,7 @@ public class HermesShoesItem extends MergableItem {
 				ClientParticles.runHermesBootsParticles(level, pos);
 			}
 
-			ItemUtil.damageStack(stack, damage.getStat(mergeLevel));
+			ItemUtil.damageStack(stack, useDamage.getStat(mergeLevel));
 
 			player.playSound(SoundEvents.ENDER_DRAGON_FLAP);
 
@@ -66,7 +70,7 @@ public class HermesShoesItem extends MergableItem {
 	public void inventoryTick(ItemStack stack, ServerLevel level, Entity entity, @Nullable EquipmentSlot slot) {
 		if (entity.tickCount % 100 == 0) {
 			int mergeLevel = ItemUtil.getMergeStatForLevel(stack);
-			ItemUtil.healStack(stack, damage.getStat(mergeLevel));
+			ItemUtil.healStack(stack, useDamage.getStat(mergeLevel));
 		}
 	}
 

@@ -1,8 +1,11 @@
 package com.pianistwb.merged_magic.items;
 
 import com.pianistwb.merged_magic.entity.projectile.TargetFrisbee;
+import com.pianistwb.merged_magic.util.ComponentUtil;
 import com.pianistwb.merged_magic.util.ItemUtil;
 import com.pianistwb.merged_magic.util.MergeStat;
+import com.pianistwb.merged_magic.util.StatNames;
+import com.pianistwb.merged_magic.util.StatUnits;
 
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
@@ -22,6 +25,10 @@ public class TargetFrisbeeItem extends MergableItem {
 
 	public TargetFrisbeeItem(Properties properties) {
 		super(properties);
+		addMergeStat(StatNames.INITIAL_VELOCITY, StatUnits.BLOCKS_PER_TICK, scaling,
+				stat -> ComponentUtil.literal(stat));
+		addMergeStat(StatNames.EFFECT_DURATION, StatUnits.SECONDS, duration, stat -> ComponentUtil.literal(stat / 20F));
+		addMergeStat(StatNames.COOLDOWN, StatUnits.SECONDS, cooldown, stat -> ComponentUtil.literal(stat / 20F));
 	}
 
 	@Override
@@ -31,7 +38,7 @@ public class TargetFrisbeeItem extends MergableItem {
 
 		if (!cooldowns.isOnCooldown(stack)) {
 			player.startUsingItem(hand);
-            return InteractionResult.CONSUME;
+			return InteractionResult.CONSUME;
 		}
 
 		return InteractionResult.PASS;
@@ -43,30 +50,30 @@ public class TargetFrisbeeItem extends MergableItem {
 			int mergeLevel = ItemUtil.getMergeStatForLevel(stack);
 			int usedTime = this.getUseDuration(stack, livingEntity) - timeLeft;
 			float velo = BowItem.getPowerForTime(usedTime) * scaling.getStat(mergeLevel);
-			
-			if(velo < 0.1) {
+
+			if (velo < 0.1) {
 				return false;
 			}
 
 			TargetFrisbee frisbee = new TargetFrisbee(level, livingEntity, duration.getStat(mergeLevel));
 			frisbee.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, velo, 0.8F);
 			level.addFreshEntity(frisbee);
-			
+
 			player.playSound(SoundEvents.ARROW_SHOOT);
-			
+
 			player.getCooldowns().addCooldown(stack, cooldown.getStat(mergeLevel));
 		}
 
 		return false;
 	}
-	
+
 	@Override
 	public ItemUseAnimation getUseAnimation(ItemStack stack) {
 		return ItemUseAnimation.BOW;
 	}
-	
-    @Override
-    public int getUseDuration(ItemStack p_40680_, LivingEntity p_345962_) {
-        return 72000;
-    }
+
+	@Override
+	public int getUseDuration(ItemStack p_40680_, LivingEntity p_345962_) {
+		return 72000;
+	}
 }

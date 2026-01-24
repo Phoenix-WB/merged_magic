@@ -1,8 +1,11 @@
 package com.pianistwb.merged_magic.items;
 
 import com.pianistwb.merged_magic.registry.MobEffectRegistry;
+import com.pianistwb.merged_magic.util.ComponentUtil;
 import com.pianistwb.merged_magic.util.ItemUtil;
 import com.pianistwb.merged_magic.util.MergeStat;
+import com.pianistwb.merged_magic.util.StatNames;
+import com.pianistwb.merged_magic.util.StatUnits;
 
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.InteractionHand;
@@ -17,20 +20,23 @@ import net.minecraft.world.level.Level;
 
 public class HotCocoaItem extends MergableItem {
 	public final MergeStat<Integer> buffDuration = new MergeStat<>(200, 240, 300);
-	public final MergeStat<Integer> damage = new MergeStat<>(15,5,3);
-	
+	public final MergeStat<Integer> damage = new MergeStat<>(15, 5, 3);
+
 	public static final int HOT_COCOA_DURABILITY = 15;
 
 	public HotCocoaItem(Properties properties) {
-		super(ItemUtil.brokenItem(properties.component(DataComponents.CONSUMABLE, Consumables.DEFAULT_DRINK), HOT_COCOA_DURABILITY));
+		super(ItemUtil.brokenItem(properties.component(DataComponents.CONSUMABLE, Consumables.DEFAULT_DRINK),
+				HOT_COCOA_DURABILITY));
+		addMergeStat(StatNames.EFFECT_DURATION, StatUnits.SECONDS, buffDuration,
+				stat -> ComponentUtil.literal(stat / 20F));
 	}
-	
+
 	@Override
 	public ItemStack getMergedStack(ItemStack stackedOn, ItemStack carried) {
-		if(ItemUtil.isItemHealthy(stackedOn) || ItemUtil.isItemHealthy(carried)) {
+		if (ItemUtil.isItemHealthy(stackedOn) || ItemUtil.isItemHealthy(carried)) {
 			ItemUtil.healStack(stackedOn, HOT_COCOA_DURABILITY);
 		}
-		
+
 		return stackedOn;
 	}
 
@@ -51,15 +57,15 @@ public class HotCocoaItem extends MergableItem {
 		int mergeLevel = ItemUtil.getMergeStatForLevel(stack);
 
 		if (!level.isClientSide()) {
-			livingEntity.addEffect(
-					new MobEffectInstance(MobEffectRegistry.COCOA_BUFF, buffDuration.getStat(mergeLevel)));
+			livingEntity
+					.addEffect(new MobEffectInstance(MobEffectRegistry.COCOA_BUFF, buffDuration.getStat(mergeLevel)));
 		}
 
 		ItemUtil.damageStack(stack, damage.getStat(mergeLevel));
 
 		return stack;
 	}
-	
+
 	@Override
 	public boolean isDurable() {
 		return true;

@@ -2,8 +2,11 @@ package com.pianistwb.merged_magic.items;
 
 import org.jspecify.annotations.Nullable;
 
+import com.pianistwb.merged_magic.util.ComponentUtil;
 import com.pianistwb.merged_magic.util.ItemUtil;
 import com.pianistwb.merged_magic.util.MergeStat;
+import com.pianistwb.merged_magic.util.StatNames;
+import com.pianistwb.merged_magic.util.StatUnits;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -22,8 +25,10 @@ public class JungleVineItem extends MergableItem implements TicksInPlayerHand {
 
 	public JungleVineItem(Properties properties) {
 		super(ItemUtil.durableItem(properties, 32));
+		addMergeStat(StatNames.REPAIR, StatUnits.DURABILITY_PER_SECOND, regrowth,
+				stat -> ComponentUtil.literal(stat / 3F));
 	}
-	
+
 	@Override
 	public ItemStack getMergedStack(ItemStack stackedOn, ItemStack carried) {
 		stackedOn.setDamageValue(0);
@@ -58,7 +63,7 @@ public class JungleVineItem extends MergableItem implements TicksInPlayerHand {
 			ItemUtil.healStack(stack, regrowth.getStat(mergeLevel));
 		}
 	}
-	
+
 	@Override
 	public boolean isDurable() {
 		return true;
