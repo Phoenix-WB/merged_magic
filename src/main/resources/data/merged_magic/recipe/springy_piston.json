@@ -1,14 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "IOI",
     "ITI",
-    "IXI"
+    "IOI",
+    "ITI"
   ],
   "key": {
-    "I": "minecraft:scaffolding",
+    "I": "minecraft:stick",
     "T": "minecraft:piston",
-    "X": "#minecraft:buttons",
     "O": "minecraft:slime_block"
   },
   "result": {
