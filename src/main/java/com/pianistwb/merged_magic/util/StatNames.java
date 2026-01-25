@@ -12,4 +12,6 @@ public class StatNames {
 	public static final MutableComponent EFFECT_DURATION = Component.translatable("statName.merged_magic.effect_duration");
 	public static final MutableComponent USE_DAMAGE = Component.translatable("statName.merged_magic.use_damage");
 	public static final MutableComponent REPAIR = Component.translatable("statName.merged_magic.repair");
+	public static final MutableComponent SPAWNING_ROTATION = Component.translatable("statName.merged_magic.spawning_rotation");
+	public static final MutableComponent SUMMON_COUNT = Component.translatable("statName.merged_magic.summon_count");
 }

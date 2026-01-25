@@ -1,6 +1,8 @@
 package com.pianistwb.merged_magic.util;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.phys.AABB;
@@ -24,5 +26,24 @@ public class MagicUtil {
 		return vec31.distanceTo(vec3) > 128.0 ? false
 				: origin.level().clip(new ClipContext(vec3, vec31, block, fluid, target))
 						.getType() == HitResult.Type.MISS;
+	}
+
+	public static Vec3 getRelativeToEntityView(Entity entity, double scaling, double displacement) {
+		Vec3 viewVector = entity.getViewVector(1.0F);
+		double d0 = Math.sqrt(viewVector.x() * viewVector.x() + viewVector.z() * viewVector.z());
+
+		Vec3 spawnRelative;
+		if (d0 < 1.0E-5F) {
+			spawnRelative = Vec3.ZERO;
+		} else {
+			spawnRelative = new Vec3(scaling * viewVector.x() / d0, displacement, scaling * viewVector.z() / d0);
+		}
+
+		return spawnRelative;
+	}
+
+	public static Vec3 rotateVector(Vec3 vector, double rotation) {
+		return new Vec3(vector.x() * Mth.cos(rotation) - vector.z() * Mth.sin(rotation), vector.y(),
+				vector.x() * Mth.sin(rotation) + vector.z() * Mth.cos(rotation));
 	}
 }

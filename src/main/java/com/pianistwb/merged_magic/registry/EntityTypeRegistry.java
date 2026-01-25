@@ -1,6 +1,7 @@
 package com.pianistwb.merged_magic.registry;
 
 import com.pianistwb.merged_magic.MergedMagic;
+import com.pianistwb.merged_magic.entity.monster.Trapjaw;
 import com.pianistwb.merged_magic.entity.projectile.TargetFrisbee;
 
 import net.minecraft.core.registries.Registries;
@@ -21,4 +22,9 @@ public class EntityTypeRegistry {
 					.eyeHeight(0.13F).clientTrackingRange(4).updateInterval(20)
 					.build(ResourceKey.create(Registries.ENTITY_TYPE,
 							Identifier.fromNamespaceAndPath(MergedMagic.MODID, "target_frisbee"))));
+
+	public static final DeferredHolder<EntityType<?>, EntityType<Trapjaw>> TRAPJAW = ENTITY_TYPES.register("trapjaw",
+			() -> EntityType.Builder.<Trapjaw>of(Trapjaw::new, MobCategory.MONSTER).sized(0.25F, 0.8F).eyeHeight(1.0F)
+					.clientTrackingRange(8).build(ResourceKey.create(Registries.ENTITY_TYPE,
+							Identifier.fromNamespaceAndPath(MergedMagic.MODID, "trapjaw"))));
 }

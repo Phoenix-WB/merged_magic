@@ -29,6 +29,7 @@ public class HotCocoaItem extends MergableItem {
 				HOT_COCOA_DURABILITY));
 		addMergeStat(StatNames.EFFECT_DURATION, StatUnits.SECONDS, buffDuration,
 				stat -> ComponentUtil.literal(stat / 20F));
+		addMergeStat(StatNames.USE_DAMAGE, StatUnits.DURABILITY, damage, stat -> ComponentUtil.literal(stat));
 	}
 
 	@Override

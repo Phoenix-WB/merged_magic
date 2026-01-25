@@ -4,6 +4,7 @@ import org.jspecify.annotations.Nullable;
 
 import com.pianistwb.merged_magic.util.ComponentUtil;
 import com.pianistwb.merged_magic.util.ItemUtil;
+import com.pianistwb.merged_magic.util.MagicUtil;
 import com.pianistwb.merged_magic.util.MergeStat;
 import com.pianistwb.merged_magic.util.StatNames;
 import com.pianistwb.merged_magic.util.StatUnits;
@@ -39,16 +40,7 @@ public class BroomItem extends MergableItem {
 		if (!cooldowns.isOnCooldown(stack) && !player.canCollideWith(interactionTarget)) {
 			int mergeLevel = ItemUtil.getMergeStatForLevel(stack);
 
-			Vec3 viewVector = player.getViewVector(1.0F);
-			double d0 = Math.sqrt(viewVector.x() * viewVector.x() + viewVector.z() * viewVector.z());
-
-			Vec3 newMotion;
-			if (d0 < 1.0E-5F) {
-				newMotion = Vec3.ZERO;
-			} else {
-				double velo = initial_velocity.getStat(mergeLevel);
-				newMotion = new Vec3(velo * viewVector.x() / d0, 0.3, velo * viewVector.z() / d0);
-			}
+			Vec3 newMotion = MagicUtil.getRelativeToEntityView(player, initial_velocity.getStat(mergeLevel), 0.3D);
 
 			interactionTarget.addDeltaMovement(newMotion);
 

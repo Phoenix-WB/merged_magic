@@ -4,8 +4,11 @@ import com.pianistwb.merged_magic.MergedMagic;
 import com.pianistwb.merged_magic.effect.CocoaBuffMobEffect;
 
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -21,4 +24,16 @@ public class MobEffectRegistry {
 
 	public static final DeferredHolder<MobEffect, MobEffect> TARGETED = MOB_EFFECTS.register("targeted",
 			() -> new MobEffect(MobEffectCategory.HARMFUL, 0xffe7e6));
+
+	public static final DeferredHolder<MobEffect, MobEffect> TRAPJAWED = MOB_EFFECTS.register("trapjawed",
+			() -> new MobEffect(MobEffectCategory.HARMFUL, 0x24c73c)
+					.addAttributeModifier(Attributes.MOVEMENT_SPEED,
+							Identifier.fromNamespaceAndPath(MergedMagic.MODID, "effect.trapjawed_slow"), -1.0F,
+							AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+					.addAttributeModifier(Attributes.KNOCKBACK_RESISTANCE,
+							Identifier.fromNamespaceAndPath(MergedMagic.MODID, "effect.trapjawed_resist"), 1.0D,
+							AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+					.addAttributeModifier(Attributes.JUMP_STRENGTH,
+							Identifier.fromNamespaceAndPath(MergedMagic.MODID, "effect.trapjawed_held"), -1.0F,
+							AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
 }

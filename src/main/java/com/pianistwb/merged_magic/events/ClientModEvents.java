@@ -2,7 +2,8 @@ package com.pianistwb.merged_magic.events;
 
 import com.pianistwb.merged_magic.MergedMagic;
 import com.pianistwb.merged_magic.client.model.MergedRenderTypeModelWrapper;
-import com.pianistwb.merged_magic.geckolib.target_frisbee.TargetFrisbeeRenderer;
+import com.pianistwb.merged_magic.geckolib.monster.trapjaw.TrapjawRenderer;
+import com.pianistwb.merged_magic.geckolib.projectile.target_frisbee.TargetFrisbeeRenderer;
 import com.pianistwb.merged_magic.registry.EntityTypeRegistry;
 
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -24,5 +25,6 @@ public class ClientModEvents {
 	@SubscribeEvent
 	public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
 		EntityRenderers.register(EntityTypeRegistry.TARGET_FRISBEE.get(), TargetFrisbeeRenderer::new);
+		EntityRenderers.register(EntityTypeRegistry.TRAPJAW.get(), TrapjawRenderer::new);
 	}
 }
