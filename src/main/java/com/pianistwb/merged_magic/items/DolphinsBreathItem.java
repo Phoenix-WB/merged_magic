@@ -16,7 +16,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemCooldowns;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
 
 public class DolphinsBreathItem extends MergableItem {
@@ -34,8 +33,8 @@ public class DolphinsBreathItem extends MergableItem {
 		ItemCooldowns cooldowns = player.getCooldowns();
 
 		if (!cooldowns.isOnCooldown(stack) && player.isInWater()
-				&& level.getBlockState(twoAbove(player.blockPosition())).is(Blocks.AIR)) {
-			int mergeLevel = ItemUtil.getMergeStatForLevel(stack);
+				&& level.getBlockState(twoAbove(player.blockPosition())).isAir()) {
+			int mergeLevel = ItemUtil.getMergeLevel(stack);
 
 			player.addDeltaMovement(new Vec3(0, 1, 0));
 			player.hurtMarked = true;

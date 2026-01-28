@@ -54,7 +54,7 @@ public class Trapjaw extends Monster implements GeoEntity {
 	public Entity owner = null;
 	public boolean despawn = false;
 	public int despawnTicks = 0;
-	public static final float BITE_DISTANCE = 4.0F;
+	public static final float BITE_DISTANCE = 6.0F;
 
 	public Trapjaw(EntityType<? extends Monster> entityType, Level level) {
 		super(entityType, level);
@@ -67,7 +67,7 @@ public class Trapjaw extends Monster implements GeoEntity {
 		this.goalSelector.addGoal(1, new LookAtPlayerGoal(this, Mob.class, BITE_DISTANCE));
 		this.goalSelector.addGoal(2, new RandomLookAroundGoal(this));
 
-		this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
+		this.targetSelector.addGoal(1, new TrapjawHurtByTargetGoal());
 		this.targetSelector.addGoal(2, new TrapjawNearestAttackableTargetGoal<>(Player.class, true));
 		this.targetSelector.addGoal(3, new TrapjawNearestAttackableTargetGoal<>(Mob.class, true));
 	}
@@ -100,7 +100,7 @@ public class Trapjaw extends Monster implements GeoEntity {
 	@Override
 	public boolean doHurtTarget(ServerLevel level, Entity entity) {
 		float f = (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE);
-		DamageSource damagesource = DamageSources.trapJaw(level);
+		DamageSource damagesource = DamageSources.trapJaw(this);
 		entity.hurtServer(level, damagesource, f);
 		this.playAttackSound();
 
@@ -260,5 +260,19 @@ public class Trapjaw extends Monster implements GeoEntity {
 						this.mob.getZ());
 			}
 		}
+	}
+	
+	class TrapjawHurtByTargetGoal extends HurtByTargetGoal {
+		public TrapjawHurtByTargetGoal(Class<?>... toIgnoreDamage) {
+			super(Trapjaw.this, toIgnoreDamage);
+		}
+		
+	    @Override
+	    public boolean canUse() {
+	        LivingEntity livingEntity = this.mob.getLastHurtByMob();
+	        Entity owner = Trapjaw.this.getOwner();
+	        
+	        return (owner == null || livingEntity != owner) && super.canUse();
+	    }
 	}
 }

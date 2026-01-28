@@ -2,7 +2,7 @@ package com.pianistwb.merged_magic.events;
 
 import com.pianistwb.merged_magic.MergedMagic;
 import com.pianistwb.merged_magic.items.MergableItem;
-import com.pianistwb.merged_magic.items.TicksInPlayerHand;
+import com.pianistwb.merged_magic.items.TickInPlayerHand;
 import com.pianistwb.merged_magic.registry.MobEffectRegistry;
 import com.pianistwb.merged_magic.util.ItemUtil;
 
@@ -47,19 +47,21 @@ public class CommonEvents {
 	@SubscribeEvent
 	public static void onLivingIncomingDamage(LivingIncomingDamageEvent event) {
 		LivingEntity living = event.getEntity();
+		Level level = living.level();
 		DamageSource source = event.getSource();
 
-		if (living.hasEffect(MobEffectRegistry.CRUTCHED) && source == living.level().damageSources().fall()) {
-			living.level().playSound(null, living.blockPosition(), SoundEvents.ITEM_BREAK.value(), SoundSource.PLAYERS);
+		if (source == level.damageSources().fall()) {
+			if (living.hasEffect(MobEffectRegistry.CRUTCHED)) {
+				level.playSound(null, living.blockPosition(), SoundEvents.ITEM_BREAK.value(), SoundSource.PLAYERS);
 
-			living.removeEffect(MobEffectRegistry.CRUTCHED);
+				living.removeEffect(MobEffectRegistry.CRUTCHED);
 
-			event.setCanceled(true);
-		}
-
-		if (living.hasEffect(MobEffectRegistry.TARGETED)
-				&& source.type() == living.level().registryAccess().getOrThrow(DamageTypes.ARROW).value()) {
-			event.setAmount(event.getAmount() * 1.5F);
+				event.setCanceled(true);
+			}
+		} else if (source.type() == level.registryAccess().getOrThrow(DamageTypes.ARROW).value()) {
+			if (living.hasEffect(MobEffectRegistry.TARGETED)) {
+				event.setAmount(event.getAmount() * 1.5F);
+			}
 		}
 	}
 
@@ -71,12 +73,12 @@ public class CommonEvents {
 		ItemStack mainStack = player.getItemInHand(InteractionHand.MAIN_HAND);
 		ItemStack offStack = player.getItemInHand(InteractionHand.OFF_HAND);
 
-		if (mainStack.getItem() instanceof TicksInPlayerHand tickMain) {
-			tickMain.tickInHand(level, player, mainStack);
+		if (mainStack.getItem() instanceof TickInPlayerHand tickMain) {
+			tickMain.tickInHand(level, player, InteractionHand.MAIN_HAND, mainStack, offStack);
 		}
 
-		if (offStack.getItem() instanceof TicksInPlayerHand tickOff) {
-			tickOff.tickInHand(level, player, offStack);
+		if (offStack.getItem() instanceof TickInPlayerHand tickOff) {
+			tickOff.tickInHand(level, player, InteractionHand.OFF_HAND, offStack, mainStack);
 		}
 	}
 }

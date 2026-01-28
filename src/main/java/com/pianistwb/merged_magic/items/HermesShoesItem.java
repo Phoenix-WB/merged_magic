@@ -38,8 +38,8 @@ public class HermesShoesItem extends MergableItem {
 		ItemStack stack = player.getItemInHand(hand);
 		ItemCooldowns cooldowns = player.getCooldowns();
 
-		if (!player.onGround() && ItemUtil.isItemHealthy(stack) && !cooldowns.isOnCooldown(stack)) {
-			int mergeLevel = ItemUtil.getMergeStatForLevel(stack);
+		if (!player.onGround() && !player.isInWater() && ItemUtil.isItemHealthy(stack) && !cooldowns.isOnCooldown(stack)) {
+			int mergeLevel = ItemUtil.getMergeLevel(stack);
 
 			Vec3 mov = player.getDeltaMovement();
 			player.setDeltaMovement(mov.x(), 0.6D, mov.z());
@@ -69,7 +69,7 @@ public class HermesShoesItem extends MergableItem {
 	@Override
 	public void inventoryTick(ItemStack stack, ServerLevel level, Entity entity, @Nullable EquipmentSlot slot) {
 		if (entity.tickCount % 100 == 0) {
-			int mergeLevel = ItemUtil.getMergeStatForLevel(stack);
+			int mergeLevel = ItemUtil.getMergeLevel(stack);
 			ItemUtil.healStack(stack, useDamage.getStat(mergeLevel));
 		}
 	}

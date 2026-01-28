@@ -6,17 +6,17 @@
 			"terms": [
 				{
 					"condition": "neoforge:loot_table_id",
-					"loot_table_id": "minecraft:entities/creeper"
+					"loot_table_id": "minecraft:entities/drowned"
 				},
 				{
 					"condition": "minecraft:location_check",
 					"predicate": {
-						"biomes": "#minecraft:is_jungle"
+						"biomes": "#minecraft:is_ocean"
 					}
 				}
 			]
 		}
 	],
-	"item": "merged_magic:jungle_vine",
-	"probability": 0.2
+	"item": "merged_magic:air_bucket",
+	"probability": 0.1
 }

@@ -24,14 +24,18 @@ public class CreativeTabRegistry {
 						output.accept(ItemRegistry.SPRINGY_PISTON.get());
 						output.accept(ItemRegistry.AMETHYST_MIRROR.get());
 						output.accept(ItemRegistry.PROSPECTORS_PAN.get());
-						output.accept(ItemRegistry.JUNGLE_VINE.get());
+						output.accept(ItemRegistry.EVERGROWING_VINE.get());
 						output.accept(ItemRegistry.HOT_COCOA.get());
 						output.accept(ItemRegistry.TARGET_FRISBEE.get());
 						output.accept(ItemRegistry.HERMES_SHOES.get());
 						output.accept(ItemRegistry.TRAPSEED_SACK.get());
+						output.accept(ItemRegistry.FLOATY.get());
 
 						// Normal Items
+						output.accept(ItemRegistry.HERMES_PARCEL.get());
 						output.accept(ItemRegistry.CHOCOLATE_MILK_BUCKET.get());
+						output.accept(ItemRegistry.AIR_BUCKET.get());
+						output.accept(ItemRegistry.BOTANY_MEAL.get());
 
 						// Spawn Eggs
 						output.accept(ItemRegistry.TRAPJAW_SPAWN_EGG.get());

@@ -36,12 +36,10 @@ public class SpringyPistonItem extends MergableItem {
 		ItemCooldowns cooldowns = player.getCooldowns();
 
 		if (!cooldowns.isOnCooldown(stack) && player.onGround()) {
-			int mergeLevel = ItemUtil.getMergeStatForLevel(stack);
+			int mergeLevel = ItemUtil.getMergeLevel(stack);
 
 			player.addDeltaMovement(new Vec3(0, velocity.getStat(mergeLevel), 0));
 			player.hurtMarked = true;
-
-			player.playSound(SoundEvents.PISTON_EXTEND);
 
 			if (!level.isClientSide()) {
 				player.addEffect(new MobEffectInstance(MobEffectRegistry.CRUTCHED, crutching.getStat(mergeLevel)));

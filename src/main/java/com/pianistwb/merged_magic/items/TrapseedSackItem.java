@@ -1,17 +1,20 @@
 package com.pianistwb.merged_magic.items;
 
 import com.pianistwb.merged_magic.entity.monster.Trapjaw;
-import com.pianistwb.merged_magic.registry.DataComponentRegistry;
 import com.pianistwb.merged_magic.registry.EntityTypeRegistry;
 import com.pianistwb.merged_magic.util.ComponentUtil;
+import com.pianistwb.merged_magic.util.ItemUtil;
 import com.pianistwb.merged_magic.util.MagicUtil;
 import com.pianistwb.merged_magic.util.MergeStat;
 import com.pianistwb.merged_magic.util.StatNames;
 import com.pianistwb.merged_magic.util.StatUnits;
+import com.pianistwb.merged_magic.util.StatValues;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -20,7 +23,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemCooldowns;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
 
 public class TrapseedSackItem extends MergableItem {
@@ -33,8 +35,8 @@ public class TrapseedSackItem extends MergableItem {
 		super(properties);
 		addMergeStat(StatNames.SUMMON_COUNT, Component.empty(), summonCount, stat -> ComponentUtil.literal(stat));
 		addMergeStat(StatNames.RADIUS, StatUnits.BLOCKS, radius, stat -> ComponentUtil.literal(stat));
-		addMergeStat(StatNames.SPAWNING_ROTATION, StatUnits.DEGREES, spawningRotations,
-				stat -> ComponentUtil.literal(stat));
+		addMergeStat(StatNames.SPAWN_PLACEMENT, Component.empty(), spawningRotations,
+				stat -> getShapeForAngle(stat));
 		addMergeStat(StatNames.COOLDOWN, StatUnits.SECONDS, cooldown, stat -> ComponentUtil.literal(stat / 20F));
 	}
 
@@ -44,7 +46,7 @@ public class TrapseedSackItem extends MergableItem {
 		ItemCooldowns cooldowns = player.getCooldowns();
 
 		if (!cooldowns.isOnCooldown(stack)) {
-			int mergeLevel = stack.get(DataComponentRegistry.MERGE_LEVEL).mergeLevel();
+			int mergeLevel = ItemUtil.getMergeLevel(stack);
 
 			if (!level.isClientSide()) {
 				Vec3 spawnRelative = MagicUtil.getRelativeToEntityView(player, radius.getStat(mergeLevel), 0.0D);
@@ -62,7 +64,7 @@ public class TrapseedSackItem extends MergableItem {
 					for (int i = 0; i < 5; i++) {
 						spawnPos = new BlockPos(x, y + i, z);
 
-						if (level.getBlockState(spawnPos).is(Blocks.AIR)) {
+						if (level.getBlockState(spawnPos).isAir()) {
 							break;
 						} else {
 							spawnPos = null;
@@ -79,11 +81,25 @@ public class TrapseedSackItem extends MergableItem {
 				}
 			}
 
-			// cooldowns.addCooldown(stack, cooldown.getStat(mergeLevel));
+			player.playSound(SoundEvents.BUNDLE_REMOVE_ONE);
+			
+			cooldowns.addCooldown(stack, cooldown.getStat(mergeLevel));
 
 			return InteractionResult.SUCCESS;
 		}
 
 		return InteractionResult.PASS;
+	}
+
+	public static MutableComponent getShapeForAngle(int angle) {
+		switch (angle) {
+		case 360:
+			return StatValues.IN_FRONT;
+		case 120:
+			return StatValues.TRIANGLE;
+		case 72:
+			return StatValues.PENTAGON;
+		}
+		return Component.empty();
 	}
 }

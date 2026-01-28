@@ -11,6 +11,7 @@ import com.pianistwb.merged_magic.util.StatUnits;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
@@ -20,10 +21,10 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.VineBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class JungleVineItem extends MergableItem implements TicksInPlayerHand {
+public class EvergrowingVineItem extends MergableItem implements TickInPlayerHand {
 	public final MergeStat<Integer> regrowth = new MergeStat<>(1, 2, 4);
 
-	public JungleVineItem(Properties properties) {
+	public EvergrowingVineItem(Properties properties) {
 		super(ItemUtil.durableItem(properties, 32));
 		addMergeStat(StatNames.REPAIR, StatUnits.DURABILITY_PER_SECOND, regrowth,
 				stat -> ComponentUtil.literal(stat / 3F));
@@ -36,21 +37,21 @@ public class JungleVineItem extends MergableItem implements TicksInPlayerHand {
 	}
 
 	@Override
-	public void tickInHand(Level level, Player player, ItemStack stack) {
-		if (!level.isClientSide() && ItemUtil.isItemHealthy(stack)) {
+	public void tickInHand(Level level, Player player, InteractionHand hand, ItemStack thisHand, ItemStack otherHand) {
+		if (!level.isClientSide() && ItemUtil.isItemHealthy(thisHand)) {
 			BlockPos pos = player.blockPosition();
 			BlockPos posAbove = pos.above();
 
-			if (level.getBlockState(pos).is(Blocks.AIR)) {
+			if (level.getBlockState(pos).isAir()) {
 				if (placeVines(level, pos)) {
-					ItemUtil.damageStack(stack, 1);
+					ItemUtil.damageStack(thisHand, 1);
 				}
 
 			}
 
-			if (level.getBlockState(posAbove).is(Blocks.AIR)) {
+			if (level.getBlockState(posAbove).isAir()) {
 				if (placeVines(level, posAbove)) {
-					ItemUtil.damageStack(stack, 1);
+					ItemUtil.damageStack(thisHand, 1);
 				}
 			}
 		}
@@ -59,7 +60,7 @@ public class JungleVineItem extends MergableItem implements TicksInPlayerHand {
 	@Override
 	public void inventoryTick(ItemStack stack, ServerLevel level, Entity entity, @Nullable EquipmentSlot slot) {
 		if (entity.tickCount % 60 == 0) {
-			int mergeLevel = ItemUtil.getMergeStatForLevel(stack);
+			int mergeLevel = ItemUtil.getMergeLevel(stack);
 			ItemUtil.healStack(stack, regrowth.getStat(mergeLevel));
 		}
 	}

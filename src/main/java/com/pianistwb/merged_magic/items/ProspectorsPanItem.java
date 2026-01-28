@@ -50,7 +50,7 @@ public class ProspectorsPanItem extends MergableItem {
 		ItemCooldowns cooldowns = player.getCooldowns();
 
 		if (!cooldowns.isOnCooldown(stack)) {
-			int mergeLevel = ItemUtil.getMergeStatForLevel(stack);
+			int mergeLevel = ItemUtil.getMergeLevel(stack);
 
 			if (!level.isClientSide()) {
 				BlockPos playerPos = player.blockPosition().above();

@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"XOX",
+		"OUO",
+		"XOX"
+	],
+	"key": {
+		"X": "minecraft:white_wool",
+		"O": "minecraft:red_wool",
+		"U": "merged_magic:air_bucket"
+	},
+	"result": {
+		"id": "merged_magic:floaty",
+		"count": 1
+	}
+}

@@ -24,7 +24,13 @@ public class MergableItem extends Item {
 	private MutableComponent desc;
 	private MutableComponent itemName;
 
-	private final List<Component> mergeStats = new ArrayList<>();
+	private static final MutableComponent HOLD_SHIFT = Component
+			.translatable("tooltip.merged_magic.mergable_item.hold_shift").withStyle(ChatFormatting.GRAY);
+	private static final MutableComponent HOLD_CTRL = Component
+			.translatable("tooltip.merged_magic.mergable_item.hold_ctrl").withStyle(ChatFormatting.GRAY);
+	private static final MutableComponent DURABLE = Component.translatable("tooltip.merged_magic.mergable_item.durable")
+			.withStyle(ChatFormatting.RED);
+	private final List<MutableComponent> mergeStats = new ArrayList<>();
 
 	public MergableItem(Properties properties) {
 		super(properties.stacksTo(1).component(DataComponentRegistry.MERGE_LEVEL, new MergeLevel(1)));
@@ -45,7 +51,7 @@ public class MergableItem extends Item {
 
 	public <R> void addMergeStat(MutableComponent statName, MutableComponent statUnit, MergeStat<R> stat,
 			Function<R, MutableComponent> func) {
-		mergeStats.add(Component.translatable("tooltip.merged_magic.merge_stat", statName,
+		mergeStats.add(Component.translatable("tooltip.merged_magic.mergable_item.merge_stat", statName,
 				func.apply(stat.getStat(1)).withColor(0xbe8628), func.apply(stat.getStat(2)).withColor(0xa3b6b0),
 				func.apply(stat.getStat(3)).withColor(0xfde55f), statUnit));
 	}
@@ -55,21 +61,17 @@ public class MergableItem extends Item {
 			Consumer<Component> tooltipAdder, TooltipFlag flag) {
 		if (flag.hasShiftDown()) {
 			tooltipAdder.accept(this.getDesc().withStyle(ChatFormatting.GREEN));
-			tooltipAdder.accept(Component.translatable("tooltip.merged_magic.merge_stack", this.getItemName())
-					.withStyle(ChatFormatting.LIGHT_PURPLE));
+			tooltipAdder
+					.accept(Component.translatable("tooltip.merged_magic.mergable_item.merge_stack", this.getItemName())
+							.withStyle(ChatFormatting.LIGHT_PURPLE));
 			if (isDurable()) {
-				tooltipAdder
-						.accept(Component.translatable("tooltip.merged_magic.durable").withStyle(ChatFormatting.RED));
+				tooltipAdder.accept(DURABLE);
 			}
 		} else if (flag.hasControlDown()) {
 			mergeStats.forEach(tooltipAdder);
-		} else
-
-		{
-			tooltipAdder
-					.accept(Component.translatable("tooltip.merged_magic.hold_shift").withStyle(ChatFormatting.GRAY));
-			tooltipAdder
-					.accept(Component.translatable("tooltip.merged_magic.hold_ctrl").withStyle(ChatFormatting.GRAY));
+		} else {
+			tooltipAdder.accept(HOLD_SHIFT);
+			tooltipAdder.accept(HOLD_CTRL);
 		}
 	}
 

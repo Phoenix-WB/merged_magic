@@ -38,10 +38,9 @@ public class BroomItem extends MergableItem {
 			InteractionHand usedHand) {
 		ItemCooldowns cooldowns = player.getCooldowns();
 		if (!cooldowns.isOnCooldown(stack) && !player.canCollideWith(interactionTarget)) {
-			int mergeLevel = ItemUtil.getMergeStatForLevel(stack);
+			int mergeLevel = ItemUtil.getMergeLevel(stack);
 
 			Vec3 newMotion = MagicUtil.getRelativeToEntityView(player, initial_velocity.getStat(mergeLevel), 0.3D);
-
 			interactionTarget.addDeltaMovement(newMotion);
 
 			player.playSound(SoundEvents.BRUSH_GENERIC, 1.0F, 0.65F);
@@ -56,7 +55,7 @@ public class BroomItem extends MergableItem {
 
 	@Override
 	public int getBurnTime(ItemStack itemStack, @Nullable RecipeType<?> recipeType, FuelValues fuelValues) {
-		int mergeLevel = ItemUtil.getMergeStatForLevel(itemStack);
+		int mergeLevel = ItemUtil.getMergeLevel(itemStack);
 		return burnTime.getStat(mergeLevel);
 	}
 }

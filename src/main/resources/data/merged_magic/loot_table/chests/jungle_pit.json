@@ -49,7 +49,7 @@
 			"entries": [
 				{
 					"type": "minecraft:item",
-					"name": "merged_magic:jungle_vine"
+					"name": "minecraft:dirt"
 				}
 			]
 		},
@@ -59,7 +59,7 @@
 			"entries": [
 				{
 					"type": "minecraft:item",
-					"name": "merged_magic:jungle_vine"
+					"name": "minecraft:dirt"
 				}
 			],
 			"conditions": [

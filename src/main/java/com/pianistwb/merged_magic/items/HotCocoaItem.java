@@ -55,7 +55,7 @@ public class HotCocoaItem extends MergableItem {
 
 	@Override
 	public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity livingEntity) {
-		int mergeLevel = ItemUtil.getMergeStatForLevel(stack);
+		int mergeLevel = ItemUtil.getMergeLevel(stack);
 
 		if (!level.isClientSide()) {
 			livingEntity

@@ -1,7 +1,7 @@
 {
     "model": {
         "type": "merged_magic:merged_render_type",
-        "model": "merged_magic:item/jungle_vine",
+        "model": "merged_magic:item/evergrowing_vine",
         "tints": [],
         "render_type": "translucent_item"
     }

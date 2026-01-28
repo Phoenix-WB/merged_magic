@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"XXX",
+		"XVX",
+		"XXX"
+	],
+	"key": {
+		"X": "minecraft:vine",
+		"V": "merged_magic:botany_meal"
+	},
+	"result": {
+		"id": "merged_magic:evergrowing_vine",
+		"count": 1
+	}
+}

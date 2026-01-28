@@ -47,7 +47,7 @@ public class TargetFrisbeeItem extends MergableItem {
 	@Override
 	public boolean releaseUsing(ItemStack stack, Level level, LivingEntity livingEntity, int timeLeft) {
 		if (livingEntity instanceof Player player) {
-			int mergeLevel = ItemUtil.getMergeStatForLevel(stack);
+			int mergeLevel = ItemUtil.getMergeLevel(stack);
 			int usedTime = this.getUseDuration(stack, livingEntity) - timeLeft;
 			float velo = BowItem.getPowerForTime(usedTime) * scaling.getStat(mergeLevel);
 

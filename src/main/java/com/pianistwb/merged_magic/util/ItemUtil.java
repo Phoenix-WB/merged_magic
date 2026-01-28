@@ -10,22 +10,22 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 public class ItemUtil {
-	public static int getMergeStatForLevel(ItemStack stack) {
+	public static int getMergeLevel(ItemStack stack) {
 		return stack.get(DataComponentRegistry.MERGE_LEVEL).mergeLevel();
 	}
 
 	public static boolean itemLevelsValid(ItemStack stack1, ItemStack stack2) {
-		int level1 = getMergeStatForLevel(stack1);
-		return level1 < 3 && level1 == getMergeStatForLevel(stack2);
+		int level1 = getMergeLevel(stack1);
+		return level1 < 3 && level1 == getMergeLevel(stack2);
 	}
 
 	public static void levelItem(ItemStack stack) {
-		int mergelevel = getMergeStatForLevel(stack);
+		int mergelevel = getMergeLevel(stack);
 		stack.update(DataComponentRegistry.MERGE_LEVEL, new MergeLevel(1), level -> new MergeLevel(mergelevel + 1));
 	}
 
 	public static void triggerLevelSound(Player player, ItemStack stack) {
-		int level = getMergeStatForLevel(stack);
+		int level = getMergeLevel(stack);
 		if (level == 3) {
 			player.playSound(SoundEvents.TOTEM_USE, 0.15F, 1.3F);
 		} else

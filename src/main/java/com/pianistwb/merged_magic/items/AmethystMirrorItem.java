@@ -44,7 +44,7 @@ public class AmethystMirrorItem extends MergableItem {
 			BlockPos pos = livingEntity.blockPosition();
 			int lighting = level.isBrightOutside() ? level.getBrightness(LightLayer.SKY, pos)
 					: level.getBrightness(LightLayer.BLOCK, pos);
-			int mergeLevel = ItemUtil.getMergeStatForLevel(stack);
+			int mergeLevel = ItemUtil.getMergeLevel(stack);
 
 			if (!level.isClientSide()) {
 				if (lighting > 8) {
