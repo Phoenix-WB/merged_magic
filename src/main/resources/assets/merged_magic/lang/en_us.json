@@ -29,6 +29,7 @@
 	"effect.merged_magic.cocoa_buff": "Cocoa Buff",
 	"effect.merged_magic.targeted": "Targeted",
 	"effect.merged_magic.trapjawed": "Trapjawed",
+	"effect.merged_magic.enduring": "Enduring",
 	
 	"itemGroup.merged_magic_items": "Merged Magic Items",
 	
@@ -50,12 +51,12 @@
 	"tooltip.merged_magic.target_frisbee.desc": "Throws a frisbee that glows an enemy on hit, and makes them take 1.5x more arrow damage",
 	"tooltip.merged_magic.hermes_shoes.desc": "When in the air, flaps to grant the player more height, as well as levitation",
 	"tooltip.merged_magic.trapseed_sack.desc": "Spawns neutral Trapjaw plants that will latch onto any entities except yourself and hold them in place while damaging them",
-	"tooltip.merged_magic.totem_of_enduring.desc": "When below half health, knocks nearby attackers into the air and grants resistance",
+	"tooltip.merged_magic.totem_of_enduring.desc": "When held in either hand and the player is at low health, flings melee attackers into the air and grants resistance",
 	"tooltip.merged_magic.floaty.desc": "When below the waters surface and in either hand, causes the player to rise",
 	
 	"statName.merged_magic.radius": "Radius",
 	"statName.merged_magic.damage_increase": "Damage Increase",
-	"statName.merged_magic.initial_velocity": "Initial Velocity",
+	"statName.merged_magic.launch_velocity": "Launch Velocity",
 	"statName.merged_magic.burn_time": "Burn Time",
 	"statName.merged_magic.cooldown": "Cooldown",
 	"statName.merged_magic.effect_duration": "Effect Duration",
@@ -64,6 +65,8 @@
 	"statName.merged_magic.spawn_placement": "Spawn Placement",
 	"statName.merged_magic.summon_count": "Summon Count",
 	"statName.merged_magic.acceleration": "Acceleration",
+	"statName.merged_magic.amplifier": "Amplifier",
+	"statName.merged_magic.required_health": "Required Health",
 	
 	"statUnit.merged_magic.blocks": "Blocks",
 	"statUnit.merged_magic.blocks_per_tick": "Blocks per Tick",

@@ -36,4 +36,7 @@ public class MobEffectRegistry {
 					.addAttributeModifier(Attributes.JUMP_STRENGTH,
 							Identifier.fromNamespaceAndPath(MergedMagic.MODID, "effect.trapjawed_held"), -1.0F,
 							AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+
+	public static final DeferredHolder<MobEffect, MobEffect> ENDURING = MOB_EFFECTS.register("enduring",
+			() -> new MobEffect(MobEffectCategory.BENEFICIAL, 0xd9d9d9));
 }

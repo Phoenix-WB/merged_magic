@@ -29,6 +29,10 @@ public class MagicUtil {
 	}
 
 	public static Vec3 getRelativeToEntityView(Entity entity, double scaling, double displacement) {
+		if(scaling == 0D) {
+			return Vec3.ZERO;
+		}
+		
 		Vec3 viewVector = entity.getViewVector(1.0F);
 		double d0 = Math.sqrt(viewVector.x() * viewVector.x() + viewVector.z() * viewVector.z());
 

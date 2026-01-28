@@ -12,6 +12,7 @@ import com.pianistwb.merged_magic.items.HotCocoaItem;
 import com.pianistwb.merged_magic.items.ProspectorsPanItem;
 import com.pianistwb.merged_magic.items.SpringyPistonItem;
 import com.pianistwb.merged_magic.items.TargetFrisbeeItem;
+import com.pianistwb.merged_magic.items.TotemOfEnduringItem;
 import com.pianistwb.merged_magic.items.TrapseedSackItem;
 
 import net.minecraft.core.component.DataComponents;
@@ -66,6 +67,9 @@ public class ItemRegistry {
 			TrapseedSackItem::new);
 
 	public static final DeferredHolder<Item, FloatyItem> FLOATY = ITEMS.registerItem("floaty", FloatyItem::new);
+
+	public static final DeferredHolder<Item, TotemOfEnduringItem> TOTEM_OF_ENDURING = ITEMS
+			.registerItem("totem_of_enduring", TotemOfEnduringItem::new);
 
 	// Normal Items
 

@@ -3,6 +3,7 @@ package com.pianistwb.merged_magic.events;
 import com.pianistwb.merged_magic.MergedMagic;
 import com.pianistwb.merged_magic.items.MergableItem;
 import com.pianistwb.merged_magic.items.TickInPlayerHand;
+import com.pianistwb.merged_magic.registry.ItemRegistry;
 import com.pianistwb.merged_magic.registry.MobEffectRegistry;
 import com.pianistwb.merged_magic.util.ItemUtil;
 
@@ -11,13 +12,17 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.ItemStackedOnOtherEvent;
+import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
@@ -66,7 +71,28 @@ public class CommonEvents {
 	}
 
 	@SubscribeEvent
-	public static void onPlayerTick(PlayerTickEvent.Post event) {
+	public static void onPostPlayerHurt(LivingDamageEvent.Post event) {
+		LivingEntity living = event.getEntity();
+
+		if (!living.level().isClientSide() && living.hasEffect(MobEffectRegistry.ENDURING)) {
+			DamageSource damage = event.getSource();
+			Entity entity = damage.getDirectEntity();
+			int amplifier = living.getEffect(MobEffectRegistry.ENDURING).getAmplifier();
+
+			if (entity != null && entity instanceof LivingEntity attackingEntity) {
+				double resistance = attackingEntity.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE);
+				resistance = Math.max(0.0, 1.0 - resistance);
+				double rawScale = ItemRegistry.TOTEM_OF_ENDURING.get().initialVelocity.getStat(Math.min(amplifier + 1, 3));
+				attackingEntity.addDeltaMovement(new Vec3(0.0, rawScale * resistance, 0.0));
+
+				living.level().playSound(null, living.blockPosition(), SoundEvents.IRON_GOLEM_ATTACK,
+						SoundSource.PLAYERS);
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public static void onPostPlayerTick(PlayerTickEvent.Post event) {
 		Player player = event.getEntity();
 		Level level = player.level();
 

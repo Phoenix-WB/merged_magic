@@ -25,7 +25,7 @@ public class TargetFrisbeeItem extends MergableItem {
 
 	public TargetFrisbeeItem(Properties properties) {
 		super(properties);
-		addMergeStat(StatNames.INITIAL_VELOCITY, StatUnits.BLOCKS_PER_TICK, scaling,
+		addMergeStat(StatNames.LAUNCH_VELOCITY, StatUnits.BLOCKS_PER_TICK, scaling,
 				stat -> ComponentUtil.literal(stat));
 		addMergeStat(StatNames.EFFECT_DURATION, StatUnits.SECONDS, duration, stat -> ComponentUtil.literal(stat / 20F));
 		addMergeStat(StatNames.COOLDOWN, StatUnits.SECONDS, cooldown, stat -> ComponentUtil.literal(stat / 20F));

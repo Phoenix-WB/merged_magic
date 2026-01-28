@@ -30,6 +30,7 @@ public class CreativeTabRegistry {
 						output.accept(ItemRegistry.HERMES_SHOES.get());
 						output.accept(ItemRegistry.TRAPSEED_SACK.get());
 						output.accept(ItemRegistry.FLOATY.get());
+						output.accept(ItemRegistry.TOTEM_OF_ENDURING.get());
 
 						// Normal Items
 						output.accept(ItemRegistry.HERMES_PARCEL.get());

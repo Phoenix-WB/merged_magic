@@ -24,7 +24,7 @@ public class SpringyPistonItem extends MergableItem {
 
 	public SpringyPistonItem(Properties properties) {
 		super(properties);
-		addMergeStat(StatNames.INITIAL_VELOCITY, StatUnits.BLOCKS_PER_TICK, velocity,
+		addMergeStat(StatNames.LAUNCH_VELOCITY, StatUnits.BLOCKS_PER_TICK, velocity,
 				stat -> ComponentUtil.literal(stat));
 		addMergeStat(StatNames.EFFECT_DURATION, StatUnits.SECONDS, crutching, stat -> ComponentUtil.literal(stat));
 		addMergeStat(StatNames.COOLDOWN, StatUnits.SECONDS, cooldown, stat -> ComponentUtil.literal(stat / 20F));

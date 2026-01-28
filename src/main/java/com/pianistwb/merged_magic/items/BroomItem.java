@@ -13,6 +13,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemCooldowns;
 import net.minecraft.world.item.ItemStack;
@@ -27,7 +28,7 @@ public class BroomItem extends MergableItem {
 
 	public BroomItem(Properties properties) {
 		super(properties);
-		addMergeStat(StatNames.INITIAL_VELOCITY, StatUnits.BLOCKS_PER_TICK, initial_velocity,
+		addMergeStat(StatNames.LAUNCH_VELOCITY, StatUnits.BLOCKS_PER_TICK, initial_velocity,
 				stat -> ComponentUtil.literal(stat));
 		addMergeStat(StatNames.BURN_TIME, StatUnits.SECONDS, burnTime, stat -> ComponentUtil.literal(stat / 20F));
 		addMergeStat(StatNames.COOLDOWN, StatUnits.SECONDS, cooldown, stat -> ComponentUtil.literal(stat / 20F));
@@ -37,10 +38,13 @@ public class BroomItem extends MergableItem {
 	public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity interactionTarget,
 			InteractionHand usedHand) {
 		ItemCooldowns cooldowns = player.getCooldowns();
-		if (!cooldowns.isOnCooldown(stack) && !player.canCollideWith(interactionTarget)) {
+
+		if (!cooldowns.isOnCooldown(stack)) {
 			int mergeLevel = ItemUtil.getMergeLevel(stack);
 
-			Vec3 newMotion = MagicUtil.getRelativeToEntityView(player, initial_velocity.getStat(mergeLevel), 0.3D);
+			double resistance = interactionTarget.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE);
+			resistance = Math.max(0D, 1D - resistance);
+			Vec3 newMotion = MagicUtil.getRelativeToEntityView(player, resistance * initial_velocity.getStat(mergeLevel), 0.3D);
 			interactionTarget.addDeltaMovement(newMotion);
 
 			player.playSound(SoundEvents.BRUSH_GENERIC, 1.0F, 0.65F);
