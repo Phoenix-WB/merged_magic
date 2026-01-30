@@ -3,6 +3,7 @@ package com.pianistwb.merged_magic.registry;
 import com.pianistwb.merged_magic.MergedMagic;
 import com.pianistwb.merged_magic.items.AmethystMirrorItem;
 import com.pianistwb.merged_magic.items.BroomItem;
+import com.pianistwb.merged_magic.items.CursedPaintingItem;
 import com.pianistwb.merged_magic.items.DolphinsBreathItem;
 import com.pianistwb.merged_magic.items.EvergrowingVineItem;
 import com.pianistwb.merged_magic.items.FloatyItem;
@@ -71,8 +72,10 @@ public class ItemRegistry {
 	public static final DeferredHolder<Item, TotemOfEnduringItem> TOTEM_OF_ENDURING = ITEMS
 			.registerItem("totem_of_enduring", TotemOfEnduringItem::new);
 
-	// Normal Items
+	public static final DeferredHolder<Item, CursedPaintingItem> CURSED_PAINTING = ITEMS.registerItem("cursed_painting",
+			CursedPaintingItem::new);
 
+	// Normal Items
 	public static final DeferredHolder<Item, Item> CHOCOLATE_MILK_BUCKET = ITEMS.registerItem("chocolate_milk_bucket",
 			properties -> new Item(properties.craftRemainder(Items.BUCKET)
 					.component(DataComponents.CONSUMABLE, Consumables.MILK_BUCKET).usingConvertsTo(Items.BUCKET)
@@ -85,7 +88,6 @@ public class ItemRegistry {
 			HermesParcelItem::new);
 
 	// PLS ADD THESE ITEMS
-
 	public static final DeferredHolder<Item, Item> BOTANY_MEAL = ITEMS.registerItem("botany_meal", Item::new);
 
 	// Spawn Eggs

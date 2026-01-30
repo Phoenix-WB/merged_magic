@@ -8,8 +8,8 @@ import com.pianistwb.merged_magic.util.ComponentUtil;
 import com.pianistwb.merged_magic.util.ItemUtil;
 import com.pianistwb.merged_magic.util.MergeStat;
 import com.pianistwb.merged_magic.util.StatNames;
-import com.pianistwb.merged_magic.util.StatUnits;
 
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
@@ -30,7 +30,7 @@ public class HermesShoesItem extends MergableItem {
 
 	public HermesShoesItem(Properties properties) {
 		super(ItemUtil.durableItem(properties, 6));
-		addMergeStat(StatNames.USE_DAMAGE, StatUnits.DURABILITY, useDamage, stat -> ComponentUtil.literal(stat));
+		addMergeStat(StatNames.USES, Component.empty(), useDamage, stat -> ComponentUtil.literal(6 / stat));
 	}
 
 	@Override
@@ -38,7 +38,8 @@ public class HermesShoesItem extends MergableItem {
 		ItemStack stack = player.getItemInHand(hand);
 		ItemCooldowns cooldowns = player.getCooldowns();
 
-		if (!player.onGround() && !player.isInWater() && ItemUtil.isItemHealthy(stack) && !cooldowns.isOnCooldown(stack)) {
+		if (!player.onGround() && !player.isInWater() && ItemUtil.isItemHealthy(stack)
+				&& !cooldowns.isOnCooldown(stack)) {
 			int mergeLevel = ItemUtil.getMergeLevel(stack);
 
 			Vec3 mov = player.getDeltaMovement();

@@ -8,6 +8,7 @@ import com.pianistwb.merged_magic.util.StatNames;
 import com.pianistwb.merged_magic.util.StatUnits;
 
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -29,7 +30,7 @@ public class HotCocoaItem extends MergableItem {
 				HOT_COCOA_DURABILITY));
 		addMergeStat(StatNames.EFFECT_DURATION, StatUnits.SECONDS, buffDuration,
 				stat -> ComponentUtil.literal(stat / 20F));
-		addMergeStat(StatNames.USE_DAMAGE, StatUnits.DURABILITY, damage, stat -> ComponentUtil.literal(stat));
+		addMergeStat(StatNames.USES, Component.empty(), damage, stat -> ComponentUtil.literal(15 / stat));
 	}
 
 	@Override

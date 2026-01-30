@@ -31,6 +31,7 @@ public class CreativeTabRegistry {
 						output.accept(ItemRegistry.TRAPSEED_SACK.get());
 						output.accept(ItemRegistry.FLOATY.get());
 						output.accept(ItemRegistry.TOTEM_OF_ENDURING.get());
+						output.accept(ItemRegistry.CURSED_PAINTING.get());
 
 						// Normal Items
 						output.accept(ItemRegistry.HERMES_PARCEL.get());

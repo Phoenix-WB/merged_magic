@@ -13,8 +13,9 @@
 	"item.merged_magic.target_frisbee": "Target Frisbee",
 	"item.merged_magic.hermes_shoes": "Hermes Shoes",
 	"item.merged_magic.trapseed_sack": "Trapseed Sack",
-	"item.merged_magic.totem_of_enduring": "Totem of Enduring",
 	"item.merged_magic.floaty": "Floaty",
+	"item.merged_magic.totem_of_enduring": "Totem of Enduring",
+	"item.merged_magic.cursed_painting": "Cursed Painting",
 	
 	"item.merged_magic.chocolate_milk_bucket": "Chocolate Milk Bucket",
 	"item.merged_magic.air_bucket": "Air Bucket",
@@ -36,7 +37,7 @@
 	"tooltip.merged_magic.mergable_item.hold_shift": "Hold Shift for more info",
 	"tooltip.merged_magic.mergable_item.hold_ctrl": "Hold Ctrl for merge stats",
 	"tooltip.merged_magic.mergable_item.merge_stack": "Click this item on another %1$s of the same tier to merge (Gold tier is maximum)",
-	"tooltip.merged_magic.mergable_item.durable": "Has durability, but never breaks",
+	"tooltip.merged_magic.mergable_item.durable": "Has durability, but never breaks. Either repairs over time or through another described mechanic",
 	"tooltip.merged_magic.mergable_item.merge_stat": "%1$s: %2$s/%3$s/%4$s %5$s",
 	
 	"tooltip.merged_magic.hermes_parcel.deliver": "Deliver to a Villager for a reward",
@@ -51,8 +52,11 @@
 	"tooltip.merged_magic.target_frisbee.desc": "Throws a frisbee that glows an enemy on hit, and makes them take 1.5x more arrow damage",
 	"tooltip.merged_magic.hermes_shoes.desc": "When in the air, flaps to grant the player more height, as well as levitation",
 	"tooltip.merged_magic.trapseed_sack.desc": "Spawns neutral Trapjaw plants that will latch onto any entities except yourself and hold them in place while damaging them",
-	"tooltip.merged_magic.totem_of_enduring.desc": "When held in either hand and the player is at low health, flings melee attackers into the air and grants resistance",
 	"tooltip.merged_magic.floaty.desc": "When below the waters surface and in either hand, causes the player to rise",
+	"tooltip.merged_magic.totem_of_enduring.desc": "When held in either hand and the player is at low health, flings melee attackers into the air and grants resistance",
+	"tooltip.merged_magic.cursed_painting.desc": "When used, absorbs nearby projectiles, which can be shot out when used again",
+	
+	"tooltip.merged_magic.cursed_painting.caution": "Stored Projectiles will be destroyed on merge",
 	
 	"statName.merged_magic.radius": "Radius",
 	"statName.merged_magic.damage_increase": "Damage Increase",
@@ -60,13 +64,14 @@
 	"statName.merged_magic.burn_time": "Burn Time",
 	"statName.merged_magic.cooldown": "Cooldown",
 	"statName.merged_magic.effect_duration": "Effect Duration",
-	"statName.merged_magic.use_damage": "Use Damage",
+	"statName.merged_magic.uses": "Uses",
 	"statName.merged_magic.repair": "Repair",
 	"statName.merged_magic.spawn_placement": "Spawn Placement",
 	"statName.merged_magic.summon_count": "Summon Count",
 	"statName.merged_magic.acceleration": "Acceleration",
 	"statName.merged_magic.amplifier": "Amplifier",
 	"statName.merged_magic.required_health": "Required Health",
+	"statName.merged_magic.projectiles": "Projectiles",
 	
 	"statUnit.merged_magic.blocks": "Blocks",
 	"statUnit.merged_magic.blocks_per_tick": "Blocks per Tick",
