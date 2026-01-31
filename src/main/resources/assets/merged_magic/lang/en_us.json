@@ -54,7 +54,7 @@
 	"tooltip.merged_magic.trapseed_sack.desc": "Spawns neutral Trapjaw plants that will latch onto any entities except yourself and hold them in place while damaging them",
 	"tooltip.merged_magic.floaty.desc": "When below the waters surface and in either hand, causes the player to rise",
 	"tooltip.merged_magic.totem_of_enduring.desc": "When held in either hand and the player is at low health, flings melee attackers into the air and grants resistance",
-	"tooltip.merged_magic.cursed_painting.desc": "When used, absorbs nearby projectiles, which can be shot out when used again",
+	"tooltip.merged_magic.cursed_painting.desc": "When used, absorbs nearby projectiles, which can be shot out at their original speed when used again",
 	
 	"tooltip.merged_magic.cursed_painting.caution": "Stored Projectiles will be destroyed on merge",
 	

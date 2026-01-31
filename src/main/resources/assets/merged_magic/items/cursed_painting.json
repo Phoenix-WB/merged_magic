@@ -1,8 +1,49 @@
 {
-    "model": {
-        "type": "merged_magic:merged_render_type",
-        "model": "merged_magic:item/cursed_painting",
-        "tints": [],
-        "render_type": "translucent_item"
-    }
+	"model": {
+		"type": "minecraft:range_dispatch",
+		"property": "minecraft:damage",
+		"scale": 1,
+		"entries": [
+			{
+				"threshold": 0,
+				"model": {
+					"type": "merged_magic:merged_render_type",
+					"model": "merged_magic:item/cursed_painting3",
+					"tints": [
+					],
+					"render_type": "translucent_item"
+				}
+			},
+			{
+				"threshold": 0.01,
+				"model": {
+					"type": "merged_magic:merged_render_type",
+					"model": "merged_magic:item/cursed_painting2",
+					"tints": [
+					],
+					"render_type": "translucent_item"
+				}
+			},
+			{
+				"threshold": 0.5,
+				"model": {
+					"type": "merged_magic:merged_render_type",
+					"model": "merged_magic:item/cursed_painting1",
+					"tints": [
+					],
+					"render_type": "translucent_item"
+				}
+			},
+			{
+				"threshold": 1,
+				"model": {
+					"type": "merged_magic:merged_render_type",
+					"model": "merged_magic:item/cursed_painting0",
+					"tints": [
+					],
+					"render_type": "translucent_item"
+				}
+			}
+		]
+	}
 }

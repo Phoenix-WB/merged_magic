@@ -3,8 +3,9 @@ package com.pianistwb.merged_magic.util;
 import java.util.Optional;
 
 import org.jspecify.annotations.Nullable;
+import org.slf4j.Logger;
 
-import com.pianistwb.merged_magic.MergedMagic;
+import com.mojang.logging.LogUtils;
 import com.pianistwb.merged_magic.datacomponents.IntegerData;
 import com.pianistwb.merged_magic.datacomponents.MergeLevel;
 import com.pianistwb.merged_magic.registry.DataComponentRegistry;
@@ -25,6 +26,8 @@ import net.minecraft.world.level.storage.TagValueInput;
 import net.minecraft.world.level.storage.TagValueOutput;
 
 public class ItemUtil {
+	public static final Logger LOGGER = LogUtils.getLogger();
+
 	public static int getMergeLevel(ItemStack stack) {
 		return stack.get(DataComponentRegistry.MERGE_LEVEL).mergeLevel();
 	}
@@ -78,6 +81,10 @@ public class ItemUtil {
 		stack.setDamageValue(Math.min(stack.getDamageValue() + amount, stack.getMaxDamage()));
 	}
 
+	public static void damageStackFully(ItemStack stack) {
+		stack.setDamageValue(stack.getMaxDamage());
+	}
+
 	public static void healStack(ItemStack stack, int amount) {
 		stack.setDamageValue(Math.max(stack.getDamageValue() - amount, 0));
 	}
@@ -96,9 +103,9 @@ public class ItemUtil {
 
 	public static void saveEntityToStack(Entity entity, ItemStack stack, String entityID, @Nullable String removeTag) {
 		try (ProblemReporter.ScopedCollector collector = new ProblemReporter.ScopedCollector(entity.problemPath(),
-				MergedMagic.LOGGER)) {
+				LOGGER)) {
 			TagValueOutput tagvalueoutput = TagValueOutput.createWithContext(collector, entity.registryAccess());
-			entity.saveWithoutId(tagvalueoutput);
+			entity.save(tagvalueoutput);
 
 			CustomData.update(DataComponentRegistry.STORED_ENTITIES.get(), stack, tag -> {
 				if (removeTag != null) {
@@ -115,7 +122,13 @@ public class ItemUtil {
 	@Nullable
 	public static Optional<Entity> loadEntityFromStack(Level level, ItemStack stack, String entityID,
 			boolean removeEntity) {
-		CompoundTag entityTag = stack.get(DataComponentRegistry.STORED_ENTITIES).copyTag().getCompoundOrEmpty(entityID);
+		CustomData data = stack.get(DataComponentRegistry.STORED_ENTITIES);
+		if (data == null) {
+			return Optional.empty();
+		}
+
+		CompoundTag entityTag = data.copyTag().getCompoundOrEmpty(entityID);
+
 		if (removeEntity) {
 			clearEntityFromStack(entityID, stack);
 		}
@@ -124,7 +137,7 @@ public class ItemUtil {
 			return Optional.empty();
 		}
 
-		try (ProblemReporter.ScopedCollector collector = new ProblemReporter.ScopedCollector(MergedMagic.LOGGER)) {
+		try (ProblemReporter.ScopedCollector collector = new ProblemReporter.ScopedCollector(LOGGER)) {
 			return EntityType.create(TagValueInput.create(collector, level.registryAccess(), entityTag), level,
 					EntitySpawnReason.TRIGGERED);
 		} catch (Exception e) {

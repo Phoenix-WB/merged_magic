@@ -23,6 +23,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemCooldowns;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemUseAnimation;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.component.TooltipDisplay;
@@ -44,7 +45,7 @@ public class CursedPaintingItem extends MergableItem {
 
 	@Override
 	public ItemStack getMergedStack(ItemStack stackedOn, ItemStack carried) {
-		// Divide damage on merge to fix this issue and keep stored projectiles
+		ItemUtil.damageStackFully(stackedOn);
 		stackedOn.set(DataComponentRegistry.STORED_ENTITIES, CustomData.EMPTY);
 		return stackedOn;
 	}
@@ -53,7 +54,9 @@ public class CursedPaintingItem extends MergableItem {
 	public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay tooltipDisplay,
 			Consumer<Component> tooltipAdder, TooltipFlag flag) {
 		super.appendHoverText(stack, context, tooltipDisplay, tooltipAdder, flag);
-		tooltipAdder.accept(CAUTION);
+		if (flag.hasShiftDown()) {
+			tooltipAdder.accept(CAUTION);
+		}
 	}
 
 	@Override
@@ -76,7 +79,7 @@ public class CursedPaintingItem extends MergableItem {
 		int mergeState = ItemUtil.getMergeState(stack);
 
 		if (mergeState == 0) {
-			AABB box = livingEntity.getHitbox().inflate(1.0D);
+			AABB box = livingEntity.getHitbox().inflate(1.5D);
 
 			List<Projectile> projectiles = level.getEntitiesOfClass(Projectile.class, box,
 					entity -> !isExcludedProjectiles(entity));
@@ -84,13 +87,15 @@ public class CursedPaintingItem extends MergableItem {
 			for (Projectile proj : projectiles) {
 				int itemHealth = ItemUtil.getItemHealth(stack);
 
-				if (itemHealth <= stack.getMaxDamage()) {
+				if (itemHealth < stack.getMaxDamage()) {
 					int rep = repair.getStat(mergeLevel);
 					int index = (itemHealth + rep) / rep;
 
-					ItemUtil.saveEntityToStack(proj, stack, "proj" + (itemHealth + rep) / rep, "LeftOwner");
+					ItemUtil.saveEntityToStack(proj, stack, "proj" + index, "LeftOwner");
 					ItemUtil.setMergeIndex(stack, index);
 					ItemUtil.healStack(stack, rep);
+
+					proj.discard();
 				} else {
 					break;
 				}
@@ -101,25 +106,30 @@ public class CursedPaintingItem extends MergableItem {
 			}
 		} else if (mergeState == 1) {
 			if (remainingUseDuration != 72000 && remainingUseDuration % 25 == 0) {
-				int mergeIndex = ItemUtil.getMergeIndex(stack);
+				if (ItemUtil.isItemHealthy(stack)) {
+					int mergeIndex = ItemUtil.getMergeIndex(stack);
 
-				Optional<Entity> entity = ItemUtil.loadEntityFromStack(level, stack, "proj" + mergeIndex, true);
+					Optional<Entity> entity = ItemUtil.loadEntityFromStack(level, stack, "proj" + mergeIndex, true);
 
-				if (entity.isPresent() && entity.get() instanceof Projectile projectile) {
-					level.addFreshEntity(projectile);
-					projectile.setOwner(livingEntity);
-					projectile.shootFromRotation(livingEntity, livingEntity.getXRot(), livingEntity.getYRot(), 0.0F,
-							(float) projectile.getDeltaMovement().length(), 1.3F);
+					if (entity.isPresent() && entity.get() instanceof Projectile projectile) {
+						projectile.setOwner(livingEntity);
+						projectile.setPos(livingEntity.getX(), livingEntity.getEyeY() - 0.1D, livingEntity.getZ());
+						projectile.shootFromRotation(livingEntity, livingEntity.getXRot(), livingEntity.getYRot(), 0.0F,
+								(float) projectile.getDeltaMovement().length(), 1.3F);
+						level.addFreshEntity(projectile);
+					}
+
+					ItemUtil.setMergeIndex(stack, Math.max(mergeIndex - 1, 0));
+					ItemUtil.damageStack(stack, repair.getStat(mergeLevel));
+				} else {
+					livingEntity.releaseUsingItem();
 				}
-
-				ItemUtil.setMergeIndex(stack, Math.max(mergeIndex - 1, 0));
-				ItemUtil.damageStack(stack, repair.getStat(mergeLevel));
 			}
 		}
 	}
 
 	@Override
-	public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity livingEntity) {
+	public boolean releaseUsing(ItemStack stack, Level level, LivingEntity entity, int timeLeft) {
 		int mergeState = ItemUtil.getMergeState(stack);
 
 		if (mergeState == 0) {
@@ -130,13 +140,13 @@ public class CursedPaintingItem extends MergableItem {
 			if (!ItemUtil.isItemHealthy(stack)) {
 				ItemUtil.setMergeState(stack, 0);
 
-				if (livingEntity instanceof Player player) {
+				if (entity instanceof Player player) {
 					player.getCooldowns().addCooldown(stack, 600);
 				}
 			}
 		}
 
-		return stack;
+		return false;
 	}
 
 	@Override
@@ -152,5 +162,10 @@ public class CursedPaintingItem extends MergableItem {
 	@Override
 	public boolean isDurable() {
 		return true;
+	}
+
+	@Override
+	public ItemUseAnimation getUseAnimation(ItemStack stack) {
+		return ItemUseAnimation.BOW;
 	}
 }

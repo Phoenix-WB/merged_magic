@@ -9,6 +9,7 @@ import org.jspecify.annotations.Nullable;
 import com.pianistwb.merged_magic.registry.DamageSources;
 import com.pianistwb.merged_magic.registry.MobEffectRegistry;
 
+import net.minecraft.core.UUIDUtil;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -178,7 +179,7 @@ public class Trapjaw extends Monster implements GeoEntity {
 		compound.putInt("despawnTicks", despawnTicks);
 
 		if (owner != null) {
-			compound.putString("ownerUUID", owner.getStringUUID());
+			compound.store("ownerUUID", UUIDUtil.CODEC, owner.getUUID());
 		}
 	}
 
@@ -189,9 +190,9 @@ public class Trapjaw extends Monster implements GeoEntity {
 		this.despawn = compound.getBooleanOr("despawn", false);
 		this.despawnTicks = compound.getIntOr("despawnTicks", 0);
 
-		Optional<String> ownerUUID = compound.getString("ownerUUID");
+		Optional<UUID> ownerUUID = compound.read("ownerUUID", UUIDUtil.CODEC);
 		if (ownerUUID.isPresent()) {
-			Entity living = this.level().getEntity(UUID.fromString(ownerUUID.get()));
+			Entity living = this.level().getEntity(ownerUUID.get());
 			this.setOwner(living);
 		}
 	}
