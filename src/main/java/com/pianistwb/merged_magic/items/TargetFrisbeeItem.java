@@ -1,7 +1,7 @@
 package com.pianistwb.merged_magic.items;
 
 import com.pianistwb.merged_magic.entity.projectile.TargetFrisbee;
-import com.pianistwb.merged_magic.util.ComponentUtil;
+import com.pianistwb.merged_magic.util.LangUtil;
 import com.pianistwb.merged_magic.util.ItemUtil;
 import com.pianistwb.merged_magic.util.MergeStat;
 import com.pianistwb.merged_magic.util.StatNames;
@@ -26,9 +26,9 @@ public class TargetFrisbeeItem extends MergableItem {
 	public TargetFrisbeeItem(Properties properties) {
 		super(properties);
 		addMergeStat(StatNames.LAUNCH_VELOCITY, StatUnits.BLOCKS_PER_TICK, scaling,
-				stat -> ComponentUtil.literal(stat));
-		addMergeStat(StatNames.EFFECT_DURATION, StatUnits.SECONDS, duration, stat -> ComponentUtil.literal(stat / 20F));
-		addMergeStat(StatNames.COOLDOWN, StatUnits.SECONDS, cooldown, stat -> ComponentUtil.literal(stat / 20F));
+				stat -> LangUtil.literal(stat));
+		addMergeStat(StatNames.EFFECT_DURATION, StatUnits.SECONDS, duration, stat -> LangUtil.literal(stat / 20));
+		addMergeStat(StatNames.COOLDOWN, StatUnits.SECONDS, cooldown, stat -> LangUtil.literal(stat / 20));
 	}
 
 	@Override

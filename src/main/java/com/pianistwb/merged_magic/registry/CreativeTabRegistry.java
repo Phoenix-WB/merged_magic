@@ -32,11 +32,12 @@ public class CreativeTabRegistry {
 						output.accept(ItemRegistry.FLOATY.get());
 						output.accept(ItemRegistry.TOTEM_OF_ENDURING.get());
 						output.accept(ItemRegistry.CURSED_PAINTING.get());
+						output.accept(ItemRegistry.CREEPER_DISGUISE.get());
 
 						// Normal Items
-						output.accept(ItemRegistry.HERMES_PARCEL.get());
 						output.accept(ItemRegistry.CHOCOLATE_MILK_BUCKET.get());
 						output.accept(ItemRegistry.AIR_BUCKET.get());
+						output.accept(ItemRegistry.HERMES_PARCEL.get());
 						output.accept(ItemRegistry.BOTANY_MEAL.get());
 
 						// Spawn Eggs

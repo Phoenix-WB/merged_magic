@@ -4,7 +4,7 @@ import org.jspecify.annotations.Nullable;
 
 import com.pianistwb.merged_magic.client.ClientParticles;
 import com.pianistwb.merged_magic.networking.ParticlePayload;
-import com.pianistwb.merged_magic.util.ComponentUtil;
+import com.pianistwb.merged_magic.util.LangUtil;
 import com.pianistwb.merged_magic.util.ItemUtil;
 import com.pianistwb.merged_magic.util.MergeStat;
 import com.pianistwb.merged_magic.util.StatNames;
@@ -30,7 +30,7 @@ public class HermesShoesItem extends MergableItem {
 
 	public HermesShoesItem(Properties properties) {
 		super(ItemUtil.durableItem(properties, 6));
-		addMergeStat(StatNames.USES, Component.empty(), useDamage, stat -> ComponentUtil.literal(6 / stat));
+		addMergeStat(StatNames.USES, Component.empty(), useDamage, stat -> LangUtil.literal(6 / stat));
 	}
 
 	@Override

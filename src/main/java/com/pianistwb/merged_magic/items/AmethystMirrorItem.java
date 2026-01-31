@@ -1,6 +1,6 @@
 package com.pianistwb.merged_magic.items;
 
-import com.pianistwb.merged_magic.util.ComponentUtil;
+import com.pianistwb.merged_magic.util.LangUtil;
 import com.pianistwb.merged_magic.util.ItemUtil;
 import com.pianistwb.merged_magic.util.MagicUtil;
 import com.pianistwb.merged_magic.util.MergeStat;
@@ -26,9 +26,9 @@ public class AmethystMirrorItem extends MergableItem {
 
 	public AmethystMirrorItem(Properties properties) {
 		super(properties);
-		addMergeStat(StatNames.RADIUS, StatUnits.BLOCKS, radius, stat -> ComponentUtil.literal(stat));
+		addMergeStat(StatNames.RADIUS, StatUnits.BLOCKS, radius, stat -> LangUtil.literal(stat));
 		addMergeStat(StatNames.DAMAGE_INCREASE, StatUnits.HEARTS, getLightingDamageIncrease,
-				stat -> ComponentUtil.literal(stat / 2F));
+				stat -> LangUtil.literal(stat / 2F));
 	}
 
 	@Override

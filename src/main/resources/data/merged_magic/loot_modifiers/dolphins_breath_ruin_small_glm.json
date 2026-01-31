@@ -7,5 +7,7 @@
 		}
 	],
 	"item": "merged_magic:dolphins_breath",
+	"rolls": 1,
+	"guarantees": 0,
 	"probability": 0.1
 }

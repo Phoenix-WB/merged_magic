@@ -1,7 +1,7 @@
 package com.pianistwb.merged_magic.items;
 
 import com.pianistwb.merged_magic.registry.MobEffectRegistry;
-import com.pianistwb.merged_magic.util.ComponentUtil;
+import com.pianistwb.merged_magic.util.LangUtil;
 import com.pianistwb.merged_magic.util.ItemUtil;
 import com.pianistwb.merged_magic.util.MergeStat;
 import com.pianistwb.merged_magic.util.StatNames;
@@ -28,9 +28,9 @@ public class HotCocoaItem extends MergableItem {
 	public HotCocoaItem(Properties properties) {
 		super(ItemUtil.brokenItem(properties.component(DataComponents.CONSUMABLE, Consumables.DEFAULT_DRINK),
 				HOT_COCOA_DURABILITY));
+		addMergeStat(StatNames.USES, Component.empty(), damage, stat -> LangUtil.literal(15 / stat));
 		addMergeStat(StatNames.EFFECT_DURATION, StatUnits.SECONDS, buffDuration,
-				stat -> ComponentUtil.literal(stat / 20F));
-		addMergeStat(StatNames.USES, Component.empty(), damage, stat -> ComponentUtil.literal(15 / stat));
+				stat -> LangUtil.literal(stat / 20));
 	}
 
 	@Override

@@ -16,6 +16,7 @@
 	"item.merged_magic.floaty": "Floaty",
 	"item.merged_magic.totem_of_enduring": "Totem of Enduring",
 	"item.merged_magic.cursed_painting": "Cursed Painting",
+	"item.merged_magic.creeper_disguise": "Creeper Disguise",
 	
 	"item.merged_magic.chocolate_milk_bucket": "Chocolate Milk Bucket",
 	"item.merged_magic.air_bucket": "Air Bucket",
@@ -31,6 +32,7 @@
 	"effect.merged_magic.targeted": "Targeted",
 	"effect.merged_magic.trapjawed": "Trapjawed",
 	"effect.merged_magic.enduring": "Enduring",
+	"effect.merged_magic.creeper_disguised": "Creeper Disguised",
 	
 	"itemGroup.merged_magic_items": "Merged Magic Items",
 	
@@ -55,6 +57,7 @@
 	"tooltip.merged_magic.floaty.desc": "When below the waters surface and in either hand, causes the player to rise",
 	"tooltip.merged_magic.totem_of_enduring.desc": "When held in either hand and the player is at low health, flings melee attackers into the air and grants resistance",
 	"tooltip.merged_magic.cursed_painting.desc": "When used, absorbs nearby projectiles, which can be shot out at their original speed when used again",
+	"tooltip.merged_magic.creeper_disguise.desc": "When used, within its effect duration will give the player invisibility if they are close to leaf blocks",
 	
 	"tooltip.merged_magic.cursed_painting.caution": "Stored Projectiles will be destroyed on merge",
 	

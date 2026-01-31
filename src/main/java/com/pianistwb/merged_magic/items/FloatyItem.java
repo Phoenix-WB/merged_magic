@@ -1,6 +1,6 @@
 package com.pianistwb.merged_magic.items;
 
-import com.pianistwb.merged_magic.util.ComponentUtil;
+import com.pianistwb.merged_magic.util.LangUtil;
 import com.pianistwb.merged_magic.util.ItemUtil;
 import com.pianistwb.merged_magic.util.MergeStat;
 import com.pianistwb.merged_magic.util.StatNames;
@@ -18,7 +18,7 @@ public class FloatyItem extends MergableItem implements TickInPlayerHand {
 	public FloatyItem(Properties properties) {
 		super(properties);
 		addMergeStat(StatNames.ACCELERATION, StatUnits.BLOCKS_PER_TICK, acceleration,
-				stat -> ComponentUtil.literal(stat));
+				stat -> LangUtil.literal(stat));
 	}
 
 	@Override

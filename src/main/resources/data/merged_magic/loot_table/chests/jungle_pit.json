@@ -49,7 +49,7 @@
 			"entries": [
 				{
 					"type": "minecraft:item",
-					"name": "minecraft:dirt"
+					"name": "merged_magic:creeper_disguise"
 				}
 			]
 		},
@@ -59,7 +59,7 @@
 			"entries": [
 				{
 					"type": "minecraft:item",
-					"name": "minecraft:dirt"
+					"name": "merged_magic:creeper_disguise"
 				}
 			],
 			"conditions": [

@@ -2,7 +2,7 @@ package com.pianistwb.merged_magic.items;
 
 import org.jspecify.annotations.Nullable;
 
-import com.pianistwb.merged_magic.util.ComponentUtil;
+import com.pianistwb.merged_magic.util.LangUtil;
 import com.pianistwb.merged_magic.util.ItemUtil;
 import com.pianistwb.merged_magic.util.MagicUtil;
 import com.pianistwb.merged_magic.util.MergeStat;
@@ -29,9 +29,9 @@ public class BroomItem extends MergableItem {
 	public BroomItem(Properties properties) {
 		super(properties);
 		addMergeStat(StatNames.LAUNCH_VELOCITY, StatUnits.BLOCKS_PER_TICK, initial_velocity,
-				stat -> ComponentUtil.literal(stat));
-		addMergeStat(StatNames.BURN_TIME, StatUnits.SECONDS, burnTime, stat -> ComponentUtil.literal(stat / 20F));
-		addMergeStat(StatNames.COOLDOWN, StatUnits.SECONDS, cooldown, stat -> ComponentUtil.literal(stat / 20F));
+				stat -> LangUtil.literal(stat));
+		addMergeStat(StatNames.BURN_TIME, StatUnits.SECONDS, burnTime, stat -> LangUtil.literal(stat / 20));
+		addMergeStat(StatNames.COOLDOWN, StatUnits.SECONDS, cooldown, stat -> LangUtil.literal(stat / 20));
 	}
 
 	@Override

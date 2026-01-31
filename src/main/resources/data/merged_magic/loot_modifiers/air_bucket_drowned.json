@@ -18,5 +18,7 @@
 		}
 	],
 	"item": "merged_magic:air_bucket",
+	"rolls": 1,
+	"guarantees": 0,
 	"probability": 0.1
 }

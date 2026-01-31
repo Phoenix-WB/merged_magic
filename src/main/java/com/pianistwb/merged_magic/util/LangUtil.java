@@ -6,7 +6,7 @@ import java.text.DecimalFormat;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 
-public class ComponentUtil {
+public class LangUtil {
 	public static DecimalFormat decFormat;
 
 	static {

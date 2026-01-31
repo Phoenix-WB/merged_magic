@@ -1,7 +1,7 @@
 package com.pianistwb.merged_magic.items;
 
 import com.pianistwb.merged_magic.registry.MobEffectRegistry;
-import com.pianistwb.merged_magic.util.ComponentUtil;
+import com.pianistwb.merged_magic.util.LangUtil;
 import com.pianistwb.merged_magic.util.ItemUtil;
 import com.pianistwb.merged_magic.util.MergeStat;
 import com.pianistwb.merged_magic.util.StatNames;
@@ -24,10 +24,10 @@ public class TotemOfEnduringItem extends MergableItem implements TickInPlayerHan
 	public TotemOfEnduringItem(Properties properties) {
 		super(properties);
 		addMergeStat(StatNames.REQUIRED_HEALTH, StatUnits.HEARTS, remainingHealth,
-				stat -> ComponentUtil.literal(stat / 2F));
-		addMergeStat(StatNames.AMPLIFIER, Component.empty(), resistAmplifier, stat -> ComponentUtil.literal(stat + 1));
+				stat -> LangUtil.literal(stat / 2F));
+		addMergeStat(StatNames.AMPLIFIER, Component.empty(), resistAmplifier, stat -> LangUtil.literal(stat + 1));
 		addMergeStat(StatNames.LAUNCH_VELOCITY, StatUnits.BLOCKS_PER_TICK, initialVelocity,
-				stat -> ComponentUtil.literal(stat));
+				stat -> LangUtil.literal(stat));
 	}
 
 	@Override
@@ -37,7 +37,7 @@ public class TotemOfEnduringItem extends MergableItem implements TickInPlayerHan
 
 			if (player.getHealth() <= remainingHealth.getStat(mergeLevel)) {
 				player.addEffect(new MobEffectInstance(MobEffectRegistry.ENDURING, 10, amplifier.getStat(mergeLevel),
-						false, true));
+						false, false));
 				player.addEffect(new MobEffectInstance(MobEffects.RESISTANCE, 10, resistAmplifier.getStat(mergeLevel)));
 			}
 		}

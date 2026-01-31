@@ -3,6 +3,7 @@ package com.pianistwb.merged_magic.registry;
 import com.pianistwb.merged_magic.MergedMagic;
 import com.pianistwb.merged_magic.items.AmethystMirrorItem;
 import com.pianistwb.merged_magic.items.BroomItem;
+import com.pianistwb.merged_magic.items.CreeperDisguiseItem;
 import com.pianistwb.merged_magic.items.CursedPaintingItem;
 import com.pianistwb.merged_magic.items.DolphinsBreathItem;
 import com.pianistwb.merged_magic.items.EvergrowingVineItem;
@@ -74,6 +75,9 @@ public class ItemRegistry {
 
 	public static final DeferredHolder<Item, CursedPaintingItem> CURSED_PAINTING = ITEMS.registerItem("cursed_painting",
 			CursedPaintingItem::new);
+
+	public static final DeferredHolder<Item, CreeperDisguiseItem> CREEPER_DISGUISE = ITEMS
+			.registerItem("creeper_disguise", CreeperDisguiseItem::new);
 
 	// Normal Items
 	public static final DeferredHolder<Item, Item> CHOCOLATE_MILK_BUCKET = ITEMS.registerItem("chocolate_milk_bucket",

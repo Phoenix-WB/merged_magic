@@ -20,5 +20,7 @@
 		}
 	],
 	"item": "merged_magic:totem_of_enduring",
-	"probability": 1.0
+	"rolls": 1,
+	"guarantees": 1,
+	"probability": 0.5
 }

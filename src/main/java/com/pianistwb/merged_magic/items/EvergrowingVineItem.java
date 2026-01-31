@@ -2,7 +2,7 @@ package com.pianistwb.merged_magic.items;
 
 import org.jspecify.annotations.Nullable;
 
-import com.pianistwb.merged_magic.util.ComponentUtil;
+import com.pianistwb.merged_magic.util.LangUtil;
 import com.pianistwb.merged_magic.util.ItemUtil;
 import com.pianistwb.merged_magic.util.MergeStat;
 import com.pianistwb.merged_magic.util.StatNames;
@@ -27,7 +27,7 @@ public class EvergrowingVineItem extends MergableItem implements TickInPlayerHan
 	public EvergrowingVineItem(Properties properties) {
 		super(ItemUtil.durableItem(properties, 32));
 		addMergeStat(StatNames.REPAIR, StatUnits.DURABILITY_PER_SECOND, regrowth,
-				stat -> ComponentUtil.literal(stat / 3F));
+				stat -> LangUtil.literal(stat / 3F));
 	}
 
 	@Override

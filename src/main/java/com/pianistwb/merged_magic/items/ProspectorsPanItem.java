@@ -1,15 +1,15 @@
 package com.pianistwb.merged_magic.items;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import com.pianistwb.merged_magic.util.ComponentUtil;
+import com.pianistwb.merged_magic.util.LangUtil;
 import com.pianistwb.merged_magic.util.ItemUtil;
 import com.pianistwb.merged_magic.util.MagicUtil;
 import com.pianistwb.merged_magic.util.MergeStat;
 import com.pianistwb.merged_magic.util.StatNames;
 import com.pianistwb.merged_magic.util.StatUnits;
+import com.pianistwb.merged_magic.util.LevelUtil;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder.Reference;
@@ -17,7 +17,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -40,8 +39,8 @@ public class ProspectorsPanItem extends MergableItem {
 
 	public ProspectorsPanItem(Properties properties) {
 		super(properties);
-		addMergeStat(StatNames.RADIUS, StatUnits.BLOCKS, radius, stat -> ComponentUtil.literal(stat));
-		addMergeStat(StatNames.COOLDOWN, StatUnits.SECONDS, cooldown, stat -> ComponentUtil.literal(stat / 20F));
+		addMergeStat(StatNames.RADIUS, StatUnits.BLOCKS, radius, stat -> LangUtil.literal(stat));
+		addMergeStat(StatNames.COOLDOWN, StatUnits.SECONDS, cooldown, stat -> LangUtil.literal(stat / 20));
 	}
 
 	@Override
@@ -60,7 +59,7 @@ public class ProspectorsPanItem extends MergableItem {
 				BlockPos closestBlock = null;
 				double closestBlockDist = 0D;
 
-				for (BlockPos pos : getBlockPosIfLoaded(level, radiusBox)) {
+				for (BlockPos pos : LevelUtil.getBlockPosIfLoaded(level, radiusBox)) {
 					BlockState state = level.getBlockState(pos);
 
 					if (state.is(BlockTags.MINEABLE_WITH_PICKAXE) && !state.is(BlockTags.REDSTONE_ORES)
@@ -142,22 +141,7 @@ public class ProspectorsPanItem extends MergableItem {
 		return InteractionResult.PASS;
 	}
 
-	public static boolean isBlockMineable(BlockState state, ItemStack stack) {
-		return !state.requiresCorrectToolForDrops() || stack.isCorrectToolForDrops(state);
-	}
-
-	@SuppressWarnings("deprecation")
-	public static Iterable<BlockPos> getBlockPosIfLoaded(Level level, AABB aabb) {
-		int i = Mth.floor(aabb.minX);
-		int j = Mth.floor(aabb.maxX);
-		int k = Mth.floor(aabb.minY);
-		int l = Mth.floor(aabb.maxY);
-		int i1 = Mth.floor(aabb.minZ);
-		int j1 = Mth.floor(aabb.maxZ);
-		return level.hasChunksAt(i, k, i1, j, l, j1) ? BlockPos.betweenClosed(aabb) : Collections.emptyList();
-	}
-
-	public static void tryBreakPathTo(Level level, int x, int y, int z, BlockPos pos) {
+	private static void tryBreakPathTo(Level level, int x, int y, int z, BlockPos pos) {
 		if (x == pos.getX() && y == pos.getY() && z == pos.getZ()) {
 			return;
 		}

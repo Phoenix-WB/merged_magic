@@ -6,7 +6,7 @@ import java.util.function.Consumer;
 
 import com.pianistwb.merged_magic.datacomponents.IntegerData;
 import com.pianistwb.merged_magic.registry.DataComponentRegistry;
-import com.pianistwb.merged_magic.util.ComponentUtil;
+import com.pianistwb.merged_magic.util.LangUtil;
 import com.pianistwb.merged_magic.util.ItemUtil;
 import com.pianistwb.merged_magic.util.MergeStat;
 import com.pianistwb.merged_magic.util.StatNames;
@@ -40,7 +40,7 @@ public class CursedPaintingItem extends MergableItem {
 		super(ItemUtil.brokenItem(properties.component(DataComponentRegistry.MERGE_STATE, IntegerData.DEFAULT)
 				.component(DataComponentRegistry.MERGE_INDEX, IntegerData.DEFAULT)
 				.component(DataComponentRegistry.STORED_ENTITIES, CustomData.EMPTY), 18));
-		addMergeStat(StatNames.PROJECTILES, Component.empty(), repair, stat -> ComponentUtil.literal(18 / stat));
+		addMergeStat(StatNames.PROJECTILES, Component.empty(), repair, stat -> LangUtil.literal(18 / stat));
 	}
 
 	@Override

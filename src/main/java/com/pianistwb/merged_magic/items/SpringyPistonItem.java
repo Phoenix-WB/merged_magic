@@ -1,7 +1,7 @@
 package com.pianistwb.merged_magic.items;
 
 import com.pianistwb.merged_magic.registry.MobEffectRegistry;
-import com.pianistwb.merged_magic.util.ComponentUtil;
+import com.pianistwb.merged_magic.util.LangUtil;
 import com.pianistwb.merged_magic.util.ItemUtil;
 import com.pianistwb.merged_magic.util.MergeStat;
 import com.pianistwb.merged_magic.util.StatNames;
@@ -25,9 +25,9 @@ public class SpringyPistonItem extends MergableItem {
 	public SpringyPistonItem(Properties properties) {
 		super(properties);
 		addMergeStat(StatNames.LAUNCH_VELOCITY, StatUnits.BLOCKS_PER_TICK, velocity,
-				stat -> ComponentUtil.literal(stat));
-		addMergeStat(StatNames.EFFECT_DURATION, StatUnits.SECONDS, crutching, stat -> ComponentUtil.literal(stat));
-		addMergeStat(StatNames.COOLDOWN, StatUnits.SECONDS, cooldown, stat -> ComponentUtil.literal(stat / 20F));
+				stat -> LangUtil.literal(stat));
+		addMergeStat(StatNames.EFFECT_DURATION, StatUnits.SECONDS, crutching, stat -> LangUtil.literal(stat / 20));
+		addMergeStat(StatNames.COOLDOWN, StatUnits.SECONDS, cooldown, stat -> LangUtil.literal(stat / 20));
 	}
 
 	@Override
