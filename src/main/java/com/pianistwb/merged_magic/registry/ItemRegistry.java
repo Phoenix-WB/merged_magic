@@ -13,6 +13,7 @@ import com.pianistwb.merged_magic.items.HermesShoesItem;
 import com.pianistwb.merged_magic.items.HotCocoaItem;
 import com.pianistwb.merged_magic.items.ProspectorsPanItem;
 import com.pianistwb.merged_magic.items.SpringyPistonItem;
+import com.pianistwb.merged_magic.items.SwordOfEdenItem;
 import com.pianistwb.merged_magic.items.TargetFrisbeeItem;
 import com.pianistwb.merged_magic.items.TotemOfEnduringItem;
 import com.pianistwb.merged_magic.items.TrapseedSackItem;
@@ -78,6 +79,9 @@ public class ItemRegistry {
 
 	public static final DeferredHolder<Item, CreeperDisguiseItem> CREEPER_DISGUISE = ITEMS
 			.registerItem("creeper_disguise", CreeperDisguiseItem::new);
+
+	public static final DeferredHolder<Item, SwordOfEdenItem> SWORD_OF_EDEN = ITEMS.registerItem("sword_of_eden",
+			SwordOfEdenItem::new);
 
 	// Normal Items
 	public static final DeferredHolder<Item, Item> CHOCOLATE_MILK_BUCKET = ITEMS.registerItem("chocolate_milk_bucket",

@@ -17,6 +17,7 @@
 	"item.merged_magic.totem_of_enduring": "Totem of Enduring",
 	"item.merged_magic.cursed_painting": "Cursed Painting",
 	"item.merged_magic.creeper_disguise": "Creeper Disguise",
+	"item.merged_magic.sword_of_eden": "Sword of Eden",
 	
 	"item.merged_magic.chocolate_milk_bucket": "Chocolate Milk Bucket",
 	"item.merged_magic.air_bucket": "Air Bucket",
@@ -58,6 +59,7 @@
 	"tooltip.merged_magic.totem_of_enduring.desc": "When held in either hand and the player is at low health, flings melee attackers into the air and grants resistance",
 	"tooltip.merged_magic.cursed_painting.desc": "When used, absorbs nearby projectiles, which can be shot out at their original speed when used again",
 	"tooltip.merged_magic.creeper_disguise.desc": "When used, within its effect duration will give the player invisibility if they are close to leaf blocks",
+	"tooltip.merged_magic.sword_of_eden.desc": "Poisons enemies",
 	
 	"tooltip.merged_magic.cursed_painting.caution": "Stored Projectiles will be destroyed on merge",
 	

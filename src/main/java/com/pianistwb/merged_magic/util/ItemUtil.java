@@ -1,5 +1,6 @@
 package com.pianistwb.merged_magic.util;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.jspecify.annotations.Nullable;
@@ -10,9 +11,13 @@ import com.pianistwb.merged_magic.datacomponents.IntegerData;
 import com.pianistwb.merged_magic.datacomponents.MergeLevel;
 import com.pianistwb.merged_magic.registry.DataComponentRegistry;
 
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.HolderSet;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.ProblemReporter;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySpawnReason;
@@ -20,8 +25,12 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.component.CustomData;
+import net.minecraft.world.item.component.Tool;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.TagValueInput;
 import net.minecraft.world.level.storage.TagValueOutput;
 
@@ -89,18 +98,6 @@ public class ItemUtil {
 		stack.setDamageValue(Math.max(stack.getDamageValue() - amount, 0));
 	}
 
-	public static Item.Properties durableItem(Item.Properties properties, int maxDamage) {
-		properties.component(DataComponents.MAX_DAMAGE, maxDamage);
-		properties.component(DataComponents.DAMAGE, 0);
-		return properties;
-	}
-
-	public static Item.Properties brokenItem(Item.Properties properties, int maxDamage) {
-		properties.component(DataComponents.MAX_DAMAGE, maxDamage);
-		properties.component(DataComponents.DAMAGE, maxDamage);
-		return properties;
-	}
-
 	public static void saveEntityToStack(Entity entity, ItemStack stack, String entityID, @Nullable String removeTag) {
 		try (ProblemReporter.ScopedCollector collector = new ProblemReporter.ScopedCollector(entity.problemPath(),
 				LOGGER)) {
@@ -149,5 +146,33 @@ public class ItemUtil {
 		CustomData.update(DataComponentRegistry.STORED_ENTITIES.get(), stack, tag -> {
 			tag.remove(entityID);
 		});
+	}
+	
+	//Tools	
+	public static Item.Properties durableItem(Item.Properties properties, int maxDamage) {
+		properties.component(DataComponents.MAX_DAMAGE, maxDamage);
+		properties.component(DataComponents.DAMAGE, 0);
+		return properties;
+	}
+
+	public static Item.Properties brokenItem(Item.Properties properties, int maxDamage) {
+		properties.component(DataComponents.MAX_DAMAGE, maxDamage);
+		properties.component(DataComponents.DAMAGE, maxDamage);
+		return properties;
+	}
+	
+	@SuppressWarnings("deprecation")
+	public static Item.Properties sword(Item.Properties properties, ToolMaterial material, float attackDamage,
+			float attackSpeed) {
+		HolderGetter<Block> holdergetter = BuiltInRegistries
+				.acquireBootstrapRegistrationLookup(BuiltInRegistries.BLOCK);
+		return properties.component(DataComponents.TOOL,
+				new Tool(
+						List.of(Tool.Rule.minesAndDrops(HolderSet.direct(Blocks.COBWEB.builtInRegistryHolder()), 15.0F),
+								Tool.Rule.overrideSpeed(holdergetter.getOrThrow(BlockTags.SWORD_INSTANTLY_MINES),
+										Float.MAX_VALUE),
+								Tool.Rule.overrideSpeed(holdergetter.getOrThrow(BlockTags.SWORD_EFFICIENT), 1.5F)),
+						1.0F, 2, false))
+				.attributes(material.createSwordAttributes(attackDamage, attackSpeed));
 	}
 }
