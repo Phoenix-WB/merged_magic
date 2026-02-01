@@ -1,22 +1,22 @@
 package com.pianistwb.merged_magic.registry;
 
 import com.pianistwb.merged_magic.MergedMagic;
-import com.pianistwb.merged_magic.items.AmethystMirrorItem;
-import com.pianistwb.merged_magic.items.BroomItem;
-import com.pianistwb.merged_magic.items.CreeperDisguiseItem;
-import com.pianistwb.merged_magic.items.CursedPaintingItem;
-import com.pianistwb.merged_magic.items.DolphinsBreathItem;
-import com.pianistwb.merged_magic.items.EvergrowingVineItem;
-import com.pianistwb.merged_magic.items.FloatyItem;
 import com.pianistwb.merged_magic.items.HermesParcelItem;
-import com.pianistwb.merged_magic.items.HermesShoesItem;
-import com.pianistwb.merged_magic.items.HotCocoaItem;
-import com.pianistwb.merged_magic.items.ProspectorsPanItem;
-import com.pianistwb.merged_magic.items.SpringyPistonItem;
-import com.pianistwb.merged_magic.items.SwordOfEdenItem;
-import com.pianistwb.merged_magic.items.TargetFrisbeeItem;
-import com.pianistwb.merged_magic.items.TotemOfEnduringItem;
-import com.pianistwb.merged_magic.items.TrapseedSackItem;
+import com.pianistwb.merged_magic.items.mergable.AmethystMirrorItem;
+import com.pianistwb.merged_magic.items.mergable.BroomItem;
+import com.pianistwb.merged_magic.items.mergable.CreeperDisguiseItem;
+import com.pianistwb.merged_magic.items.mergable.CursedPaintingItem;
+import com.pianistwb.merged_magic.items.mergable.DolphinsBreathItem;
+import com.pianistwb.merged_magic.items.mergable.EvergrowingVineItem;
+import com.pianistwb.merged_magic.items.mergable.FloatyItem;
+import com.pianistwb.merged_magic.items.mergable.HermesShoesItem;
+import com.pianistwb.merged_magic.items.mergable.HotCocoaItem;
+import com.pianistwb.merged_magic.items.mergable.ProspectorsPanItem;
+import com.pianistwb.merged_magic.items.mergable.SpringyPistonItem;
+import com.pianistwb.merged_magic.items.mergable.SwordOfEdenItem;
+import com.pianistwb.merged_magic.items.mergable.TargetFrisbeeItem;
+import com.pianistwb.merged_magic.items.mergable.TotemOfEnduringItem;
+import com.pianistwb.merged_magic.items.mergable.TrapseedSackItem;
 
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.BucketItem;

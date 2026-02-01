@@ -1,4 +1,4 @@
-package com.pianistwb.merged_magic.items;
+package com.pianistwb.merged_magic.items.mergable;
 
 import java.util.ArrayList;
 import java.util.List;

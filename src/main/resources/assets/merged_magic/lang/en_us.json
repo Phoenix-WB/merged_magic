@@ -28,6 +28,8 @@
 	
 	"entity.merged_magic.target_frisbee": "Target Frisbee",
 	"entity.merged_magic.trapjaw": "Trapjaw",
+	"entity.merged_magic.copper_flame_spire": "Copper Flame Spire",
+	
 	"effect.merged_magic.crutched": "Crutched",
 	"effect.merged_magic.cocoa_buff": "Cocoa Buff",
 	"effect.merged_magic.targeted": "Targeted",

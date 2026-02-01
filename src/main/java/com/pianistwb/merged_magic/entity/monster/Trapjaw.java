@@ -172,25 +172,25 @@ public class Trapjaw extends Monster implements GeoEntity {
 	}
 
 	@Override
-	protected void addAdditionalSaveData(ValueOutput compound) {
-		super.addAdditionalSaveData(compound);
-		compound.putByte("grabbing", this.getGrabbingState());
-		compound.putBoolean("despawn", despawn);
-		compound.putInt("despawnTicks", despawnTicks);
+	protected void addAdditionalSaveData(ValueOutput input) {
+		super.addAdditionalSaveData(input);
+		input.putByte("grabbing", this.getGrabbingState());
+		input.putBoolean("despawn", despawn);
+		input.putInt("despawnTicks", despawnTicks);
 
 		if (owner != null) {
-			compound.store("ownerUUID", UUIDUtil.CODEC, owner.getUUID());
+			input.store("ownerUUID", UUIDUtil.CODEC, owner.getUUID());
 		}
 	}
 
 	@Override
-	protected void readAdditionalSaveData(ValueInput compound) {
-		super.readAdditionalSaveData(compound);
-		this.setGrabbingState(compound.getByteOr("grabbing", (byte) 0));
-		this.despawn = compound.getBooleanOr("despawn", false);
-		this.despawnTicks = compound.getIntOr("despawnTicks", 0);
+	protected void readAdditionalSaveData(ValueInput output) {
+		super.readAdditionalSaveData(output);
+		this.setGrabbingState(output.getByteOr("grabbing", (byte) 0));
+		this.despawn = output.getBooleanOr("despawn", false);
+		this.despawnTicks = output.getIntOr("despawnTicks", 0);
 
-		Optional<UUID> ownerUUID = compound.read("ownerUUID", UUIDUtil.CODEC);
+		Optional<UUID> ownerUUID = output.read("ownerUUID", UUIDUtil.CODEC);
 		if (ownerUUID.isPresent()) {
 			Entity living = this.level().getEntity(ownerUUID.get());
 			this.setOwner(living);

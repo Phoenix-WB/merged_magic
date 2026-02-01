@@ -2,14 +2,14 @@
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
 		" XP",
-		"OAX",
+		"OPX",
 		"SO "
 	],
 	"key": {
 		"S": "minecraft:wooden_sword",
 		"X": "minecraft:rose_bush",
 		"O": "#minecraft:leaves",
-		"P": "merged_magic:spider_eye"
+		"P": "minecraft:spider_eye"
 	},
 	"result": {
 		"id": "merged_magic:sword_of_eden",

@@ -1,4 +1,4 @@
-package com.pianistwb.merged_magic.geckolib.monster.trapjaw;
+package com.pianistwb.merged_magic.geckolib.entity.monster.trapjaw;
 
 import com.pianistwb.merged_magic.MergedMagic;
 import com.pianistwb.merged_magic.entity.monster.Trapjaw;

@@ -1,6 +1,7 @@
 package com.pianistwb.merged_magic.registry;
 
 import com.pianistwb.merged_magic.MergedMagic;
+import com.pianistwb.merged_magic.entity.CopperFlameSpire;
 import com.pianistwb.merged_magic.entity.monster.Trapjaw;
 import com.pianistwb.merged_magic.entity.projectile.TargetFrisbee;
 
@@ -27,4 +28,10 @@ public class EntityTypeRegistry {
 			() -> EntityType.Builder.<Trapjaw>of(Trapjaw::new, MobCategory.MONSTER).sized(0.25F, 0.8F).eyeHeight(1.0F)
 					.clientTrackingRange(8).build(ResourceKey.create(Registries.ENTITY_TYPE,
 							Identifier.fromNamespaceAndPath(MergedMagic.MODID, "trapjaw"))));
+
+	public static final DeferredHolder<EntityType<?>, EntityType<CopperFlameSpire>> COPPER_FLAME_SPIRE = ENTITY_TYPES.register(
+			"copper_flame_spire",
+			() -> EntityType.Builder.<CopperFlameSpire>of(CopperFlameSpire::new, MobCategory.MISC).sized(1.0F, 1.0F)
+					.eyeHeight(0.13F).clientTrackingRange(4).build(ResourceKey.create(Registries.ENTITY_TYPE,
+							Identifier.fromNamespaceAndPath(MergedMagic.MODID, "copper_flame_spire"))));
 }

@@ -1,4 +1,4 @@
-package com.pianistwb.merged_magic.items;
+package com.pianistwb.merged_magic.items.mergable;
 
 import com.pianistwb.merged_magic.registry.MobEffectRegistry;
 import com.pianistwb.merged_magic.util.LangUtil;

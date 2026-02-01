@@ -1,4 +1,4 @@
-package com.pianistwb.merged_magic.items;
+package com.pianistwb.merged_magic.items.mergable;
 
 import org.jspecify.annotations.Nullable;
 

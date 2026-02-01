@@ -1,8 +1,8 @@
 package com.pianistwb.merged_magic.events;
 
 import com.pianistwb.merged_magic.MergedMagic;
-import com.pianistwb.merged_magic.items.MergableItem;
 import com.pianistwb.merged_magic.items.TickInPlayerHand;
+import com.pianistwb.merged_magic.items.mergable.MergableItem;
 import com.pianistwb.merged_magic.registry.ItemRegistry;
 import com.pianistwb.merged_magic.registry.MobEffectRegistry;
 import com.pianistwb.merged_magic.util.ItemUtil;

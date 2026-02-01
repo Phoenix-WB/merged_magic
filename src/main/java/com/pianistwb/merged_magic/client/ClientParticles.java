@@ -17,14 +17,22 @@ public class ClientParticles {
 			HERMES_RELATIVE_POSITIONS.add(new Vec3(Mth.cos(rad), 0, Mth.sin(rad)));
 		}
 	}
-	
+
 	public static final byte HERMES_BOOTS = 1;
-	
+
 	public static void runHermesBootsParticles(Level level, Vec3 pos) {
 		double scale = 0.11D;
 		HERMES_RELATIVE_POSITIONS.forEach(particlePos -> {
-			level.addParticle(ParticleTypes.CLOUD, pos.x() + particlePos.x(), pos.y() - 0.4,
-					pos.z() + particlePos.z(), scale * particlePos.x(), -scale, scale * particlePos.z());
+			level.addParticle(ParticleTypes.CLOUD, pos.x() + particlePos.x(), pos.y() - 0.4, pos.z() + particlePos.z(),
+					scale * particlePos.x(), -scale, scale * particlePos.z());
 		});
+	}
+
+	public static void runCopperFlameSpireParticles(Level level, Vec3 pos) {
+		for (int i = 2; i < 6; i++) {
+			level.addParticle(ParticleTypes.COPPER_FIRE_FLAME,
+					pos.x() - 0.5 + Mth.randomBetween(level.getRandom(), 0, 1), pos.y() + i * 0.2D,
+					pos.z() - 0.5 + Mth.randomBetween(level.getRandom(), 0, 1), 0, -0.05, 0);
+		}
 	}
 }

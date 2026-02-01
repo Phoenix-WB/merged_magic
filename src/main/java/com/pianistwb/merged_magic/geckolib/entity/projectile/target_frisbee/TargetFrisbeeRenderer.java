@@ -1,4 +1,4 @@
-package com.pianistwb.merged_magic.geckolib.projectile.target_frisbee;
+package com.pianistwb.merged_magic.geckolib.entity.projectile.target_frisbee;
 
 import com.pianistwb.merged_magic.entity.projectile.TargetFrisbee;
 
