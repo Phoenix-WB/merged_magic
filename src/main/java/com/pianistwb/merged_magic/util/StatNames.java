@@ -19,6 +19,7 @@ public class StatNames {
 	public static final MutableComponent AMPLIFIER = register("amplifier");
 	public static final MutableComponent PROJECTILES = register("projectiles");
 	public static final MutableComponent DURATION = register("duration");
+	public static final MutableComponent HELD_DURATION = register("held_duration");
 
 	private static MutableComponent register(String name) {
 		return Component.translatable("statName.merged_magic." + name);

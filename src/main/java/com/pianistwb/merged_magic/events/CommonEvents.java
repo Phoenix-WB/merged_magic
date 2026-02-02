@@ -1,6 +1,7 @@
 package com.pianistwb.merged_magic.events;
 
 import com.pianistwb.merged_magic.MergedMagic;
+import com.pianistwb.merged_magic.client.ClientParticles;
 import com.pianistwb.merged_magic.items.TickInPlayerHand;
 import com.pianistwb.merged_magic.items.mergable.MergableItem;
 import com.pianistwb.merged_magic.registry.ItemRegistry;
@@ -71,22 +72,30 @@ public class CommonEvents {
 	}
 
 	@SubscribeEvent
-	public static void onPostPlayerHurt(LivingDamageEvent.Post event) {
+	public static void onPostLivingHurt(LivingDamageEvent.Post event) {
 		LivingEntity living = event.getEntity();
+		if (!living.level().isClientSide()) {
+			DamageSource source = event.getSource();
+			Entity directEntity = source.getDirectEntity();
+			if (source.getDirectEntity() != null && directEntity instanceof LivingEntity attackingEntity) {
+				if (living.hasEffect(MobEffectRegistry.ENDURING)) {
+					int amplifier = living.getEffect(MobEffectRegistry.ENDURING).getAmplifier();
 
-		if (!living.level().isClientSide() && living.hasEffect(MobEffectRegistry.ENDURING)) {
-			DamageSource damage = event.getSource();
-			Entity entity = damage.getDirectEntity();
-			int amplifier = living.getEffect(MobEffectRegistry.ENDURING).getAmplifier();
+					double resistance = attackingEntity.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE);
+					resistance = Math.max(0.0, 1.0 - resistance);
+					double rawScale = ItemRegistry.TOTEM_OF_ENDURING.get().initialVelocity
+							.getStat(Math.min(amplifier + 1, 3));
+					attackingEntity.addDeltaMovement(new Vec3(0.0, rawScale * resistance, 0.0));
 
-			if (entity != null && entity instanceof LivingEntity attackingEntity) {
-				double resistance = attackingEntity.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE);
-				resistance = Math.max(0.0, 1.0 - resistance);
-				double rawScale = ItemRegistry.TOTEM_OF_ENDURING.get().initialVelocity.getStat(Math.min(amplifier + 1, 3));
-				attackingEntity.addDeltaMovement(new Vec3(0.0, rawScale * resistance, 0.0));
+					living.level().playSound(null, living.blockPosition(), SoundEvents.IRON_GOLEM_ATTACK,
+							SoundSource.PLAYERS);
+				}
 
-				living.level().playSound(null, living.blockPosition(), SoundEvents.IRON_GOLEM_ATTACK,
-						SoundSource.PLAYERS);
+				if (attackingEntity.hasEffect(MobEffectRegistry.STRIKING)) {
+					ClientParticles.sendOrPlayParticles(attackingEntity, living.position().add(0, 1.8D, 0),
+							ClientParticles.GUST);
+					attackingEntity.removeEffect(MobEffectRegistry.STRIKING);
+				}
 			}
 		}
 	}

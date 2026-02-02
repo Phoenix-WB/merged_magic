@@ -87,7 +87,7 @@ configurations {
 }
 
 dependencies {
-    implementation "software.bernie.geckolib:geckolib-neoforge-${minecraft_version}:${geckolib_version}"
+    implementation "software.bernie.geckolib:geckolib-neoforge-${minecraft_version}:${geckolib_version}" 
 }
 
 var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {

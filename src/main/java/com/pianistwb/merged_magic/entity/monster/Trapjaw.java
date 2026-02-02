@@ -79,17 +79,6 @@ public class Trapjaw extends Monster implements GeoEntity {
 	}
 
 	@Override
-	public void registerControllers(ControllerRegistrar controllers) {
-		controllers.add(new AnimationController<>("Actions", state -> {
-			if (this.getGrabbingState() != 0) {
-				return state.setAndContinue(GRAB_ANIM);
-			}
-
-			return state.setAndContinue(IDLE_ANIM);
-		}));
-	}
-
-	@Override
 	public void tick() {
 		super.tick();
 
@@ -120,10 +109,10 @@ public class Trapjaw extends Monster implements GeoEntity {
 
 		super.die(damageSource);
 	}
-
+	
 	@Override
-	public AnimatableInstanceCache getAnimatableInstanceCache() {
-		return geoCache;
+	public boolean canBeCollidedWith(@Nullable Entity entity) {
+		return this.isAlive();
 	}
 
 	public void setOwner(Entity living) {
@@ -169,6 +158,22 @@ public class Trapjaw extends Monster implements GeoEntity {
 	protected void defineSynchedData(Builder builder) {
 		super.defineSynchedData(builder);
 		builder.define(GRABBING_STATE_ID, (byte) 0);
+	}
+	
+	@Override
+	public AnimatableInstanceCache getAnimatableInstanceCache() {
+		return geoCache;
+	}
+	
+	@Override
+	public void registerControllers(ControllerRegistrar controllers) {
+		controllers.add(new AnimationController<>("Actions", state -> {
+			if (this.getGrabbingState() != 0) {
+				return state.setAndContinue(GRAB_ANIM);
+			}
+
+			return state.setAndContinue(IDLE_ANIM);
+		}));
 	}
 
 	@Override

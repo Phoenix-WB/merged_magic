@@ -25,4 +25,8 @@ public class LangUtil {
 	public static MutableComponent literal(double val) {
 		return Component.literal(decFormat.format(val));
 	}
+	
+	public static MutableComponent withMultiply(MutableComponent input) {
+		return Component.translatable("langUtil.merged_magic.with_multiply", input);
+	}
 }

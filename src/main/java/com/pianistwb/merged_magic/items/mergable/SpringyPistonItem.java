@@ -20,7 +20,7 @@ import net.minecraft.world.phys.Vec3;
 public class SpringyPistonItem extends MergableItem {
 	public final MergeStat<Double> velocity = new MergeStat<>(0.9D, 1.0D, 1.1D);
 	public final MergeStat<Integer> crutching = new MergeStat<>(30, 40, 50);
-	public final MergeStat<Integer> cooldown = new MergeStat<>(150, 125, 100);
+	public final MergeStat<Integer> cooldown = new MergeStat<>(300, 250, 200);
 
 	public SpringyPistonItem(Properties properties) {
 		super(properties);

@@ -18,7 +18,7 @@ public class MobEffectRegistry {
 			MergedMagic.MODID);
 
 	public static final DeferredHolder<MobEffect, MobEffect> CRUTCHED = MOB_EFFECTS.register("crutched",
-			() -> new MobEffect(MobEffectCategory.BENEFICIAL, 0x5ff587));
+			() -> new MobEffect(MobEffectCategory.BENEFICIAL, 0xdbc87d));
 
 	public static final DeferredHolder<MobEffect, CocoaBuffMobEffect> COCOA_BUFF = MOB_EFFECTS.register("cocoa_buff",
 			() -> new CocoaBuffMobEffect(MobEffectCategory.BENEFICIAL, 0x422619));
@@ -29,13 +29,13 @@ public class MobEffectRegistry {
 	public static final DeferredHolder<MobEffect, MobEffect> TRAPJAWED = MOB_EFFECTS.register("trapjawed",
 			() -> new MobEffect(MobEffectCategory.HARMFUL, 0x24c73c)
 					.addAttributeModifier(Attributes.MOVEMENT_SPEED,
-							Identifier.fromNamespaceAndPath(MergedMagic.MODID, "effect.trapjawed_slow"), -1.0F,
+							Identifier.fromNamespaceAndPath(MergedMagic.MODID, "effect.trapjawed_slow"), -1.0D,
 							AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
 					.addAttributeModifier(Attributes.KNOCKBACK_RESISTANCE,
 							Identifier.fromNamespaceAndPath(MergedMagic.MODID, "effect.trapjawed_resist"), 1.0D,
 							AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
 					.addAttributeModifier(Attributes.JUMP_STRENGTH,
-							Identifier.fromNamespaceAndPath(MergedMagic.MODID, "effect.trapjawed_held"), -1.0F,
+							Identifier.fromNamespaceAndPath(MergedMagic.MODID, "effect.trapjawed_held"), -1.0D,
 							AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
 
 	public static final DeferredHolder<MobEffect, MobEffect> ENDURING = MOB_EFFECTS.register("enduring",
@@ -43,4 +43,9 @@ public class MobEffectRegistry {
 
 	public static final DeferredHolder<MobEffect, CreeperDisguisedMobEffect> CREEPER_DISGUISED = MOB_EFFECTS
 			.register("creeper_disguised", () -> new CreeperDisguisedMobEffect(MobEffectCategory.BENEFICIAL, 0x10b51e));
+
+	public static final DeferredHolder<MobEffect, MobEffect> STRIKING = MOB_EFFECTS.register("striking",
+			() -> new MobEffect(MobEffectCategory.BENEFICIAL, 0x9c9c9c).addAttributeModifier(Attributes.ATTACK_DAMAGE,
+					Identifier.fromNamespaceAndPath(MergedMagic.MODID, "effect.striking"), 1.0D,
+					AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
 }

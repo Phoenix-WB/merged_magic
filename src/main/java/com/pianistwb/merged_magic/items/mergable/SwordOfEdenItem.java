@@ -25,7 +25,6 @@ public class SwordOfEdenItem extends MergableItem {
 
 	@Override
 	public void hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-		super.hurtEnemy(stack, target, attacker);
 		if (!target.level().isClientSide()) {
 			int mergeLevel = ItemUtil.getMergeLevel(stack);
 			target.addEffect(new MobEffectInstance(MobEffects.POISON, effectDuration.getStat(mergeLevel),

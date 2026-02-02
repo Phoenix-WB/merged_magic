@@ -3,9 +3,8 @@ package com.pianistwb.merged_magic.items.mergable;
 import org.jspecify.annotations.Nullable;
 
 import com.pianistwb.merged_magic.client.ClientParticles;
-import com.pianistwb.merged_magic.networking.ParticlePayload;
-import com.pianistwb.merged_magic.util.LangUtil;
 import com.pianistwb.merged_magic.util.ItemUtil;
+import com.pianistwb.merged_magic.util.LangUtil;
 import com.pianistwb.merged_magic.util.MergeStat;
 import com.pianistwb.merged_magic.util.StatNames;
 
@@ -23,7 +22,6 @@ import net.minecraft.world.item.ItemCooldowns;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.neoforge.network.PacketDistributor;
 
 public class HermesShoesItem extends MergableItem {
 	public final MergeStat<Integer> useDamage = new MergeStat<>(6, 3, 2);
@@ -49,14 +47,11 @@ public class HermesShoesItem extends MergableItem {
 			Vec3 pos = player.position();
 			if (!level.isClientSide()) {
 				player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 60));
-
-				PacketDistributor.sendToPlayersTrackingEntity(player, new ParticlePayload(pos, (byte) 1));
-			} else {
-				ClientParticles.runHermesBootsParticles(level, pos);
 			}
 
 			ItemUtil.damageStack(stack, useDamage.getStat(mergeLevel));
 
+			ClientParticles.sendOrPlayParticles(player, pos, ClientParticles.HERMES_SHOES);
 			player.playSound(SoundEvents.ENDER_DRAGON_FLAP);
 
 			cooldowns.addCooldown(stack, 10);

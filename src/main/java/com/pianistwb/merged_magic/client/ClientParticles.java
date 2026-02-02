@@ -3,10 +3,14 @@ package com.pianistwb.merged_magic.client;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.pianistwb.merged_magic.networking.ParticlePayload;
+
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 public class ClientParticles {
 	private static final List<Vec3> HERMES_RELATIVE_POSITIONS = new ArrayList<>();
@@ -18,15 +22,22 @@ public class ClientParticles {
 		}
 	}
 
-	public static final byte HERMES_BOOTS = 1;
+	public static final byte HERMES_SHOES = 1;
+	public static final byte GUST = 2;
 
-	public static void runHermesBootsParticles(Level level, Vec3 pos) {
+	public static void runHermesShoesParticles(Level level, Vec3 pos) {
 		double scale = 0.11D;
 		HERMES_RELATIVE_POSITIONS.forEach(particlePos -> {
 			level.addParticle(ParticleTypes.CLOUD, pos.x() + particlePos.x(), pos.y() - 0.4, pos.z() + particlePos.z(),
 					scale * particlePos.x(), -scale, scale * particlePos.z());
 		});
 	}
+
+	public static void runGustParticles(Level level, Vec3 pos) {
+		level.addParticle(ParticleTypes.GUST, pos.x(), pos.y(), pos.z(), 0, 0, 0);
+	}
+
+	// Non-Packet
 
 	public static void runMiniCopperFlameParticles(Level level, Vec3 pos, float height) {
 		level.addParticle(ParticleTypes.COPPER_FIRE_FLAME, pos.x(), pos.y() + height, pos.z(), 0, -0.05, 0);
@@ -37,6 +48,25 @@ public class ClientParticles {
 			level.addParticle(ParticleTypes.COPPER_FIRE_FLAME,
 					pos.x() - 0.5 + Mth.randomBetween(level.getRandom(), 0, 1), pos.y() + i * 0.2D,
 					pos.z() - 0.5 + Mth.randomBetween(level.getRandom(), 0, 1), 0, -0.05, 0);
+		}
+	}
+	
+	public static void playParticles(Level level, Vec3 pos, byte particleID) {
+		switch (particleID) {
+		case 1:
+			ClientParticles.runHermesShoesParticles(level, pos);
+			break;
+		case 2:
+			ClientParticles.runGustParticles(level, pos);
+			break;
+		}
+	}
+
+	public static void sendOrPlayParticles(Entity entity, Vec3 pos, byte packetId) {
+		if (entity.level().isClientSide()) {
+			playParticles(entity.level(), pos, packetId);
+		} else {
+			PacketDistributor.sendToPlayersTrackingEntity(entity, new ParticlePayload(pos, packetId));
 		}
 	}
 }

@@ -19,7 +19,9 @@
 	"item.merged_magic.creeper_disguise": "Creeper Disguise",
 	"item.merged_magic.sword_of_eden": "Sword of Eden",
 	"item.merged_magic.old_copper_lantern": "Old Copper Lantern",
-	
+	"item.merged_magic.sheath": "Sheath",
+	"item.merged_magic.vicious_horn": "Vicious Horn",
+
 	"item.merged_magic.chocolate_milk_bucket": "Chocolate Milk Bucket",
 	"item.merged_magic.air_bucket": "Air Bucket",
 	"item.merged_magic.hermes_parcel": "Hermes Parcel",
@@ -38,8 +40,11 @@
 	"effect.merged_magic.trapjawed": "Trapjawed",
 	"effect.merged_magic.enduring": "Enduring",
 	"effect.merged_magic.creeper_disguised": "Creeper Disguised",
+	"effect.merged_magic.striking": "Striking",
 	
 	"itemGroup.merged_magic_items": "Merged Magic Items",
+	
+	"death.attack.merged_magic.trapjawed": "%1$s was eaten by a Trapjaw",
 	
 	"tooltip.merged_magic.mergable_item.hold_shift": "Hold Shift for more info",
 	"tooltip.merged_magic.mergable_item.hold_ctrl": "Hold Ctrl for merge stats",
@@ -65,6 +70,8 @@
 	"tooltip.merged_magic.creeper_disguise.desc": "When used, within its effect duration will give the player invisibility if they are close to leaf blocks",
 	"tooltip.merged_magic.sword_of_eden.desc": "Poisons enemies",
 	"tooltip.merged_magic.old_copper_lantern.desc": "Shoots out a Copper Flame Spire that sets entities on fire and oxidises copper blocks",
+	"tooltip.merged_magic.sheath.desc": "When used in your offhand with a weapon in your mainhand, makes your next strike stronger",
+	"tooltip.merged_magic.vicious_horn.desc": "Temporarily buffs your tamed wolves and will direct them to attack any entities you are looking at",
 	
 	"tooltip.merged_magic.cursed_painting.caution": "Stored Projectiles will be destroyed on merge",
 	
@@ -82,7 +89,8 @@
 	"statName.merged_magic.amplifier": "Amplifier",
 	"statName.merged_magic.required_health": "Required Health",
 	"statName.merged_magic.projectiles": "Projectiles",
-	"statName.merged_magic.duration": "Duration",	
+	"statName.merged_magic.duration": "Duration",
+	"statName.merged_magic.held_duration": "Held Duration",
 	
 	"statUnit.merged_magic.blocks": "Blocks",
 	"statUnit.merged_magic.blocks_per_tick": "Blocks per Tick",
@@ -96,5 +104,5 @@
 	"statValue.merged_magic.triangle": "Triangle",
 	"statValue.merged_magic.pentagon": "Pentagon",
 	
-	"death.attack.merged_magic.trapjawed": "%1$s was eaten by a Trapjaw"
+	"langUtil.merged_magic.with_multiply": "x%1$s"
 }

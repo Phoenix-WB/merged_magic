@@ -29,12 +29,7 @@ public record ParticlePayload(Vec3 pos, byte particleID) implements CustomPacket
 			}
 
 			Vec3 pos = payload.pos();
-
-			switch (payload.particleID()) {
-			case 1:
-				ClientParticles.runHermesBootsParticles(level, pos);
-				break;
-			}
+			ClientParticles.playParticles(level, pos, payload.particleID());
 		});
 	}
 

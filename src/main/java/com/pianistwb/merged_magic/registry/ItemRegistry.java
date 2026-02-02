@@ -13,11 +13,13 @@ import com.pianistwb.merged_magic.items.mergable.HermesShoesItem;
 import com.pianistwb.merged_magic.items.mergable.HotCocoaItem;
 import com.pianistwb.merged_magic.items.mergable.OldCopperLanternItem;
 import com.pianistwb.merged_magic.items.mergable.ProspectorsPanItem;
+import com.pianistwb.merged_magic.items.mergable.SheathItem;
 import com.pianistwb.merged_magic.items.mergable.SpringyPistonItem;
 import com.pianistwb.merged_magic.items.mergable.SwordOfEdenItem;
 import com.pianistwb.merged_magic.items.mergable.TargetFrisbeeItem;
 import com.pianistwb.merged_magic.items.mergable.TotemOfEnduringItem;
 import com.pianistwb.merged_magic.items.mergable.TrapseedSackItem;
+import com.pianistwb.merged_magic.items.mergable.ViciousHornItem;
 
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.BucketItem;
@@ -87,6 +89,11 @@ public class ItemRegistry {
 	public static final DeferredHolder<Item, OldCopperLanternItem> OLD_COPPER_LANTERN = ITEMS
 			.registerItem("old_copper_lantern", OldCopperLanternItem::new);
 
+	public static final DeferredHolder<Item, SheathItem> SHEATH = ITEMS.registerItem("sheath", SheathItem::new);
+
+	public static final DeferredHolder<Item, ViciousHornItem> VICIOUS_HORN = ITEMS.registerItem("vicious_horn",
+			ViciousHornItem::new);
+
 	// Normal Items
 	public static final DeferredHolder<Item, Item> CHOCOLATE_MILK_BUCKET = ITEMS.registerItem("chocolate_milk_bucket",
 			properties -> new Item(properties.craftRemainder(Items.BUCKET)
@@ -98,6 +105,8 @@ public class ItemRegistry {
 
 	public static final DeferredHolder<Item, Item> HERMES_PARCEL = ITEMS.registerItem("hermes_parcel",
 			HermesParcelItem::new);
+
+	// Ancient mechanism item
 
 	// PLS ADD THESE ITEMS
 	public static final DeferredHolder<Item, Item> BOTANY_MEAL = ITEMS.registerItem("botany_meal", Item::new);
