@@ -7,9 +7,9 @@ import com.pianistwb.merged_magic.util.MergeStat;
 import com.pianistwb.merged_magic.util.StatNames;
 import com.pianistwb.merged_magic.util.StatUnits;
 
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -42,7 +42,7 @@ public class SheathItem extends MergableItem {
 
 	@Override
 	public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity livingEntity) {
-		if (livingEntity.getItemInHand(InteractionHand.MAIN_HAND).has(DataComponents.WEAPON)) {
+		if (livingEntity.getItemInHand(InteractionHand.MAIN_HAND).is(ItemTags.SWORDS)) {
 			livingEntity.playSound(SoundEvents.ANVIL_PLACE);
 			if (!livingEntity.level().isClientSide()) {
 				int mergeLevel = ItemUtil.getMergeLevel(stack);

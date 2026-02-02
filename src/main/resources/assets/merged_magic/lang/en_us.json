@@ -70,7 +70,7 @@
 	"tooltip.merged_magic.creeper_disguise.desc": "When used, within its effect duration will give the player invisibility if they are close to leaf blocks",
 	"tooltip.merged_magic.sword_of_eden.desc": "Poisons enemies",
 	"tooltip.merged_magic.old_copper_lantern.desc": "Shoots out a Copper Flame Spire that sets entities on fire and oxidises copper blocks",
-	"tooltip.merged_magic.sheath.desc": "When used in your offhand with a weapon in your mainhand, makes your next strike stronger",
+	"tooltip.merged_magic.sheath.desc": "When used in your offhand with a sword in your mainhand, makes your next strike stronger",
 	"tooltip.merged_magic.vicious_horn.desc": "Temporarily buffs your tamed wolves and will direct them to attack any entities you are looking at",
 	
 	"tooltip.merged_magic.cursed_painting.caution": "Stored Projectiles will be destroyed on merge",
