@@ -1,0 +1,24 @@
+{
+	"type": "merged_magic:simple_magic_addition_loot_modifier",
+	"conditions": [
+		{
+			"condition": "minecraft:all_of",
+			"terms": [
+				{
+					"condition": "neoforge:loot_table_id",
+					"loot_table_id": "minecraft:entities/drowned"
+				},
+				{
+					"condition": "minecraft:location_check",
+					"predicate": {
+						"biomes": "#minecraft:is_ocean"
+					}
+				}
+			]
+		}
+	],
+	"item": "merged_magic:air_bucket",
+	"rolls": 1,
+	"guarantees": 0,
+	"probability": 0.1
+}

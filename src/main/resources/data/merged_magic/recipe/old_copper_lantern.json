@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		" X ",
+		"XOX",
+		" X "
+	],
+	"key": {
+		"X": "#merged_magic:weathered_copper",
+		"O": "#minecraft:coals"
+	},
+	"result": {
+		"id": "merged_magic:old_copper_lantern",
+		"count": 1
+	}
+}

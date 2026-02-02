@@ -16,21 +16,35 @@ public class CreativeTabRegistry {
 	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MERGED_MAGIC_ITEMS_TAB = TABS.register(
 			"merged_magic_items",
 			() -> CreativeModeTab.builder().title(Component.translatable("itemGroup.merged_magic_items"))
-					.withTabsBefore(CreativeModeTabs.COMBAT)
-					.icon(() -> ItemRegistry.BROOM.get().getDefaultInstance())
+					.withTabsBefore(CreativeModeTabs.COMBAT).icon(() -> ItemRegistry.BROOM.get().getDefaultInstance())
 					.displayItems((parameters, output) -> {
-						//Mergable Items
+						// Mergable Items
 						output.accept(ItemRegistry.BROOM.get());
 						output.accept(ItemRegistry.DOLPHINS_BREATH.get());
 						output.accept(ItemRegistry.SPRINGY_PISTON.get());
 						output.accept(ItemRegistry.AMETHYST_MIRROR.get());
 						output.accept(ItemRegistry.PROSPECTORS_PAN.get());
-						output.accept(ItemRegistry.JUNGLE_VINE.get());
-						output.accept(ItemRegistry.HOT_COCOA_ITEM.get());
-						output.accept(ItemRegistry.TARGET_FRISBEE_ITEM.get());
-						output.accept(ItemRegistry.HERMES_SHOES_ITEM.get());
-						
-						//Normal Items
+						output.accept(ItemRegistry.EVERGROWING_VINE.get());
+						output.accept(ItemRegistry.HOT_COCOA.get());
+						output.accept(ItemRegistry.TARGET_FRISBEE.get());
+						output.accept(ItemRegistry.HERMES_SHOES.get());
+						output.accept(ItemRegistry.TRAPSEED_SACK.get());
+						output.accept(ItemRegistry.FLOATY.get());
+						output.accept(ItemRegistry.TOTEM_OF_ENDURING.get());
+						output.accept(ItemRegistry.CURSED_PAINTING.get());
+						output.accept(ItemRegistry.CREEPER_DISGUISE.get());
+						output.accept(ItemRegistry.SWORD_OF_EDEN.get());
+						output.accept(ItemRegistry.OLD_COPPER_LANTERN.get());
+						output.accept(ItemRegistry.SHEATH.get());
+						output.accept(ItemRegistry.VICIOUS_HORN.get());
+
+						// Normal Items
 						output.accept(ItemRegistry.CHOCOLATE_MILK_BUCKET.get());
+						output.accept(ItemRegistry.AIR_BUCKET.get());
+						output.accept(ItemRegistry.HERMES_PARCEL.get());
+						output.accept(ItemRegistry.BOTANY_MEAL.get());
+
+						// Spawn Eggs
+						output.accept(ItemRegistry.TRAPJAW_SPAWN_EGG.get());
 					}).build());
 }

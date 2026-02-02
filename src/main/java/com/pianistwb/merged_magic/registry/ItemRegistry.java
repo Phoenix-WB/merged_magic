@@ -1,20 +1,33 @@
 package com.pianistwb.merged_magic.registry;
 
 import com.pianistwb.merged_magic.MergedMagic;
-import com.pianistwb.merged_magic.items.AmethystMirrorItem;
-import com.pianistwb.merged_magic.items.BroomItem;
-import com.pianistwb.merged_magic.items.DolphinsBreathItem;
-import com.pianistwb.merged_magic.items.HermesShoesItem;
-import com.pianistwb.merged_magic.items.HotCocoaItem;
-import com.pianistwb.merged_magic.items.JungleVineItem;
-import com.pianistwb.merged_magic.items.ProspectorsPanItem;
-import com.pianistwb.merged_magic.items.SpringyPistonItem;
-import com.pianistwb.merged_magic.items.TargetFrisbeeItem;
+import com.pianistwb.merged_magic.items.HermesParcelItem;
+import com.pianistwb.merged_magic.items.mergable.AmethystMirrorItem;
+import com.pianistwb.merged_magic.items.mergable.BroomItem;
+import com.pianistwb.merged_magic.items.mergable.CreeperDisguiseItem;
+import com.pianistwb.merged_magic.items.mergable.CursedPaintingItem;
+import com.pianistwb.merged_magic.items.mergable.DolphinsBreathItem;
+import com.pianistwb.merged_magic.items.mergable.EvergrowingVineItem;
+import com.pianistwb.merged_magic.items.mergable.FloatyItem;
+import com.pianistwb.merged_magic.items.mergable.HermesShoesItem;
+import com.pianistwb.merged_magic.items.mergable.HotCocoaItem;
+import com.pianistwb.merged_magic.items.mergable.OldCopperLanternItem;
+import com.pianistwb.merged_magic.items.mergable.ProspectorsPanItem;
+import com.pianistwb.merged_magic.items.mergable.SheathItem;
+import com.pianistwb.merged_magic.items.mergable.SpringyPistonItem;
+import com.pianistwb.merged_magic.items.mergable.SwordOfEdenItem;
+import com.pianistwb.merged_magic.items.mergable.TargetFrisbeeItem;
+import com.pianistwb.merged_magic.items.mergable.TotemOfEnduringItem;
+import com.pianistwb.merged_magic.items.mergable.TrapseedSackItem;
+import com.pianistwb.merged_magic.items.mergable.ViciousHornItem;
 
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.component.Consumables;
+import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -29,7 +42,7 @@ public class ItemRegistry {
 
 	public static final DeferredItem<Item> GOLD_STAR = ITEMS.registerItem("gold_star", Item::new);
 
-	// Actual items
+	// Mergable items
 	public static final DeferredHolder<Item, BroomItem> BROOM = ITEMS.registerItem("broom", BroomItem::new);
 
 	public static final DeferredHolder<Item, DolphinsBreathItem> DOLPHINS_BREATH = ITEMS.registerItem("dolphins_breath",
@@ -44,20 +57,61 @@ public class ItemRegistry {
 	public static final DeferredHolder<Item, ProspectorsPanItem> PROSPECTORS_PAN = ITEMS.registerItem("prospectors_pan",
 			ProspectorsPanItem::new);
 
-	public static final DeferredHolder<Item, JungleVineItem> JUNGLE_VINE = ITEMS.registerItem("jungle_vine",
-			JungleVineItem::new);
+	public static final DeferredHolder<Item, EvergrowingVineItem> EVERGROWING_VINE = ITEMS
+			.registerItem("evergrowing_vine", EvergrowingVineItem::new);
 
-	public static final DeferredHolder<Item, HotCocoaItem> HOT_COCOA_ITEM = ITEMS.registerItem("hot_cocoa",
+	public static final DeferredHolder<Item, HotCocoaItem> HOT_COCOA = ITEMS.registerItem("hot_cocoa",
 			HotCocoaItem::new);
 
-	public static final DeferredHolder<Item, TargetFrisbeeItem> TARGET_FRISBEE_ITEM = ITEMS
-			.registerItem("target_frisbee", TargetFrisbeeItem::new);
+	public static final DeferredHolder<Item, TargetFrisbeeItem> TARGET_FRISBEE = ITEMS.registerItem("target_frisbee",
+			TargetFrisbeeItem::new);
 
-	public static final DeferredHolder<Item, HermesShoesItem> HERMES_SHOES_ITEM = ITEMS.registerItem("hermes_shoes",
+	public static final DeferredHolder<Item, HermesShoesItem> HERMES_SHOES = ITEMS.registerItem("hermes_shoes",
 			HermesShoesItem::new);
-	
+
+	public static final DeferredHolder<Item, TrapseedSackItem> TRAPSEED_SACK = ITEMS.registerItem("trapseed_sack",
+			TrapseedSackItem::new);
+
+	public static final DeferredHolder<Item, FloatyItem> FLOATY = ITEMS.registerItem("floaty", FloatyItem::new);
+
+	public static final DeferredHolder<Item, TotemOfEnduringItem> TOTEM_OF_ENDURING = ITEMS
+			.registerItem("totem_of_enduring", TotemOfEnduringItem::new);
+
+	public static final DeferredHolder<Item, CursedPaintingItem> CURSED_PAINTING = ITEMS.registerItem("cursed_painting",
+			CursedPaintingItem::new);
+
+	public static final DeferredHolder<Item, CreeperDisguiseItem> CREEPER_DISGUISE = ITEMS
+			.registerItem("creeper_disguise", CreeperDisguiseItem::new);
+
+	public static final DeferredHolder<Item, SwordOfEdenItem> SWORD_OF_EDEN = ITEMS.registerItem("sword_of_eden",
+			SwordOfEdenItem::new);
+
+	public static final DeferredHolder<Item, OldCopperLanternItem> OLD_COPPER_LANTERN = ITEMS
+			.registerItem("old_copper_lantern", OldCopperLanternItem::new);
+
+	public static final DeferredHolder<Item, SheathItem> SHEATH = ITEMS.registerItem("sheath", SheathItem::new);
+
+	public static final DeferredHolder<Item, ViciousHornItem> VICIOUS_HORN = ITEMS.registerItem("vicious_horn",
+			ViciousHornItem::new);
+
+	// Normal Items
 	public static final DeferredHolder<Item, Item> CHOCOLATE_MILK_BUCKET = ITEMS.registerItem("chocolate_milk_bucket",
 			properties -> new Item(properties.craftRemainder(Items.BUCKET)
 					.component(DataComponents.CONSUMABLE, Consumables.MILK_BUCKET).usingConvertsTo(Items.BUCKET)
 					.stacksTo(1)));
+
+	public static final DeferredHolder<Item, Item> AIR_BUCKET = ITEMS.registerItem("air_bucket",
+			properties -> new BucketItem(Fluids.EMPTY, properties.craftRemainder(Items.BUCKET).stacksTo(1)));
+
+	public static final DeferredHolder<Item, Item> HERMES_PARCEL = ITEMS.registerItem("hermes_parcel",
+			HermesParcelItem::new);
+
+	// Ancient mechanism item
+
+	// PLS ADD THESE ITEMS
+	public static final DeferredHolder<Item, Item> BOTANY_MEAL = ITEMS.registerItem("botany_meal", Item::new);
+
+	// Spawn Eggs
+	public static final DeferredItem<SpawnEggItem> TRAPJAW_SPAWN_EGG = ITEMS.registerItem("trapjaw_spawn_egg",
+			properties -> new SpawnEggItem(properties.spawnEgg(EntityTypeRegistry.TRAPJAW.get())));
 }

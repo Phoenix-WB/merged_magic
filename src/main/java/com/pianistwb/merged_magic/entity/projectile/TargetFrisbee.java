@@ -11,6 +11,8 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.ThrowableProjectile;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import software.bernie.geckolib.animatable.GeoEntity;
@@ -25,7 +27,7 @@ public class TargetFrisbee extends ThrowableProjectile implements GeoEntity {
 			.thenLoop("animation.target_frisbee.spinning");
 	private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
 	
-	private int duration = 0;
+	private int duration = 200;
 
 	public TargetFrisbee(EntityType<? extends ThrowableProjectile> entityType, Level level) {
 		super(entityType, level);
@@ -55,7 +57,7 @@ public class TargetFrisbee extends ThrowableProjectile implements GeoEntity {
 	}
 
 	@Override
-	public void defineSynchedData(Builder builder) {
+	protected void defineSynchedData(Builder builder) {
 	}
 
 	@Override
@@ -68,5 +70,17 @@ public class TargetFrisbee extends ThrowableProjectile implements GeoEntity {
 	@Override
 	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return geoCache;
+	}
+	
+	@Override
+	protected void addAdditionalSaveData(ValueOutput input) {
+		super.addAdditionalSaveData(input);
+		input.putInt("duration", duration);
+	}
+	
+	@Override
+	protected void readAdditionalSaveData(ValueInput output) {
+		super.readAdditionalSaveData(output);
+		this.duration = output.getIntOr("duration", 200);
 	}
 }

@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		" XP",
+		"XPX",
+		"SX "
+	],
+	"key": {
+		"S": "minecraft:wooden_sword",
+		"X": "minecraft:rose_bush",
+		"P": "minecraft:spider_eye"
+	},
+	"result": {
+		"id": "merged_magic:sword_of_eden",
+		"count": 1
+	}
+}

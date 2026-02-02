@@ -1,0 +1,49 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.trapjaw.idle": {
+			"loop": true,
+			"bones": {
+				"trapjaw": {
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0],
+					"scale": 1
+				},
+				"base": {
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0],
+					"scale": 1
+				},
+				"neckbranch1": {
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0],
+					"scale": 1
+				},
+				"neckbranch2": {
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0],
+					"scale": 1
+				},
+				"head": {
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0],
+					"scale": 1
+				}
+			}
+		},
+		"animation.trapjaw.grab": {
+			"loop": "hold_on_last_frame",
+			"bones": {
+				"neckbranch1": {
+					"rotation": [42.5, 0, 0]
+				},
+				"neckbranch2": {
+					"rotation": [-17.5, 0, 0]
+				},
+				"head": {
+					"rotation": [-30, 0, 0]
+				}
+			}
+		}
+	}
+}

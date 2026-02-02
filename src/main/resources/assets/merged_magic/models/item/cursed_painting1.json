@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:item/handheld",
+	"textures": {
+		"layer0": "merged_magic:item/cursed_painting1"
+	}
+}

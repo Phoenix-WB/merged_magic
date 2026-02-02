@@ -16,25 +16,38 @@ import net.neoforged.neoforge.common.loot.LootModifier;
 public class SimpleMagicAdditionLootModifier extends LootModifier {
 	public static final MapCodec<SimpleMagicAdditionLootModifier> CODEC = RecordCodecBuilder
 			.mapCodec(inst -> LootModifier.codecStart(inst)
-					.and(inst.group(BuiltInRegistries.ITEM.byNameCodec().fieldOf("item").forGetter(lm -> lm.item),
-							Codec.FLOAT.fieldOf("probability").forGetter(lm -> lm.probability)))
+					.and(inst.group(BuiltInRegistries.ITEM.byNameCodec().fieldOf("item").forGetter(mod -> mod.item),
+							Codec.INT.fieldOf("rolls").forGetter(mod -> mod.rolls),
+							Codec.INT.fieldOf("guarantees").forGetter(mod -> mod.guarantees),
+							Codec.FLOAT.fieldOf("probability").forGetter(mod -> mod.probability)))
 					.apply(inst, SimpleMagicAdditionLootModifier::new));
 
 	private final Item item;
 	private final float probability;
+	private final int rolls;
+	private final int guarantees;
 
-	public SimpleMagicAdditionLootModifier(LootItemCondition[] conditionsIn, Item item, float probability) {
+	public SimpleMagicAdditionLootModifier(LootItemCondition[] conditionsIn, Item item, int rolls, int guarantees,
+			float probability) {
 		super(conditionsIn);
 		this.item = item;
+		this.rolls = rolls;
+		this.guarantees = guarantees;
 		this.probability = probability;
 	}
 
 	@Override
 	public ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
-		if (context.getRandom().nextFloat() <= probability) {
+		for (int i = 0; i < rolls; i++) {
+			if (context.getRandom().nextFloat() <= probability) {
+				generatedLoot.add(item.getDefaultInstance());
+			}
+		}
+
+		for (int i = 0; i < guarantees; i++) {
 			generatedLoot.add(item.getDefaultInstance());
 		}
-		
+
 		return generatedLoot;
 	}
 

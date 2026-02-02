@@ -68,7 +68,7 @@ public record MergedRenderTypeModelWrapper(List<BakedQuad> quads, List<ItemTintS
 		layerState.prepareQuadList().addAll(this.quads);
 
 		if (displayContext == ItemDisplayContext.GUI || displayContext == ItemDisplayContext.GROUND || displayContext == ItemDisplayContext.ON_SHELF) {
-			int mergeLevel = ItemUtil.getMergeStatForLevel(stack);
+			int mergeLevel = ItemUtil.getMergeLevel(stack);
 
 			if (mergeLevel == 1) {
 				itemModelResolver.appendItemLayers(renderState, ItemRegistry.BRONZE_STAR.get().getDefaultInstance(),

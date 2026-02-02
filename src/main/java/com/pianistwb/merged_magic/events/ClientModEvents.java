@@ -2,10 +2,12 @@ package com.pianistwb.merged_magic.events;
 
 import com.pianistwb.merged_magic.MergedMagic;
 import com.pianistwb.merged_magic.client.model.MergedRenderTypeModelWrapper;
-import com.pianistwb.merged_magic.geckolib.target_frisbee.TargetFrisbeeRenderer;
+import com.pianistwb.merged_magic.geckolib.entity.monster.trapjaw.TrapjawRenderer;
+import com.pianistwb.merged_magic.geckolib.entity.projectile.target_frisbee.TargetFrisbeeRenderer;
 import com.pianistwb.merged_magic.registry.EntityTypeRegistry;
 
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.entity.NoopRenderer;
 import net.minecraft.resources.Identifier;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -24,5 +26,8 @@ public class ClientModEvents {
 	@SubscribeEvent
 	public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
 		EntityRenderers.register(EntityTypeRegistry.TARGET_FRISBEE.get(), TargetFrisbeeRenderer::new);
+		EntityRenderers.register(EntityTypeRegistry.TRAPJAW.get(), TrapjawRenderer::new);
+		EntityRenderers.register(EntityTypeRegistry.COPPER_FLAME.get(), NoopRenderer::new);
+		EntityRenderers.register(EntityTypeRegistry.COPPER_FLAME_SPIRE.get(), NoopRenderer::new);
 	}
 }

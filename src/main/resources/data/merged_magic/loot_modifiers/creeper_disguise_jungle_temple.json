@@ -1,0 +1,13 @@
+{
+	"type": "merged_magic:simple_magic_addition_loot_modifier",
+	"conditions": [
+		{
+			"condition": "neoforge:loot_table_id",
+			"loot_table_id": "minecraft:chests/jungle_temple"
+		}
+	],
+	"item": "merged_magic:creeper_disguise",
+	"rolls": 1,
+	"guarantees": 1,
+	"probability": 0.25
+}

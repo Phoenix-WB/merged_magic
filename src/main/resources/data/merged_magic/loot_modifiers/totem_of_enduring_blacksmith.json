@@ -1,0 +1,26 @@
+{
+	"type": "merged_magic:simple_magic_addition_loot_modifier",
+	"conditions": [
+		{
+			"condition": "minecraft:any_of",
+			"terms": [
+				{
+					"condition": "neoforge:loot_table_id",
+					"loot_table_id": "minecraft:chests/village/village_toolsmith"
+				},
+				{
+					"condition": "neoforge:loot_table_id",
+					"loot_table_id": "minecraft:chests/village/village_weaponsmith"
+				},
+				{
+					"condition": "neoforge:loot_table_id",
+					"loot_table_id": "minecraft:chests/village/village_armorer"
+				}
+			]
+		}
+	],
+	"item": "merged_magic:totem_of_enduring",
+	"rolls": 1,
+	"guarantees": 1,
+	"probability": 0.5
+}
