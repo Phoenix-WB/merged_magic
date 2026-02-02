@@ -18,6 +18,7 @@
 	"item.merged_magic.cursed_painting": "Cursed Painting",
 	"item.merged_magic.creeper_disguise": "Creeper Disguise",
 	"item.merged_magic.sword_of_eden": "Sword of Eden",
+	"item.merged_magic.old_copper_lantern": "Old Copper Lantern",
 	
 	"item.merged_magic.chocolate_milk_bucket": "Chocolate Milk Bucket",
 	"item.merged_magic.air_bucket": "Air Bucket",
@@ -28,6 +29,7 @@
 	
 	"entity.merged_magic.target_frisbee": "Target Frisbee",
 	"entity.merged_magic.trapjaw": "Trapjaw",
+	"entity.merged_magic.copper_flame": "Copper Flame",
 	"entity.merged_magic.copper_flame_spire": "Copper Flame Spire",
 	
 	"effect.merged_magic.crutched": "Crutched",
@@ -62,6 +64,7 @@
 	"tooltip.merged_magic.cursed_painting.desc": "When used, absorbs nearby projectiles, which can be shot out at their original speed when used again",
 	"tooltip.merged_magic.creeper_disguise.desc": "When used, within its effect duration will give the player invisibility if they are close to leaf blocks",
 	"tooltip.merged_magic.sword_of_eden.desc": "Poisons enemies",
+	"tooltip.merged_magic.old_copper_lantern.desc": "Shoots out a Copper Flame Spire that sets entities on fire and oxidises copper blocks",
 	
 	"tooltip.merged_magic.cursed_painting.caution": "Stored Projectiles will be destroyed on merge",
 	
@@ -79,6 +82,7 @@
 	"statName.merged_magic.amplifier": "Amplifier",
 	"statName.merged_magic.required_health": "Required Health",
 	"statName.merged_magic.projectiles": "Projectiles",
+	"statName.merged_magic.duration": "Duration",	
 	
 	"statUnit.merged_magic.blocks": "Blocks",
 	"statUnit.merged_magic.blocks_per_tick": "Blocks per Tick",

@@ -25,8 +25,7 @@ public class TargetFrisbeeItem extends MergableItem {
 
 	public TargetFrisbeeItem(Properties properties) {
 		super(properties);
-		addMergeStat(StatNames.LAUNCH_VELOCITY, StatUnits.BLOCKS_PER_TICK, scaling,
-				stat -> LangUtil.literal(stat));
+		addMergeStat(StatNames.LAUNCH_VELOCITY, StatUnits.BLOCKS_PER_TICK, scaling, stat -> LangUtil.literal(stat));
 		addMergeStat(StatNames.EFFECT_DURATION, StatUnits.SECONDS, duration, stat -> LangUtil.literal(stat / 20));
 		addMergeStat(StatNames.COOLDOWN, StatUnits.SECONDS, cooldown, stat -> LangUtil.literal(stat / 20));
 	}
@@ -46,21 +45,21 @@ public class TargetFrisbeeItem extends MergableItem {
 
 	@Override
 	public boolean releaseUsing(ItemStack stack, Level level, LivingEntity livingEntity, int timeLeft) {
+		int mergeLevel = ItemUtil.getMergeLevel(stack);
+		int usedTime = this.getUseDuration(stack, livingEntity) - timeLeft;
+		float velo = BowItem.getPowerForTime(usedTime) * scaling.getStat(mergeLevel);
+
+		if (velo < 0.1) {
+			return false;
+		}
+
+		TargetFrisbee frisbee = new TargetFrisbee(level, livingEntity, duration.getStat(mergeLevel));
+		frisbee.shootFromRotation(livingEntity, livingEntity.getXRot(), livingEntity.getYRot(), 0.0F, velo, 0.8F);
+		level.addFreshEntity(frisbee);
+
+		livingEntity.playSound(SoundEvents.ARROW_SHOOT);
+
 		if (livingEntity instanceof Player player) {
-			int mergeLevel = ItemUtil.getMergeLevel(stack);
-			int usedTime = this.getUseDuration(stack, livingEntity) - timeLeft;
-			float velo = BowItem.getPowerForTime(usedTime) * scaling.getStat(mergeLevel);
-
-			if (velo < 0.1) {
-				return false;
-			}
-
-			TargetFrisbee frisbee = new TargetFrisbee(level, livingEntity, duration.getStat(mergeLevel));
-			frisbee.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, velo, 0.8F);
-			level.addFreshEntity(frisbee);
-
-			player.playSound(SoundEvents.ARROW_SHOOT);
-
 			player.getCooldowns().addCooldown(stack, cooldown.getStat(mergeLevel));
 		}
 

@@ -11,6 +11,7 @@ import com.pianistwb.merged_magic.items.mergable.EvergrowingVineItem;
 import com.pianistwb.merged_magic.items.mergable.FloatyItem;
 import com.pianistwb.merged_magic.items.mergable.HermesShoesItem;
 import com.pianistwb.merged_magic.items.mergable.HotCocoaItem;
+import com.pianistwb.merged_magic.items.mergable.OldCopperLanternItem;
 import com.pianistwb.merged_magic.items.mergable.ProspectorsPanItem;
 import com.pianistwb.merged_magic.items.mergable.SpringyPistonItem;
 import com.pianistwb.merged_magic.items.mergable.SwordOfEdenItem;
@@ -82,6 +83,9 @@ public class ItemRegistry {
 
 	public static final DeferredHolder<Item, SwordOfEdenItem> SWORD_OF_EDEN = ITEMS.registerItem("sword_of_eden",
 			SwordOfEdenItem::new);
+
+	public static final DeferredHolder<Item, OldCopperLanternItem> OLD_COPPER_LANTERN = ITEMS
+			.registerItem("old_copper_lantern", OldCopperLanternItem::new);
 
 	// Normal Items
 	public static final DeferredHolder<Item, Item> CHOCOLATE_MILK_BUCKET = ITEMS.registerItem("chocolate_milk_bucket",

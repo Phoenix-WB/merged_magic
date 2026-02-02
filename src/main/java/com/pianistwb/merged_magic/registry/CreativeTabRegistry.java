@@ -34,6 +34,7 @@ public class CreativeTabRegistry {
 						output.accept(ItemRegistry.CURSED_PAINTING.get());
 						output.accept(ItemRegistry.CREEPER_DISGUISE.get());
 						output.accept(ItemRegistry.SWORD_OF_EDEN.get());
+						output.accept(ItemRegistry.OLD_COPPER_LANTERN.get());
 
 						// Normal Items
 						output.accept(ItemRegistry.CHOCOLATE_MILK_BUCKET.get());

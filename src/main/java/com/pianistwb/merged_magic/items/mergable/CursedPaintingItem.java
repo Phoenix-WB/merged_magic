@@ -66,7 +66,6 @@ public class CursedPaintingItem extends MergableItem {
 
 		if (!cooldowns.isOnCooldown(stack)) {
 			player.startUsingItem(hand);
-
 			return InteractionResult.CONSUME;
 		}
 

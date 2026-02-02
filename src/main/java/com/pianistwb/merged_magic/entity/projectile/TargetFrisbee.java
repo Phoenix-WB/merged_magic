@@ -57,7 +57,7 @@ public class TargetFrisbee extends ThrowableProjectile implements GeoEntity {
 	}
 
 	@Override
-	public void defineSynchedData(Builder builder) {
+	protected void defineSynchedData(Builder builder) {
 	}
 
 	@Override

@@ -14,7 +14,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ToolMaterial;
 
 public class SwordOfEdenItem extends MergableItem {
-	public final MergeStat<Integer> effectDuration = new MergeStat<Integer>(60, 120, 200);
+	public final MergeStat<Integer> effectDuration = new MergeStat<Integer>(100, 200, 240);
 	public final MergeStat<Integer> amplifier = new MergeStat<Integer>(0, 0, 1);
 
 	public SwordOfEdenItem(Properties properties) {

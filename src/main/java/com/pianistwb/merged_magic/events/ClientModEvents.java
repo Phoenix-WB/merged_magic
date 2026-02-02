@@ -27,6 +27,7 @@ public class ClientModEvents {
 	public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
 		EntityRenderers.register(EntityTypeRegistry.TARGET_FRISBEE.get(), TargetFrisbeeRenderer::new);
 		EntityRenderers.register(EntityTypeRegistry.TRAPJAW.get(), TrapjawRenderer::new);
+		EntityRenderers.register(EntityTypeRegistry.COPPER_FLAME.get(), NoopRenderer::new);
 		EntityRenderers.register(EntityTypeRegistry.COPPER_FLAME_SPIRE.get(), NoopRenderer::new);
 	}
 }

@@ -2,13 +2,12 @@
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
 		" XP",
-		"OPX",
-		"SO "
+		"XPX",
+		"SX "
 	],
 	"key": {
 		"S": "minecraft:wooden_sword",
 		"X": "minecraft:rose_bush",
-		"O": "#minecraft:leaves",
 		"P": "minecraft:spider_eye"
 	},
 	"result": {
