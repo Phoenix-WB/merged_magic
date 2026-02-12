@@ -1,0 +1,14 @@
+{
+	"structures": [
+		{
+			"structure": "merged_magic:hermes_post",
+			"weight": 1
+		}
+	],
+	"placement": {
+		"type": "minecraft:random_spread",
+		"salt": 20563115,
+		"spacing": 32,
+		"separation": 8
+	}
+}

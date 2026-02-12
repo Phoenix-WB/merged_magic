@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BBB",
+    "BXB",
+    "BBB"
+  ],
+  "key": {
+    "X": "minecraft:goat_horn",
+    "B": "minecraft:armadillo_scute"
+  },
+  "result": {
+    "id": "merged_magic:vicious_horn",
+    "count": 1
+  }
+}

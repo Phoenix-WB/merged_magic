@@ -1,0 +1,13 @@
+{
+	"type": "merged_magic:simple_magic_addition_loot_modifier",
+	"conditions": [
+		{
+			"condition": "neoforge:loot_table_id",
+			"loot_table_id": "minecraft:chests/nether_bridge"
+		}
+	],
+	"item": "merged_magic:cursed_painting",
+	"rolls": 1,
+	"guarantees": 0,
+	"probability": 0.2
+}
