@@ -32,6 +32,8 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.npc.villager.Villager;
+import net.minecraft.world.entity.npc.villager.VillagerProfession;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.storage.ValueInput;
@@ -48,14 +50,20 @@ public class Trapjaw extends Monster implements GeoEntity {
 			EntityDataSerializers.BYTE);
 
 	private static final RawAnimation IDLE_ANIM = RawAnimation.begin().thenLoop("animation.trapjaw.idle");
-	private static final RawAnimation GRAB_ANIM = RawAnimation.begin().thenPlayAndHold("animation.trapjaw.grab");
+	private static final RawAnimation GRABBING_ANIM = RawAnimation.begin()
+			.thenPlayAndHold("animation.trapjaw.grabbing");
+	private static final RawAnimation UNGRABBING_ANIM = RawAnimation.begin()
+			.thenPlayAndHold("animation.trapjaw.ungrabbing");
 
 	private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
 
 	public Entity owner = null;
+	public boolean villagerOwner = false;
+
 	public boolean despawn = false;
 	public int despawnTicks = 0;
-	public static final float BITE_DISTANCE = 6.0F;
+	public static final float BITE_DISTANCE = 2.236F;
+	public int tickUngrabbing = 0;
 
 	public Trapjaw(EntityType<? extends Monster> entityType, Level level) {
 		super(entityType, level);
@@ -64,26 +72,34 @@ public class Trapjaw extends Monster implements GeoEntity {
 	@Override
 	protected void registerGoals() {
 		this.goalSelector.addGoal(1, new TrapjawAttackGoal());
-		this.goalSelector.addGoal(1, new LookAtPlayerGoal(this, Player.class, BITE_DISTANCE));
-		this.goalSelector.addGoal(1, new LookAtPlayerGoal(this, Mob.class, BITE_DISTANCE));
+		this.goalSelector.addGoal(1, new LookAtPlayerGoal(this, Player.class, BITE_DISTANCE * 3.0F));
+		this.goalSelector.addGoal(1, new LookAtPlayerGoal(this, Mob.class, BITE_DISTANCE * 3.0F));
 		this.goalSelector.addGoal(2, new RandomLookAroundGoal(this));
 
 		this.targetSelector.addGoal(1, new TrapjawHurtByTargetGoal());
 		this.targetSelector.addGoal(2, new TrapjawNearestAttackableTargetGoal<>(Player.class, true));
-		this.targetSelector.addGoal(3, new TrapjawNearestAttackableTargetGoal<>(Mob.class, true));
+		this.targetSelector.addGoal(2, new TrapjawNearestAttackableTargetGoal<>(Mob.class, true));
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
 		return Monster.createMonsterAttributes().add(Attributes.MOVEMENT_SPEED, 0.0D)
-				.add(Attributes.ATTACK_DAMAGE, 2.0D).add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
+				.add(Attributes.ATTACK_DAMAGE, 2.0D).add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
+				.add(Attributes.MAX_HEALTH, 30.0D).add(Attributes.FOLLOW_RANGE, BITE_DISTANCE);
 	}
 
 	@Override
 	public void tick() {
 		super.tick();
 
-		if (!this.level().isClientSide() && despawn && --despawnTicks <= 0) {
-			this.kill((ServerLevel) this.level());
+		if (!this.level().isClientSide()) {
+			if (despawn && --despawnTicks <= 0) {
+				this.kill((ServerLevel) this.level());
+			}
+		}
+
+		if (this.getGrabbingState() == 2 && tickUngrabbing++ >= 5) {
+			this.resetGrabbing();
+			this.tickUngrabbing = 0;
 		}
 	}
 
@@ -109,7 +125,12 @@ public class Trapjaw extends Monster implements GeoEntity {
 
 		super.die(damageSource);
 	}
-	
+
+	@Override
+	public boolean shouldDropExperience() {
+		return this.getOwner() == null;
+	}
+
 	@Override
 	public boolean canBeCollidedWith(@Nullable Entity entity) {
 		return this.isAlive();
@@ -122,14 +143,22 @@ public class Trapjaw extends Monster implements GeoEntity {
 	public Entity getOwner() {
 		return this.owner;
 	}
-	
+
+	public boolean hasVillagerOwner() {
+		return this.villagerOwner;
+	}
+
+	public void withVillagerOwner() {
+		this.villagerOwner = true;
+	}
+
 	@Override
 	public void setTarget(@Nullable LivingEntity target) {
 		LivingEntity oldTarget = this.getTarget();
 		if (oldTarget != null && oldTarget.isAlive()) {
 			oldTarget.removeEffect(MobEffectRegistry.TRAPJAWED);
 		}
-		
+
 		super.setTarget(target);
 	}
 
@@ -139,6 +168,10 @@ public class Trapjaw extends Monster implements GeoEntity {
 
 	public void setGrabbing() {
 		this.setGrabbingState((byte) 1);
+	}
+
+	public void setUngrabbing() {
+		this.setGrabbingState((byte) 2);
 	}
 
 	public void setGrabbingState(byte grabbingState) {
@@ -159,17 +192,19 @@ public class Trapjaw extends Monster implements GeoEntity {
 		super.defineSynchedData(builder);
 		builder.define(GRABBING_STATE_ID, (byte) 0);
 	}
-	
+
 	@Override
 	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return geoCache;
 	}
-	
+
 	@Override
 	public void registerControllers(ControllerRegistrar controllers) {
 		controllers.add(new AnimationController<>("Actions", state -> {
-			if (this.getGrabbingState() != 0) {
-				return state.setAndContinue(GRAB_ANIM);
+			if (this.getGrabbingState() == 1) {
+				return state.setAndContinue(GRABBING_ANIM);
+			} else if (this.getGrabbingState() == 2) {
+				return state.setAndContinue(UNGRABBING_ANIM);
 			}
 
 			return state.setAndContinue(IDLE_ANIM);
@@ -182,6 +217,7 @@ public class Trapjaw extends Monster implements GeoEntity {
 		input.putByte("grabbing", this.getGrabbingState());
 		input.putBoolean("despawn", despawn);
 		input.putInt("despawnTicks", despawnTicks);
+		input.putBoolean("villagerOwner", villagerOwner);
 
 		if (owner != null) {
 			input.store("ownerUUID", UUIDUtil.CODEC, owner.getUUID());
@@ -194,6 +230,7 @@ public class Trapjaw extends Monster implements GeoEntity {
 		this.setGrabbingState(output.getByteOr("grabbing", (byte) 0));
 		this.despawn = output.getBooleanOr("despawn", false);
 		this.despawnTicks = output.getIntOr("despawnTicks", 0);
+		this.villagerOwner = output.getBooleanOr("villagerOwner", false);
 
 		Optional<UUID> ownerUUID = output.read("ownerUUID", UUIDUtil.CODEC);
 		if (ownerUUID.isPresent()) {
@@ -212,32 +249,32 @@ public class Trapjaw extends Monster implements GeoEntity {
 		@Override
 		public boolean canUse() {
 			LivingEntity livingentity = Trapjaw.this.getTarget();
-			return livingentity != null && livingentity.isAlive()
-					&& Trapjaw.this.distanceToSqr(livingentity) <= BITE_DISTANCE;
+			return Trapjaw.this.getGrabbingState() != 2 && livingentity != null && livingentity.isAlive()
+					&& Trapjaw.this.distanceToSqr(livingentity) <= BITE_DISTANCE * BITE_DISTANCE;
 		}
 
 		@Override
 		public void start() {
 			Trapjaw.this.setGrabbing();
-			this.getTarget().addEffect(new MobEffectInstance(MobEffectRegistry.TRAPJAWED, 200, 0, false, false));
+			this.getTarget().addEffect(new MobEffectInstance(MobEffectRegistry.TRAPJAWED, 10, 0, false, false));
 			tick = 0;
 		}
 
 		@Override
 		public void stop() {
-			Trapjaw.this.resetGrabbing();
+			Trapjaw.this.setUngrabbing();
 		}
 
 		@Override
 		public void tick() {
 			LivingEntity target = this.getTarget();
-			target.addEffect(new MobEffectInstance(MobEffectRegistry.TRAPJAWED, 200, 0, false, false));
+			target.addEffect(new MobEffectInstance(MobEffectRegistry.TRAPJAWED, 10, 0, false, false));
 
-			if (tick % 30 == 0) {
+			if (tick++ % 30 == 0) {
 				Trapjaw.this.doHurtTarget((ServerLevel) Trapjaw.this.level(), target);
 			}
 
-			tick++;
+			Trapjaw.this.getLookControl().setLookAt(target.getX(), Trapjaw.this.getEyeY(), target.getZ());
 		}
 
 		private LivingEntity getTarget() {
@@ -261,24 +298,29 @@ public class Trapjaw extends Monster implements GeoEntity {
 						this.mob.level().getEntitiesOfClass(this.targetType,
 								this.getTargetSearchArea(this.getFollowDistance()), p_148152_ -> true),
 						conditions, this.mob, this.mob.getX(), this.mob.getEyeY(), this.mob.getZ());
+
+				if (Trapjaw.this.hasVillagerOwner() && target instanceof Villager villager
+						&& villager.getVillagerData().profession().is(VillagerProfession.FARMER)) {
+					this.target = null;
+				}
 			} else {
 				this.target = serverlevel.getNearestPlayer(conditions, this.mob, this.mob.getX(), this.mob.getEyeY(),
 						this.mob.getZ());
 			}
 		}
 	}
-	
+
 	class TrapjawHurtByTargetGoal extends HurtByTargetGoal {
 		public TrapjawHurtByTargetGoal(Class<?>... toIgnoreDamage) {
 			super(Trapjaw.this, toIgnoreDamage);
 		}
-		
-	    @Override
-	    public boolean canUse() {
-	        LivingEntity livingEntity = this.mob.getLastHurtByMob();
-	        Entity owner = Trapjaw.this.getOwner();
-	        
-	        return (owner == null || livingEntity != owner) && super.canUse();
-	    }
+
+		@Override
+		public boolean canUse() {
+			LivingEntity livingEntity = this.mob.getLastHurtByMob();
+			Entity owner = Trapjaw.this.getOwner();
+
+			return (owner == null || livingEntity != owner) && super.canUse();
+		}
 	}
 }

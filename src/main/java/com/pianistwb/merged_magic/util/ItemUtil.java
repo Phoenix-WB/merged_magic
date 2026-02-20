@@ -7,8 +7,8 @@ import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
-import com.pianistwb.merged_magic.datacomponents.IntegerData;
-import com.pianistwb.merged_magic.datacomponents.MergeLevel;
+import com.pianistwb.merged_magic.datacomponent.IntegerData;
+import com.pianistwb.merged_magic.datacomponent.MergeLevel;
 import com.pianistwb.merged_magic.registry.DataComponentRegistry;
 
 import net.minecraft.core.HolderGetter;

@@ -2,6 +2,7 @@ package com.pianistwb.merged_magic.registry;
 
 import com.pianistwb.merged_magic.MergedMagic;
 import com.pianistwb.merged_magic.items.HermesParcelItem;
+import com.pianistwb.merged_magic.items.MergedStructureToolItem;
 import com.pianistwb.merged_magic.items.mergable.AmethystMirrorItem;
 import com.pianistwb.merged_magic.items.mergable.BroomItem;
 import com.pianistwb.merged_magic.items.mergable.CreeperDisguiseItem;
@@ -22,6 +23,8 @@ import com.pianistwb.merged_magic.items.mergable.TrapseedSackItem;
 import com.pianistwb.merged_magic.items.mergable.ViciousHornItem;
 
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -33,6 +36,9 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ItemRegistry {
+	public static final MutableComponent CREATIVE_MODE_ITEM = Component
+			.translatable("tooltip.merged_magic.creative_mode_item");
+	
 	public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MergedMagic.MODID);
 
 	// Items for texture purposes
@@ -41,6 +47,10 @@ public class ItemRegistry {
 	public static final DeferredItem<Item> SILVER_STAR = ITEMS.registerItem("silver_star", Item::new);
 
 	public static final DeferredItem<Item> GOLD_STAR = ITEMS.registerItem("gold_star", Item::new);
+
+	// Structure setup items
+	public static final DeferredItem<Item> MERGED_STRUCTURE_TOOL = ITEMS.registerItem("merged_structure_tool",
+			MergedStructureToolItem::new);
 
 	// Mergable items
 	public static final DeferredHolder<Item, BroomItem> BROOM = ITEMS.registerItem("broom", BroomItem::new);
@@ -106,9 +116,6 @@ public class ItemRegistry {
 	public static final DeferredHolder<Item, Item> HERMES_PARCEL = ITEMS.registerItem("hermes_parcel",
 			HermesParcelItem::new);
 
-	// Ancient mechanism item
-
-	// PLS ADD THESE ITEMS
 	public static final DeferredHolder<Item, Item> BOTANY_MEAL = ITEMS.registerItem("botany_meal", Item::new);
 
 	// Spawn Eggs

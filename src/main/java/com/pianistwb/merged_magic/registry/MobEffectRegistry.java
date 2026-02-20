@@ -3,6 +3,7 @@ package com.pianistwb.merged_magic.registry;
 import com.pianistwb.merged_magic.MergedMagic;
 import com.pianistwb.merged_magic.effect.CocoaBuffMobEffect;
 import com.pianistwb.merged_magic.effect.CreeperDisguisedMobEffect;
+import com.pianistwb.merged_magic.effect.SheathingMobEffect;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
@@ -43,6 +44,9 @@ public class MobEffectRegistry {
 
 	public static final DeferredHolder<MobEffect, CreeperDisguisedMobEffect> CREEPER_DISGUISED = MOB_EFFECTS
 			.register("creeper_disguised", () -> new CreeperDisguisedMobEffect(MobEffectCategory.BENEFICIAL, 0x10b51e));
+
+	public static final DeferredHolder<MobEffect, MobEffect> SHEATHING = MOB_EFFECTS.register("sheathing",
+			() -> new SheathingMobEffect(MobEffectCategory.NEUTRAL, 0x293359));
 
 	public static final DeferredHolder<MobEffect, MobEffect> STRIKING = MOB_EFFECTS.register("striking",
 			() -> new MobEffect(MobEffectCategory.BENEFICIAL, 0x9c9c9c).addAttributeModifier(Attributes.ATTACK_DAMAGE,
