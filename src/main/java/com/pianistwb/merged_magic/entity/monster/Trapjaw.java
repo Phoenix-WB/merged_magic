@@ -288,6 +288,11 @@ public class Trapjaw extends Monster implements GeoEntity {
 		}
 
 		@Override
+		public boolean canUse() {
+			return super.canUse() && this.villagerOwnerCheck();
+		}
+
+		@Override
 		protected void findTarget() {
 			ServerLevel serverlevel = getServerLevel(this.mob);
 			TargetingConditions conditions = this.targetConditions.range(this.getFollowDistance())
@@ -298,15 +303,19 @@ public class Trapjaw extends Monster implements GeoEntity {
 						this.mob.level().getEntitiesOfClass(this.targetType,
 								this.getTargetSearchArea(this.getFollowDistance()), p_148152_ -> true),
 						conditions, this.mob, this.mob.getX(), this.mob.getEyeY(), this.mob.getZ());
-
-				if (Trapjaw.this.hasVillagerOwner() && target instanceof Villager villager
-						&& villager.getVillagerData().profession().is(VillagerProfession.FARMER)) {
-					this.target = null;
-				}
 			} else {
 				this.target = serverlevel.getNearestPlayer(conditions, this.mob, this.mob.getX(), this.mob.getEyeY(),
 						this.mob.getZ());
 			}
+		}
+
+		private boolean villagerOwnerCheck() {
+			if (Trapjaw.this.hasVillagerOwner() && this.target instanceof Villager villager
+					&& villager.getVillagerData().profession().is(VillagerProfession.FARMER)) {
+				this.target = null;
+				return false;
+			}
+			return true;
 		}
 	}
 

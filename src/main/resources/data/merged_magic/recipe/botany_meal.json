@@ -7,7 +7,7 @@
   ],
   "key": {
     "X": "merged_magic:botany_meal",
-    "B": "minecraft:bone"
+    "B": "minecraft:bone_block"
   },
   "result": {
     "id": "merged_magic:botany_meal",

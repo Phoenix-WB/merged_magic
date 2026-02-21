@@ -108,5 +108,8 @@
 	"statValue.merged_magic.triangle": "Triangle",
 	"statValue.merged_magic.pentagon": "Pentagon",
 	
-	"langUtil.merged_magic.with_multiply": "x%1$s"
+	"langUtil.merged_magic.with_multiply": "x%1$s",
+	
+	"chat.merged_magic.persistent": "Set Persistent",
+	"chat.merged_magic.villager_owner": "Set with Villager Owner"
 }

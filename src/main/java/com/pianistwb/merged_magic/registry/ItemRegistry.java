@@ -22,6 +22,7 @@ import com.pianistwb.merged_magic.items.mergable.TotemOfEnduringItem;
 import com.pianistwb.merged_magic.items.mergable.TrapseedSackItem;
 import com.pianistwb.merged_magic.items.mergable.ViciousHornItem;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -37,7 +38,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ItemRegistry {
 	public static final MutableComponent CREATIVE_MODE_ITEM = Component
-			.translatable("tooltip.merged_magic.creative_mode_item");
+			.translatable("tooltip.merged_magic.creative_mode_item").withStyle(ChatFormatting.RED);
 	
 	public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MergedMagic.MODID);
 
