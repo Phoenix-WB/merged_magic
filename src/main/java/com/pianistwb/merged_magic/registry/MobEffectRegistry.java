@@ -45,7 +45,7 @@ public class MobEffectRegistry {
 	public static final DeferredHolder<MobEffect, CreeperDisguisedMobEffect> CREEPER_DISGUISED = MOB_EFFECTS
 			.register("creeper_disguised", () -> new CreeperDisguisedMobEffect(MobEffectCategory.BENEFICIAL, 0x10b51e));
 
-	public static final DeferredHolder<MobEffect, MobEffect> SHEATHING = MOB_EFFECTS.register("sheathing",
+	public static final DeferredHolder<MobEffect, SheathingMobEffect> SHEATHING = MOB_EFFECTS.register("sheathing",
 			() -> new SheathingMobEffect(MobEffectCategory.NEUTRAL, 0x293359));
 
 	public static final DeferredHolder<MobEffect, MobEffect> STRIKING = MOB_EFFECTS.register("striking",

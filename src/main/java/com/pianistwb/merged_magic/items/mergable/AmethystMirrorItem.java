@@ -1,7 +1,7 @@
 package com.pianistwb.merged_magic.items.mergable;
 
-import com.pianistwb.merged_magic.util.LangUtil;
 import com.pianistwb.merged_magic.util.ItemUtil;
+import com.pianistwb.merged_magic.util.LangUtil;
 import com.pianistwb.merged_magic.util.MagicUtil;
 import com.pianistwb.merged_magic.util.MergeStat;
 import com.pianistwb.merged_magic.util.StatNames;
@@ -40,32 +40,28 @@ public class AmethystMirrorItem extends MergableItem {
 	@SuppressWarnings("deprecation")
 	@Override
 	public void onUseTick(Level level, LivingEntity livingEntity, ItemStack stack, int remainingUseDuration) {
-		if (livingEntity.tickCount % 10 == 0) {
+		if (!level.isClientSide() && livingEntity.tickCount % 10 == 0) {
 			BlockPos pos = livingEntity.blockPosition();
 			int lighting = level.isBrightOutside() ? level.getBrightness(LightLayer.SKY, pos)
 					: level.getBrightness(LightLayer.BLOCK, pos);
 			int mergeLevel = ItemUtil.getMergeLevel(stack);
+			if (lighting > 8) {
+				int radiusBlocks = radius.getStat(mergeLevel);
+				AABB radiusBox = MagicUtil.getSquareRadius(pos, radiusBlocks);
+				level.getEntities(livingEntity, radiusBox,
+						entity -> entity instanceof LivingEntity living
+								&& entity.getType().is(EntityTypeTags.BURN_IN_DAYLIGHT) && MagicUtil.livingCentreInLine(
+										livingEntity, living, ClipContext.Block.VISUAL, ClipContext.Fluid.ANY))
+						.forEach(monster -> {
+							if (livingEntity.tickCount % 80 == 0) {
+								monster.hurt(level.damageSources().onFire(), getBaseLightingDamage(lighting)
+										+ getLightingDamageIncrease.getStat(mergeLevel));
+							}
 
-			if (!level.isClientSide()) {
-				if (lighting > 8) {
-					int radiusBlocks = radius.getStat(mergeLevel);
-					AABB radiusBox = MagicUtil.getSquareRadius(pos, radiusBlocks);
-					level.getEntities(livingEntity, radiusBox,
-							entity -> entity instanceof LivingEntity living
-									&& entity.getType().is(EntityTypeTags.BURN_IN_DAYLIGHT)
-									&& MagicUtil.livingCentreInLine(livingEntity, living, ClipContext.Block.VISUAL,
-											ClipContext.Fluid.ANY))
-							.forEach(monster -> {
-								if (livingEntity.tickCount % 40 == 0) {
-									monster.hurt(level.damageSources().onFire(), getBaseLightingDamage(lighting)
-											+ getLightingDamageIncrease.getStat(mergeLevel));
-								}
-
-								if (!monster.isOnFire()) {
-									monster.igniteForSeconds(8.0F);
-								}
-							});
-				}
+							if (!monster.isOnFire()) {
+								monster.igniteForSeconds(8.0F);
+							}
+						});
 			}
 		}
 	}
@@ -87,10 +83,10 @@ public class AmethystMirrorItem extends MergableItem {
 
 	public static int getBaseLightingDamage(int lighting) {
 		if (lighting < 12) {
-			return 1;
+			return 0;
 		} else if (lighting < 15) {
-			return 2;
+			return 1;
 		}
-		return 3;
+		return 2;
 	}
 }

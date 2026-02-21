@@ -4,8 +4,6 @@ import com.pianistwb.merged_magic.util.LevelUtil;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -32,10 +30,6 @@ public class CreeperDisguisedMobEffect extends MobEffect {
 			for (BlockPos pos : LevelUtil.getBlockPosIfLoaded(level, box)) {
 				BlockState state = level.getBlockState(pos);
 				if (state.is(BlockTags.LEAVES)) {
-					if(!entity.hasEffect(MobEffects.INVISIBILITY)) {
-						level.playSound(null, entity.blockPosition(), SoundEvents.ARMOR_EQUIP_LEATHER.value(), SoundSource.PLAYERS);
-					}
-					
 					entity.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 21, 0, false, false));
 					break;
 				}

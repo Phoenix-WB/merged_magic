@@ -7,6 +7,7 @@ import com.pianistwb.merged_magic.util.MergeStat;
 import com.pianistwb.merged_magic.util.StatNames;
 import com.pianistwb.merged_magic.util.StatUnits;
 
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -36,6 +37,7 @@ public class CreeperDisguiseItem extends MergableItem {
 				player.addEffect(new MobEffectInstance(MobEffectRegistry.CREEPER_DISGUISED,
 						effectDuration.getStat(mergeLevel), 0, false, false));
 			}
+			player.playSound(SoundEvents.LLAMA_SWAG.value());
 
 			cooldowns.addCooldown(stack, cooldown.getStat(mergeLevel));
 			

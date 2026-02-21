@@ -81,11 +81,12 @@ public class CommonEvents {
 	@SubscribeEvent
 	public static void onPostLivingHurt(LivingDamageEvent.Post event) {
 		LivingEntity living = event.getEntity();
+		Level level = living.level();
 		DamageSource source = event.getSource();
 		Entity directEntity = source.getDirectEntity();
 		if (source.getDirectEntity() != null && directEntity instanceof LivingEntity attackingEntity) {
 			if (living.hasEffect(MobEffectRegistry.ENDURING)) {
-				if (!living.level().isClientSide()) {
+				if (!level.isClientSide()) {
 					int amplifier = living.getEffect(MobEffectRegistry.ENDURING).getAmplifier();
 
 					double resistance = attackingEntity.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE);
@@ -99,10 +100,9 @@ public class CommonEvents {
 			}
 
 			if (attackingEntity.hasEffect(MobEffectRegistry.STRIKING)) {
-				if (!living.level().isClientSide()) {
+				if (!level.isClientSide()) {
 					attackingEntity.removeEffect(MobEffectRegistry.STRIKING);
-				} else {
-					ClientParticles.runGustParticles(living.level(), living.position().add(0, 1.8D, 0));
+					ClientParticles.sendOrPlayParticles(living, living.position(), (byte) 2);
 				}
 			}
 		}

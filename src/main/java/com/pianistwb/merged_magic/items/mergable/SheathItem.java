@@ -15,6 +15,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemCooldowns;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
@@ -54,12 +55,16 @@ public class SheathItem extends MergableItem {
 	public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity livingEntity) {
 		if (swordInMainhand(livingEntity)) {
 			livingEntity.playSound(SoundEvents.ANVIL_PLACE);
-			
+
 			if (!livingEntity.level().isClientSide()) {
 				int mergeLevel = ItemUtil.getMergeLevel(stack);
 				livingEntity.addEffect(
 						new MobEffectInstance(MobEffectRegistry.STRIKING, 70, amplifier.getStat(mergeLevel)));
 			}
+		}
+
+		if (livingEntity instanceof Player player) {
+			player.getCooldowns().addCooldown(stack, 60);
 		}
 
 		return stack;
@@ -68,7 +73,10 @@ public class SheathItem extends MergableItem {
 	@Override
 	public boolean releaseUsing(ItemStack stack, Level level, LivingEntity entity, int timeLeft) {
 		if (entity instanceof Player player) {
-			player.getCooldowns().addCooldown(stack, 60);
+			ItemCooldowns cooldowns = player.getCooldowns();
+			if (!cooldowns.isOnCooldown(stack)) {
+				cooldowns.addCooldown(stack, 60);
+			}
 		}
 
 		return false;

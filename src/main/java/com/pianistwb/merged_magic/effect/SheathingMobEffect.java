@@ -21,8 +21,8 @@ public class SheathingMobEffect extends MobEffect implements ClientMobEffect {
 	@Override
 	public void clientTick(Level level, LivingEntity entity, int amplifier) {
 		if (entity.tickCount % 6 == 0) {
-			ClientParticles.runRandomParticlesWithinBlock(ParticleTypes.CRIT, level,
-					entity.getEyePosition().subtract(0D, 0.3D, 0D));
+			ClientParticles.runRandomParticlesWithinBlockEdges(ParticleTypes.CRIT, level, entity.getEyePosition(), 6, 0,
+					0, 0);
 		}
 	}
 }
