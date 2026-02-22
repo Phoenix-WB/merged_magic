@@ -4,7 +4,7 @@
 		{
 			"weight": 1,
 			"element": {
-				"location": "merged_magic:greenhouse/main",
+				"location": "merged_magic:greenhouse/house",
 				"processors": "minecraft:empty",
 				"projection": "rigid",
 				"element_type": "minecraft:single_pool_element"

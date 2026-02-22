@@ -33,7 +33,6 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.npc.villager.Villager;
-import net.minecraft.world.entity.npc.villager.VillagerProfession;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.storage.ValueInput;
@@ -83,8 +82,8 @@ public class Trapjaw extends Monster implements GeoEntity {
 
 	public static AttributeSupplier.Builder createAttributes() {
 		return Monster.createMonsterAttributes().add(Attributes.MOVEMENT_SPEED, 0.0D)
-				.add(Attributes.ATTACK_DAMAGE, 2.0D).add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
-				.add(Attributes.MAX_HEALTH, 30.0D).add(Attributes.FOLLOW_RANGE, BITE_DISTANCE);
+				.add(Attributes.ATTACK_DAMAGE, 4.0D).add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
+				.add(Attributes.MAX_HEALTH, 40.0D).add(Attributes.FOLLOW_RANGE, BITE_DISTANCE);
 	}
 
 	@Override
@@ -310,8 +309,7 @@ public class Trapjaw extends Monster implements GeoEntity {
 		}
 
 		private boolean villagerOwnerCheck() {
-			if (Trapjaw.this.hasVillagerOwner() && this.target instanceof Villager villager
-					&& villager.getVillagerData().profession().is(VillagerProfession.FARMER)) {
+			if (Trapjaw.this.hasVillagerOwner() && this.target instanceof Villager villager) {
 				this.target = null;
 				return false;
 			}

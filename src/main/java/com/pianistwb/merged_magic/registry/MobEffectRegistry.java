@@ -30,7 +30,7 @@ public class MobEffectRegistry {
 	public static final DeferredHolder<MobEffect, MobEffect> TRAPJAWED = MOB_EFFECTS.register("trapjawed",
 			() -> new MobEffect(MobEffectCategory.HARMFUL, 0x24c73c)
 					.addAttributeModifier(Attributes.MOVEMENT_SPEED,
-							Identifier.fromNamespaceAndPath(MergedMagic.MODID, "effect.trapjawed_slow"), -1.0D,
+							Identifier.fromNamespaceAndPath(MergedMagic.MODID, "effect.trapjawed_slow"), -0.9D,
 							AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
 					.addAttributeModifier(Attributes.KNOCKBACK_RESISTANCE,
 							Identifier.fromNamespaceAndPath(MergedMagic.MODID, "effect.trapjawed_resist"), 1.0D,
