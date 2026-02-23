@@ -28,7 +28,7 @@ public class ViciousHornItem extends MergableItem {
 	public static final SoundEvent FEEL = SoundEvents.GOAT_HORN_SOUND_VARIANTS.get(3).value();
 
 	public final MergeStat<Double> radius = new MergeStat<>(5.0D, 8.0D, 15.0D);
-	public final MergeStat<Integer> cooldown = new MergeStat<>(600, 500, 440);
+	public final MergeStat<Integer> cooldown = new MergeStat<>(440, 400, 320);
 
 	public ViciousHornItem(Properties properties) {
 		super(properties);

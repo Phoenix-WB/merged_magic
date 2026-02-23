@@ -1,0 +1,14 @@
+{
+	"structures": [
+		{
+			"structure": "merged_magic:haunted_library",
+			"weight": 1
+		}
+	],
+	"placement": {
+		"type": "minecraft:random_spread",
+		"salt": 12803073,
+		"spacing": 32,
+		"separation": 8
+	}
+}
