@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 
+import com.pianistwb.merged_magic.client.ClientParticles;
 import com.pianistwb.merged_magic.datacomponent.IntegerData;
 import com.pianistwb.merged_magic.registry.DataComponentRegistry;
 import com.pianistwb.merged_magic.util.LangUtil;
@@ -14,6 +15,8 @@ import com.pianistwb.merged_magic.util.StatNames;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
@@ -34,13 +37,13 @@ public class CursedPaintingItem extends MergableItem {
 	private static final MutableComponent CAUTION = Component
 			.translatable("tooltip.merged_magic.cursed_painting.caution").withStyle(ChatFormatting.DARK_RED);
 
-	public final MergeStat<Integer> repair = new MergeStat<>(6, 3, 2);
+	public final MergeStat<Integer> repair = new MergeStat<>(4, 2, 1);
 
 	public CursedPaintingItem(Properties properties) {
 		super(ItemUtil.brokenItem(properties.component(DataComponentRegistry.MERGE_STATE, IntegerData.DEFAULT)
 				.component(DataComponentRegistry.MERGE_INDEX, IntegerData.DEFAULT)
-				.component(DataComponentRegistry.STORED_ENTITIES, CustomData.EMPTY), 18));
-		addMergeStat(StatNames.PROJECTILES, Component.empty(), repair, stat -> LangUtil.literal(18 / stat));
+				.component(DataComponentRegistry.STORED_ENTITIES, CustomData.EMPTY), 12));
+		addMergeStat(StatNames.PROJECTILES, Component.empty(), repair, stat -> LangUtil.literal(12 / stat));
 	}
 
 	@Override
@@ -94,6 +97,10 @@ public class CursedPaintingItem extends MergableItem {
 					ItemUtil.setMergeIndex(stack, index);
 					ItemUtil.healStack(stack, rep);
 
+					ClientParticles.sendOrPlayParticles(proj, proj.position(), (byte) 3, false);
+					livingEntity.level().playSound(null, proj.blockPosition(), SoundEvents.PLAYER_TELEPORT,
+							SoundSource.PLAYERS, 0.5F, 1.3F);
+
 					proj.discard();
 				} else {
 					break;
@@ -116,6 +123,9 @@ public class CursedPaintingItem extends MergableItem {
 						projectile.shootFromRotation(livingEntity, livingEntity.getXRot(), livingEntity.getYRot(), 0.0F,
 								(float) projectile.getDeltaMovement().length(), 1.3F);
 						level.addFreshEntity(projectile);
+
+						livingEntity.level().playSound(null, projectile.blockPosition(), SoundEvents.ARROW_SHOOT,
+								SoundSource.PLAYERS, 0.5F, 1.3F);
 					}
 
 					ItemUtil.setMergeIndex(stack, Math.max(mergeIndex - 1, 0));

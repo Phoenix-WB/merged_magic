@@ -70,7 +70,7 @@
 	"tooltip.merged_magic.trapseed_sack.desc": "Spawns Trapjaw plants that will latch onto anything except yourself and hold them in place while damaging them",
 	"tooltip.merged_magic.floaty.desc": "When below the waters surface and in either hand, causes the player to rise",
 	"tooltip.merged_magic.totem_of_enduring.desc": "When held in either hand and the player is at low health, flings melee attackers into the air and grants resistance",
-	"tooltip.merged_magic.cursed_painting.desc": "When used, absorbs nearby projectiles, which can be shot out at their original speed when used again",
+	"tooltip.merged_magic.cursed_painting.desc": "When used, absorbs nearby projectiles, which can be shot out at their absorbed speed when used again",
 	"tooltip.merged_magic.creeper_disguise.desc": "When used, within its effect duration will give the player invisibility if they are close to leaves",
 	"tooltip.merged_magic.sword_of_eden.desc": "Poisons enemies",
 	"tooltip.merged_magic.old_copper_lantern.desc": "Shoots out a Copper Flame Spire that sets entities on fire and oxidises surrounding copper blocks",

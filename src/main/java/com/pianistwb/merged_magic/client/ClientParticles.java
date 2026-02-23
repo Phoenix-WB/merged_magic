@@ -25,8 +25,8 @@ public class ClientParticles {
 	}
 
 	public static final byte HERMES_SHOES = 1;
-
 	public static final byte GUST = 2;
+	public static final byte ENDER = 3;
 
 	public static void runHermesShoesParticles(Level level, Vec3 pos) {
 		double scale = 0.11D;
@@ -40,13 +40,22 @@ public class ClientParticles {
 		level.addParticle(ParticleTypes.GUST, pos.x(), pos.y() + 1.8D, pos.z(), 0, 0, 0);
 	}
 
+	public static void runEnderParticles(Level level, Vec3 pos) {
+		RandomSource random = level.getRandom();
+		for (int i = 0; i < 10; i++) {
+			level.addParticle(ParticleTypes.PORTAL, pos.x() + randFloat(random, 0.25F),
+					pos.y() + randFloat(random, 0.25F), pos.z() + randFloat(random, 0.25F),
+					(random.nextDouble() - 0.5) * 2.0, -random.nextDouble(), (random.nextDouble() - 0.5) * 2.0);
+		}
+	}
+
 	// Non-Packet
 	public static void runRandomParticlesWithinBlock(ParticleOptions particle, Level level, Vec3 pos, int count,
 			double xSpeed, double ySpeed, double zSpeed) {
 		RandomSource rand = level.getRandom();
 		for (int i = 0; i < count; i++) {
-			level.addParticle(particle, pos.x() - 0.5D + randFloat(rand), pos.y() - 0.5D + randFloat(rand),
-					pos.z() - 0.5D + randFloat(rand), xSpeed, ySpeed, zSpeed);
+			level.addParticle(particle, pos.x() + randFloat(rand), pos.y() + randFloat(rand), pos.z() + randFloat(rand),
+					xSpeed, ySpeed, zSpeed);
 		}
 	}
 
@@ -56,9 +65,43 @@ public class ClientParticles {
 		for (int i = 0; i < count; i++) {
 			Vec3 face = getRandomFace(rand);
 
-			level.addParticle(particle, pos.x() - 0.5D + face.x(), pos.y() - 0.5D + face.y(), pos.z() - 0.5D + face.z(),
-					xSpeed, ySpeed, zSpeed);
+			level.addParticle(particle, pos.x() + face.x(), pos.y() + face.y(), pos.z() + face.z(), xSpeed, ySpeed,
+					zSpeed);
 		}
+	}
+
+	public static void playParticles(Level level, Vec3 pos, byte particleID) {
+		switch (particleID) {
+		case 1:
+			ClientParticles.runHermesShoesParticles(level, pos);
+			break;
+		case 2:
+			ClientParticles.runGustParticles(level, pos);
+			break;
+		case 3:
+			ClientParticles.runEnderParticles(level, pos);
+			break;
+		}
+	}
+
+	public static void sendOrPlayParticles(Entity entity, Vec3 pos, byte packetId, boolean andSelf) {
+		if (entity.level().isClientSide()) {
+			playParticles(entity.level(), pos, packetId);
+		} else {
+			if (andSelf) {
+				PacketDistributor.sendToPlayersTrackingEntityAndSelf(entity, new ParticlePayload(pos, packetId));
+			} else {
+				PacketDistributor.sendToPlayersTrackingEntity(entity, new ParticlePayload(pos, packetId));
+			}
+		}
+	}
+
+	private static float randFloat(RandomSource random) {
+		return randFloat(random, 0.5F);
+	}
+
+	private static float randFloat(RandomSource random, float bound) {
+		return Mth.randomBetween(random, -bound, bound);
 	}
 
 	public static Vec3 getRandomFace(RandomSource random) {
@@ -85,28 +128,5 @@ public class ClientParticles {
 		}
 
 		return new Vec3(0, 0, 0);
-	}
-
-	public static void playParticles(Level level, Vec3 pos, byte particleID) {
-		switch (particleID) {
-		case 1:
-			ClientParticles.runHermesShoesParticles(level, pos);
-			break;
-		case 2:
-			ClientParticles.runGustParticles(level, pos);
-			break;
-		}
-	}
-
-	public static void sendOrPlayParticles(Entity entity, Vec3 pos, byte packetId) {
-		if (entity.level().isClientSide()) {
-			playParticles(entity.level(), pos, packetId);
-		} else {
-			PacketDistributor.sendToPlayersTrackingEntity(entity, new ParticlePayload(pos, packetId));
-		}
-	}
-
-	private static float randFloat(RandomSource random) {
-		return Mth.randomBetween(random, 0F, 1F);
 	}
 }

@@ -51,7 +51,7 @@ public class HermesShoesItem extends MergableItem {
 
 			ItemUtil.damageStack(stack, useDamage.getStat(mergeLevel));
 
-			ClientParticles.sendOrPlayParticles(player, pos, ClientParticles.HERMES_SHOES);
+			ClientParticles.sendOrPlayParticles(player, pos, ClientParticles.HERMES_SHOES, false);
 			player.playSound(SoundEvents.ENDER_DRAGON_FLAP);
 
 			cooldowns.addCooldown(stack, 10);

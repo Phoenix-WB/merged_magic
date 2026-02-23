@@ -102,7 +102,7 @@ public class CommonEvents {
 			if (attackingEntity.hasEffect(MobEffectRegistry.STRIKING)) {
 				if (!level.isClientSide()) {
 					attackingEntity.removeEffect(MobEffectRegistry.STRIKING);
-					ClientParticles.sendOrPlayParticles(living, living.position(), (byte) 2);
+					ClientParticles.sendOrPlayParticles(living, living.position(), (byte) 2, true);
 				}
 			}
 		}
