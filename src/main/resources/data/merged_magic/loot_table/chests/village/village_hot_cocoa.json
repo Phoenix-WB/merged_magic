@@ -1,0 +1,27 @@
+{
+	"type": "minecraft:chest",
+	"pools": [
+		{
+			"rolls": 1,
+			"bonus_rolls": 0,
+			"entries": [
+				{
+					"type": "minecraft:item",
+					"name": "merged_magic:hot_cocoa",
+					"functions": [
+						{
+							"function": "minecraft:set_damage",
+							"damage": 0
+						}
+					]
+				}
+			],
+			"conditions": [
+				{
+					"condition": "minecraft:random_chance",
+					"chance": 0.2
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,26 @@
+{
+	"type": "merged_magic:simple_magic_addition_loot_modifier",
+	"conditions": [
+		{
+			"condition": "minecraft:any_of",
+			"terms": [
+				{
+					"condition": "neoforge:loot_table_id",
+					"loot_table_id": "minecraft:chests/village/village_tannery"
+				},
+				{
+					"condition": "neoforge:loot_table_id",
+					"loot_table_id": "minecraft:chests/village/village_butcher"
+				},
+				{
+					"condition": "neoforge:loot_table_id",
+					"loot_table_id": "minecraft:chests/village/village_shepherd"
+				}
+			]
+		}
+	],
+	"item": "merged_magic:broom",
+	"rolls": 1,
+	"guarantees": 0,
+	"probability": 0.4
+}

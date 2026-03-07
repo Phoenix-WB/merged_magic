@@ -39,7 +39,7 @@ public class SimpleMagicAdditionLootModifier extends LootModifier {
 	@Override
 	public ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
 		for (int i = 0; i < rolls; i++) {
-			if (context.getRandom().nextFloat() <= probability) {
+			if (context.getRandom().nextFloat() < probability) {
 				generatedLoot.add(item.getDefaultInstance());
 			}
 		}
