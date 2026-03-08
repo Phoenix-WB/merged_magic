@@ -9,6 +9,7 @@ import com.pianistwb.merged_magic.registry.EntityTypeRegistry;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.syncher.SynchedEntityData.Builder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -51,9 +52,9 @@ public class CopperFlameSpire extends Entity {
 
 		if (this.level().isClientSide()) {
 			if (this.tickCount % 2 == 0) {
-				ClientParticles.runCopperFlameSpireParticles(this.level(), this.position());
-				ClientParticles.runCopperFlameSpireParticles(this.level(), this.position().add(0, 1, 0));
-				ClientParticles.runCopperFlameSpireParticles(this.level(), this.position().add(0, 2, 0));
+				runSpireParticles(this.position().add(0, 0.5D, 0));
+				runSpireParticles(this.position().add(0, 1.5D, 0));
+				runSpireParticles(this.position().add(0, 2.5D, 0));
 			}
 		} else {
 			if (this.tickCount != 0 && this.tickCount % 30 == 0) {
@@ -75,6 +76,11 @@ public class CopperFlameSpire extends Entity {
 				this.discard();
 			}
 		}
+	}
+
+	private void runSpireParticles(Vec3 pos) {
+		ClientParticles.runRandomParticlesWithinBlock(ParticleTypes.COPPER_FIRE_FLAME, this.level(), pos, 4, 0, -0.05,
+				0);
 	}
 
 	public List<BlockPos> getSurroundingBlocks() {

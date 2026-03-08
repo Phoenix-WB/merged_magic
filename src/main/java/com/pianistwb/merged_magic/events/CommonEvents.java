@@ -2,29 +2,36 @@ package com.pianistwb.merged_magic.events;
 
 import com.pianistwb.merged_magic.MergedMagic;
 import com.pianistwb.merged_magic.client.ClientParticles;
+import com.pianistwb.merged_magic.effect.ClientMobEffect;
 import com.pianistwb.merged_magic.items.TickInPlayerHand;
 import com.pianistwb.merged_magic.items.mergable.MergableItem;
 import com.pianistwb.merged_magic.registry.ItemRegistry;
 import com.pianistwb.merged_magic.registry.MobEffectRegistry;
 import com.pianistwb.merged_magic.util.ItemUtil;
 
+import net.minecraft.core.Holder;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.ItemStackedOnOtherEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
+import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
 @EventBusSubscriber(modid = MergedMagic.MODID)
@@ -74,11 +81,12 @@ public class CommonEvents {
 	@SubscribeEvent
 	public static void onPostLivingHurt(LivingDamageEvent.Post event) {
 		LivingEntity living = event.getEntity();
-		if (!living.level().isClientSide()) {
-			DamageSource source = event.getSource();
-			Entity directEntity = source.getDirectEntity();
-			if (source.getDirectEntity() != null && directEntity instanceof LivingEntity attackingEntity) {
-				if (living.hasEffect(MobEffectRegistry.ENDURING)) {
+		Level level = living.level();
+		DamageSource source = event.getSource();
+		Entity directEntity = source.getDirectEntity();
+		if (source.getDirectEntity() != null && directEntity instanceof LivingEntity attackingEntity) {
+			if (living.hasEffect(MobEffectRegistry.ENDURING)) {
+				if (!level.isClientSide()) {
 					int amplifier = living.getEffect(MobEffectRegistry.ENDURING).getAmplifier();
 
 					double resistance = attackingEntity.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE);
@@ -86,15 +94,15 @@ public class CommonEvents {
 					double rawScale = ItemRegistry.TOTEM_OF_ENDURING.get().initialVelocity
 							.getStat(Math.min(amplifier + 1, 3));
 					attackingEntity.addDeltaMovement(new Vec3(0.0, rawScale * resistance, 0.0));
-
-					living.level().playSound(null, living.blockPosition(), SoundEvents.IRON_GOLEM_ATTACK,
-							SoundSource.PLAYERS);
 				}
 
-				if (attackingEntity.hasEffect(MobEffectRegistry.STRIKING)) {
-					ClientParticles.sendOrPlayParticles(attackingEntity, living.position().add(0, 1.8D, 0),
-							ClientParticles.GUST);
+				living.playSound(SoundEvents.IRON_GOLEM_ATTACK);
+			}
+
+			if (attackingEntity.hasEffect(MobEffectRegistry.STRIKING)) {
+				if (!level.isClientSide()) {
 					attackingEntity.removeEffect(MobEffectRegistry.STRIKING);
+					ClientParticles.sendOrPlayParticles(living, living.position(), (byte) 2, true);
 				}
 			}
 		}
@@ -114,6 +122,27 @@ public class CommonEvents {
 
 		if (offStack.getItem() instanceof TickInPlayerHand tickOff) {
 			tickOff.tickInHand(level, player, InteractionHand.OFF_HAND, offStack, mainStack);
+		}
+	}
+
+	@SubscribeEvent
+	public static void onLivingTick(EntityTickEvent.Post event) {
+		Entity entity = event.getEntity();
+
+		if (entity.level().isClientSide() && entity instanceof LivingEntity living) {
+			for (MobEffectInstance effect : living.getActiveEffects()) {
+				Holder<MobEffect> holder = effect.getEffect();
+				if (holder.isBound() && holder.value() instanceof ClientMobEffect clientEffect) {
+					clientEffect.clientTick(living.level(), living, effect.getAmplifier());
+				}
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public static void registerCreativeTabs(BuildCreativeModeTabContentsEvent event) {
+		if (event.getTabKey().equals(CreativeModeTabs.OP_BLOCKS)) {
+			event.accept(ItemRegistry.MERGED_STRUCTURE_TOOL);
 		}
 	}
 }

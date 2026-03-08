@@ -2,8 +2,8 @@ package com.pianistwb.merged_magic.items.mergable;
 
 import com.pianistwb.merged_magic.entity.monster.Trapjaw;
 import com.pianistwb.merged_magic.registry.EntityTypeRegistry;
-import com.pianistwb.merged_magic.util.LangUtil;
 import com.pianistwb.merged_magic.util.ItemUtil;
+import com.pianistwb.merged_magic.util.LangUtil;
 import com.pianistwb.merged_magic.util.MagicUtil;
 import com.pianistwb.merged_magic.util.MergeStat;
 import com.pianistwb.merged_magic.util.StatNames;
@@ -35,8 +35,7 @@ public class TrapseedSackItem extends MergableItem {
 		super(properties);
 		addMergeStat(StatNames.SUMMON_COUNT, Component.empty(), summonCount, stat -> LangUtil.literal(stat));
 		addMergeStat(StatNames.RADIUS, StatUnits.BLOCKS, radius, stat -> LangUtil.literal(stat));
-		addMergeStat(StatNames.SPAWN_PLACEMENT, Component.empty(), spawningRotations,
-				stat -> getShapeForAngle(stat));
+		addMergeStat(StatNames.SPAWN_PLACEMENT, Component.empty(), spawningRotations, stat -> getShapeForAngle(stat));
 		addMergeStat(StatNames.COOLDOWN, StatUnits.SECONDS, cooldown, stat -> LangUtil.literal(stat / 20));
 	}
 
@@ -77,12 +76,15 @@ public class TrapseedSackItem extends MergableItem {
 						trapjaw.setOwner(player);
 						trapjaw.despawn = true;
 						trapjaw.despawnTicks = 600;
+
+						//Bonemeal particles
+						level.levelEvent(2011, spawnPos, 15);
 					}
 				}
 			}
 
 			player.playSound(SoundEvents.BUNDLE_REMOVE_ONE);
-			
+
 			cooldowns.addCooldown(stack, cooldown.getStat(mergeLevel));
 
 			return InteractionResult.SUCCESS;

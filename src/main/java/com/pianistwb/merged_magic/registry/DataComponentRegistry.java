@@ -3,8 +3,8 @@ package com.pianistwb.merged_magic.registry;
 import java.util.function.Supplier;
 
 import com.pianistwb.merged_magic.MergedMagic;
-import com.pianistwb.merged_magic.datacomponents.MergeLevel;
-import com.pianistwb.merged_magic.datacomponents.IntegerData;
+import com.pianistwb.merged_magic.datacomponent.IntegerData;
+import com.pianistwb.merged_magic.datacomponent.MergeLevel;
 
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;

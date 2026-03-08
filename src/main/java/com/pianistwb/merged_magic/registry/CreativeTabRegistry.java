@@ -16,7 +16,7 @@ public class CreativeTabRegistry {
 	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MERGED_MAGIC_ITEMS_TAB = TABS.register(
 			"merged_magic_items",
 			() -> CreativeModeTab.builder().title(Component.translatable("itemGroup.merged_magic_items"))
-					.withTabsBefore(CreativeModeTabs.COMBAT).icon(() -> ItemRegistry.BROOM.get().getDefaultInstance())
+					.withTabsBefore(CreativeModeTabs.COMBAT).icon(() -> ItemRegistry.SWORD_OF_EDEN.get().getDefaultInstance())
 					.displayItems((parameters, output) -> {
 						// Mergable Items
 						output.accept(ItemRegistry.BROOM.get());

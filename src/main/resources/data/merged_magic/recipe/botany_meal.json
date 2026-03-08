@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BBB",
+    "BXB",
+    "BBB"
+  ],
+  "key": {
+    "X": "merged_magic:botany_meal",
+    "B": "minecraft:bone_block"
+  },
+  "result": {
+    "id": "merged_magic:botany_meal",
+    "count": 2
+  }
+}

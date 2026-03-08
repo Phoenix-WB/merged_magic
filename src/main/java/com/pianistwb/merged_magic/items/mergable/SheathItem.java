@@ -15,8 +15,8 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemCooldowns;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ItemUseAnimation;
 import net.minecraft.world.level.Level;
 
 public class SheathItem extends MergableItem {
@@ -32,7 +32,7 @@ public class SheathItem extends MergableItem {
 
 	@Override
 	public InteractionResult use(Level level, Player player, InteractionHand hand) {
-		if (!player.getCooldowns().isOnCooldown(player.getItemInHand(hand))) {
+		if (!player.getCooldowns().isOnCooldown(player.getItemInHand(hand)) && swordInMainhand(player)) {
 			player.startUsingItem(hand);
 			return InteractionResult.CONSUME;
 		}
@@ -41,9 +41,21 @@ public class SheathItem extends MergableItem {
 	}
 
 	@Override
+	public void onUseTick(Level level, LivingEntity livingEntity, ItemStack stack, int remainingUseDuration) {
+		if (!swordInMainhand(livingEntity)) {
+			livingEntity.releaseUsingItem();
+		}
+
+		if (!level.isClientSide()) {
+			livingEntity.addEffect(new MobEffectInstance(MobEffectRegistry.SHEATHING, 5, 0, false, false));
+		}
+	}
+
+	@Override
 	public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity livingEntity) {
-		if (livingEntity.getItemInHand(InteractionHand.MAIN_HAND).is(ItemTags.SWORDS)) {
+		if (swordInMainhand(livingEntity)) {
 			livingEntity.playSound(SoundEvents.ANVIL_PLACE);
+
 			if (!livingEntity.level().isClientSide()) {
 				int mergeLevel = ItemUtil.getMergeLevel(stack);
 				livingEntity.addEffect(
@@ -59,13 +71,24 @@ public class SheathItem extends MergableItem {
 	}
 
 	@Override
+	public boolean releaseUsing(ItemStack stack, Level level, LivingEntity entity, int timeLeft) {
+		if (entity instanceof Player player) {
+			ItemCooldowns cooldowns = player.getCooldowns();
+			if (!cooldowns.isOnCooldown(stack)) {
+				cooldowns.addCooldown(stack, 60);
+			}
+		}
+
+		return false;
+	}
+
+	@Override
 	public int getUseDuration(ItemStack stack, LivingEntity entity) {
 		int mergeLevel = ItemUtil.getMergeLevel(stack);
 		return duration.getStat(mergeLevel);
 	}
 
-	@Override
-	public ItemUseAnimation getUseAnimation(ItemStack stack) {
-		return ItemUseAnimation.BOW;
+	private static boolean swordInMainhand(LivingEntity living) {
+		return living.getItemInHand(InteractionHand.MAIN_HAND).is(ItemTags.SWORDS);
 	}
 }

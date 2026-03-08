@@ -3,6 +3,7 @@ package com.pianistwb.merged_magic.registry;
 import com.pianistwb.merged_magic.MergedMagic;
 import com.pianistwb.merged_magic.effect.CocoaBuffMobEffect;
 import com.pianistwb.merged_magic.effect.CreeperDisguisedMobEffect;
+import com.pianistwb.merged_magic.effect.SheathingMobEffect;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
@@ -29,7 +30,7 @@ public class MobEffectRegistry {
 	public static final DeferredHolder<MobEffect, MobEffect> TRAPJAWED = MOB_EFFECTS.register("trapjawed",
 			() -> new MobEffect(MobEffectCategory.HARMFUL, 0x24c73c)
 					.addAttributeModifier(Attributes.MOVEMENT_SPEED,
-							Identifier.fromNamespaceAndPath(MergedMagic.MODID, "effect.trapjawed_slow"), -1.0D,
+							Identifier.fromNamespaceAndPath(MergedMagic.MODID, "effect.trapjawed_slow"), -0.9D,
 							AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
 					.addAttributeModifier(Attributes.KNOCKBACK_RESISTANCE,
 							Identifier.fromNamespaceAndPath(MergedMagic.MODID, "effect.trapjawed_resist"), 1.0D,
@@ -43,6 +44,9 @@ public class MobEffectRegistry {
 
 	public static final DeferredHolder<MobEffect, CreeperDisguisedMobEffect> CREEPER_DISGUISED = MOB_EFFECTS
 			.register("creeper_disguised", () -> new CreeperDisguisedMobEffect(MobEffectCategory.BENEFICIAL, 0x10b51e));
+
+	public static final DeferredHolder<MobEffect, SheathingMobEffect> SHEATHING = MOB_EFFECTS.register("sheathing",
+			() -> new SheathingMobEffect(MobEffectCategory.NEUTRAL, 0x293359));
 
 	public static final DeferredHolder<MobEffect, MobEffect> STRIKING = MOB_EFFECTS.register("striking",
 			() -> new MobEffect(MobEffectCategory.BENEFICIAL, 0x9c9c9c).addAttributeModifier(Attributes.ATTACK_DAMAGE,

@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-import com.pianistwb.merged_magic.datacomponents.MergeLevel;
+import com.pianistwb.merged_magic.datacomponent.MergeLevel;
 import com.pianistwb.merged_magic.registry.DataComponentRegistry;
 import com.pianistwb.merged_magic.util.MergeStat;
 
@@ -59,8 +59,8 @@ public class MergableItem extends Item {
 	@Override
 	public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay tooltipDisplay,
 			Consumer<Component> tooltipAdder, TooltipFlag flag) {
+		tooltipAdder.accept(this.getDesc().withStyle(ChatFormatting.GREEN));
 		if (flag.hasShiftDown()) {
-			tooltipAdder.accept(this.getDesc().withStyle(ChatFormatting.GREEN));
 			tooltipAdder
 					.accept(Component.translatable("tooltip.merged_magic.mergable_item.merge_stack", this.getItemName())
 							.withStyle(ChatFormatting.LIGHT_PURPLE));

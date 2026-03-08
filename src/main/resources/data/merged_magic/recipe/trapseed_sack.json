@@ -1,0 +1,18 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		"minecraft:bundle",
+		"minecraft:wheat_seeds",
+		"minecraft:wheat_seeds",
+		"minecraft:wheat_seeds",
+		"minecraft:wheat_seeds",
+		"minecraft:wheat_seeds",
+		"minecraft:wheat_seeds",
+		"merged_magic:botany_meal",
+		"merged_magic:botany_meal"
+	],
+	"result": {
+		"id": "merged_magic:trapseed_sack",
+		"count": 1
+	}
+}

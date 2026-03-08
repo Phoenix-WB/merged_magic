@@ -1,0 +1,44 @@
+{
+	"type": "minecraft:block",
+	"pools": [
+		{
+			"bonus_rolls": 0,
+			"entries": [
+				{
+					"type": "minecraft:item",
+					"name": "merged_magic:amethyst_mirror",
+					"conditions": [
+						{
+							"condition": "minecraft:all_of",
+							"terms": [
+								{
+									"condition": "minecraft:random_chance",
+									"chance": 0.05
+								},
+								{
+									"condition": "minecraft:inverted",
+									"term": {
+										"condition": "minecraft:match_tool",
+										"predicate": {
+											"predicates": {
+												"minecraft:enchantments": [
+													{
+														"enchantments": "minecraft:silk_touch",
+														"levels": {
+															"min": 1
+														}
+													}
+												]
+											}
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			],
+			"rolls": 1
+		}
+	]
+}

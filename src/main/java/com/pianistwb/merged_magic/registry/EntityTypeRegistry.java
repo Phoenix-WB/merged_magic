@@ -25,7 +25,7 @@ public class EntityTypeRegistry {
 							Identifier.fromNamespaceAndPath(MergedMagic.MODID, "target_frisbee"))));
 
 	public static final DeferredHolder<EntityType<?>, EntityType<Trapjaw>> TRAPJAW = ENTITY_TYPES.register("trapjaw",
-			() -> EntityType.Builder.<Trapjaw>of(Trapjaw::new, MobCategory.MONSTER).sized(0.25F, 0.8F).eyeHeight(1.0F)
+			() -> EntityType.Builder.<Trapjaw>of(Trapjaw::new, MobCategory.MONSTER).sized(0.6F, 1.8F).eyeHeight(1.65F)
 					.clientTrackingRange(8).build(ResourceKey.create(Registries.ENTITY_TYPE,
 							Identifier.fromNamespaceAndPath(MergedMagic.MODID, "trapjaw"))));
 

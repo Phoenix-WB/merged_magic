@@ -1,10 +1,10 @@
 package com.pianistwb.merged_magic.entity.projectile;
 
-import com.pianistwb.merged_magic.client.ClientParticles;
 import com.pianistwb.merged_magic.entity.CopperFlameSpire;
 import com.pianistwb.merged_magic.registry.EntityTypeRegistry;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.syncher.SynchedEntityData.Builder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -15,6 +15,7 @@ import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 
 public class CopperFlame extends ThrowableProjectile {
 	public int despawnTicks = 300;
@@ -34,8 +35,11 @@ public class CopperFlame extends ThrowableProjectile {
 	public void tick() {
 		super.tick();
 
-		if (this.level().isClientSide()) {
-			ClientParticles.runMiniCopperFlameParticles(this.level(), this.position(), this.getBbHeight() / 2.0F);
+		Level level = this.level();
+		Vec3 pos = this.position();
+		if (level.isClientSide()) {
+			level.addParticle(ParticleTypes.COPPER_FIRE_FLAME, pos.x(), pos.y() + this.getBbHeight() / 2.0F, pos.z(), 0,
+					-0.05, 0);
 		}
 	}
 

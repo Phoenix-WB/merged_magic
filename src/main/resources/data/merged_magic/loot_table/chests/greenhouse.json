@@ -2,12 +2,16 @@
 	"type": "minecraft:chest",
 	"pools": [
 		{
-			"rolls": 1,
+			"rolls": {
+				"type": "minecraft:uniform",
+				"min": 1,
+				"max": 2
+			},
 			"bonus_rolls": 0,
 			"entries": [
 				{
 					"type": "minecraft:item",
-					"name": "merged_magic:botanymeal"
+					"name": "merged_magic:botany_meal"
 				}
 			]
 		},

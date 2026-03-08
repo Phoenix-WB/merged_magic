@@ -3,6 +3,8 @@
 	"item.merged_magic.silver_star": "Silver Star",
 	"item.merged_magic.gold_star": "Gold Star",
 	
+	"item.merged_magic.merged_structure_tool": "Merged Structure Tool",
+	
 	"item.merged_magic.broom": "Broom",
 	"item.merged_magic.dolphins_breath": "Dolphin's Breath",
 	"item.merged_magic.springy_piston": "Springy Piston",
@@ -40,6 +42,7 @@
 	"effect.merged_magic.trapjawed": "Trapjawed",
 	"effect.merged_magic.enduring": "Enduring",
 	"effect.merged_magic.creeper_disguised": "Creeper Disguised",
+	"effect.merged_magic.sheathing": "Sheathing",
 	"effect.merged_magic.striking": "Striking",
 	
 	"itemGroup.merged_magic_items": "Merged Magic Items",
@@ -53,25 +56,26 @@
 	"tooltip.merged_magic.mergable_item.merge_stat": "%1$s: %2$s/%3$s/%4$s %5$s",
 	
 	"tooltip.merged_magic.hermes_parcel.deliver": "Deliver to a Villager for a reward",
+	"tooltip.merged_magic.creative_mode_item": "Creative Mode Item",
 	
 	"tooltip.merged_magic.broom.desc": "Pushes entities",
 	"tooltip.merged_magic.dolphins_breath.desc": "Grants water breathing at the water's surface",
-	"tooltip.merged_magic.springy_piston.desc": "Launches the player off the ground and very temporarily crutches their fall",
-	"tooltip.merged_magic.amethyst_mirror.desc": "Reflects your current positions lighting onto undead mobs around you, damaging them and setting them ablaze",
+	"tooltip.merged_magic.springy_piston.desc": "Launches you off the ground and very temporarily crutches your fall",
+	"tooltip.merged_magic.amethyst_mirror.desc": "Reflects your current blocks light level onto undead mobs around you, damaging them and setting them ablaze",
 	"tooltip.merged_magic.prospectors_pan.desc": "Samples high value ores within the area, then carves a path to the closest one",
-	"tooltip.merged_magic.evergrowing_vine.desc": "Places vines wherever the player climbs when in either hand",
-	"tooltip.merged_magic.hot_cocoa.desc": "Protects the user from freezing and slowness when drunk, refill by crafting with chocolate milk",
+	"tooltip.merged_magic.evergrowing_vine.desc": "Places vines wherever you climb when in either hand",
+	"tooltip.merged_magic.hot_cocoa.desc": "Protects you from freezing and slowness when drunk, refill by crafting with chocolate milk",
 	"tooltip.merged_magic.target_frisbee.desc": "Throws a frisbee that glows an enemy on hit, and makes them take 1.5x more arrow damage",
-	"tooltip.merged_magic.hermes_shoes.desc": "When in the air, flaps to grant the player more height, as well as levitation",
-	"tooltip.merged_magic.trapseed_sack.desc": "Spawns neutral Trapjaw plants that will latch onto any entities except yourself and hold them in place while damaging them",
-	"tooltip.merged_magic.floaty.desc": "When below the waters surface and in either hand, causes the player to rise",
-	"tooltip.merged_magic.totem_of_enduring.desc": "When held in either hand and the player is at low health, flings melee attackers into the air and grants resistance",
-	"tooltip.merged_magic.cursed_painting.desc": "When used, absorbs nearby projectiles, which can be shot out at their original speed when used again",
-	"tooltip.merged_magic.creeper_disguise.desc": "When used, within its effect duration will give the player invisibility if they are close to leaf blocks",
+	"tooltip.merged_magic.hermes_shoes.desc": "When used in the air, flaps to grant you more height and levitation",
+	"tooltip.merged_magic.trapseed_sack.desc": "Spawns Trapjaw plants that will latch onto anything except yourself and hold them in place while damaging them",
+	"tooltip.merged_magic.floaty.desc": "When below the waters surface and in either hand, makes you float",
+	"tooltip.merged_magic.totem_of_enduring.desc": "When held in either hand and you are at low health, flings melee attackers into the air and grants resistance",
+	"tooltip.merged_magic.cursed_painting.desc": "When used, absorbs nearby projectiles, which can be shot out at their absorbed speed when used again",
+	"tooltip.merged_magic.creeper_disguise.desc": "When used, within its effect duration will you invisibility if you are close to leaves",
 	"tooltip.merged_magic.sword_of_eden.desc": "Poisons enemies",
-	"tooltip.merged_magic.old_copper_lantern.desc": "Shoots out a Copper Flame Spire that sets entities on fire and oxidises copper blocks",
-	"tooltip.merged_magic.sheath.desc": "When used in your offhand with a sword in your mainhand, makes your next strike stronger",
-	"tooltip.merged_magic.vicious_horn.desc": "Temporarily buffs your tamed wolves and will direct them to attack any entities you are looking at",
+	"tooltip.merged_magic.old_copper_lantern.desc": "Shoots out a Copper Flame Spire that sets entities on fire and oxidises surrounding copper blocks",
+	"tooltip.merged_magic.sheath.desc": "When used for enough time in your offhand with a sword in your mainhand, makes your next strike stronger",
+	"tooltip.merged_magic.vicious_horn.desc": "Temporarily buffs your tamed wolves and will direct them to attack any entity you are looking at",
 	
 	"tooltip.merged_magic.cursed_painting.caution": "Stored Projectiles will be destroyed on merge",
 	
@@ -104,5 +108,8 @@
 	"statValue.merged_magic.triangle": "Triangle",
 	"statValue.merged_magic.pentagon": "Pentagon",
 	
-	"langUtil.merged_magic.with_multiply": "x%1$s"
+	"langUtil.merged_magic.with_multiply": "x%1$s",
+	
+	"chat.merged_magic.persistent": "Set Persistent",
+	"chat.merged_magic.villager_owner": "Set with Villager Owner"
 }

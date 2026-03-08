@@ -1,4 +1,4 @@
-package com.pianistwb.merged_magic.datacomponents;
+package com.pianistwb.merged_magic.datacomponent;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
