@@ -12,12 +12,6 @@ tasks.named('wrapper', Wrapper).configure {
 version = mod_version
 group = mod_group_id
 
-eclipse {
-    jdt {
-        javaRuntimeName = "jdk-25.0.2.10-hotspot"
-    }
-}
-
 repositories {
     exclusiveContent {
         forRepository {
@@ -136,4 +130,9 @@ idea {
         downloadSources = true
         downloadJavadoc = true
     }
+}
+
+def localBuild = file('build.local.gradle')
+if(localBuild.exists()) {
+	apply from: localBuild
 }
