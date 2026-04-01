@@ -1,5 +1,11 @@
 package com.pianistwb.merged_magic.entity.projectile;
 
+import com.geckolib.animatable.GeoEntity;
+import com.geckolib.animatable.instance.AnimatableInstanceCache;
+import com.geckolib.animatable.manager.AnimatableManager.ControllerRegistrar;
+import com.geckolib.animation.AnimationController;
+import com.geckolib.animation.RawAnimation;
+import com.geckolib.util.GeckoLibUtil;
 import com.pianistwb.merged_magic.registry.EntityTypeRegistry;
 import com.pianistwb.merged_magic.registry.MobEffectRegistry;
 
@@ -15,12 +21,6 @@ import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.animatable.manager.AnimatableManager.ControllerRegistrar;
-import software.bernie.geckolib.animation.AnimationController;
-import software.bernie.geckolib.animation.RawAnimation;
-import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class TargetFrisbee extends ThrowableProjectile implements GeoEntity {
 	private static final RawAnimation SPINNING_ANIM = RawAnimation.begin()

@@ -47,7 +47,7 @@ public class MergedStructureToolItem extends Item {
 				trapjaw.withVillagerOwner();
 
 				if (level.isClientSide()) {
-					player.displayClientMessage(VILLAGER_OWNER, false);
+					player.sendOverlayMessage(VILLAGER_OWNER);
 				}
 
 				return InteractionResult.SUCCESS;
@@ -58,7 +58,7 @@ public class MergedStructureToolItem extends Item {
 
 				if (level.isClientSide()) {
 					ParticleUtils.spawnParticleInBlock(level, mob.blockPosition(), 15, ParticleTypes.HAPPY_VILLAGER);
-					player.displayClientMessage(PERSISTENT, false);
+					player.sendOverlayMessage(PERSISTENT);
 				}
 
 				return InteractionResult.SUCCESS;

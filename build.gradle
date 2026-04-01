@@ -1,7 +1,7 @@
 plugins {
     id 'java-library'
     id 'maven-publish'
-    id 'net.neoforged.moddev' version '2.0.137'
+    id 'net.neoforged.moddev' version '2.0.141'
     id 'idea'
 }
 
@@ -12,6 +12,12 @@ tasks.named('wrapper', Wrapper).configure {
 version = mod_version
 group = mod_group_id
 
+eclipse {
+    jdt {
+        javaRuntimeName = "jdk-25.0.2.10-hotspot"
+    }
+}
+
 repositories {
     exclusiveContent {
         forRepository {
@@ -20,9 +26,7 @@ repositories {
                 url = 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
             }
         }
-        filter { 
-            includeGroup('software.bernie.geckolib')
-        }
+        filter { includeGroupAndSubgroups('com.geckolib') }
     }
 }
 
@@ -30,15 +34,10 @@ base {
     archivesName = mod_id
 }
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+java.toolchain.languageVersion = JavaLanguageVersion.of(25)
 
 neoForge {
     version = project.neo_version
-
-    parchment {
-        mappingsVersion = project.parchment_mappings_version
-        minecraftVersion = project.parchment_minecraft_version
-    }
 
     accessTransformers = project.files('src/main/resources/META-INF/accesstransformer.cfg')
 
@@ -80,14 +79,20 @@ neoForge {
     }
 }
 
-sourceSets.main.resources { srcDir 'src/generated/resources' }
+sourceSets.main.resources {
+		srcDir 'src/generated/resources'
+		
+		exclude("**/*.bbmodel")
+    	exclude("src/generated/**/.cache")
+}
 
 configurations {
     runtimeClasspath.extendsFrom localRuntime
 }
 
 dependencies {
-    implementation "software.bernie.geckolib:geckolib-neoforge-${minecraft_version}:${geckolib_version}" 
+	implementation "com.geckolib:geckolib-neoforge-${minecraft_version}:${geckolib_version}"
+	interfaceInjectionData "com.geckolib:geckolib-neoforge-${minecraft_version}:${geckolib_version}"
 }
 
 var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {

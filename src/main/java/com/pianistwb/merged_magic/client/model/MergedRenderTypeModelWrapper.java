@@ -2,6 +2,7 @@ package com.pianistwb.merged_magic.client.model;
 
 import java.util.List;
 
+import org.joml.Matrix4fc;
 import org.jspecify.annotations.Nullable;
 
 import com.google.common.collect.BiMap;
@@ -16,17 +17,17 @@ import net.minecraft.client.color.item.ItemTintSource;
 import net.minecraft.client.color.item.ItemTintSources;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.Sheets;
-import net.minecraft.client.renderer.block.model.BakedQuad;
-import net.minecraft.client.renderer.block.model.TextureSlots;
-import net.minecraft.client.renderer.item.BlockModelWrapper;
+import net.minecraft.client.renderer.block.dispatch.BlockModelRotation;
+import net.minecraft.client.renderer.item.CuboidItemModelWrapper;
 import net.minecraft.client.renderer.item.ItemModel;
 import net.minecraft.client.renderer.item.ItemModelResolver;
 import net.minecraft.client.renderer.item.ItemStackRenderState;
 import net.minecraft.client.renderer.item.ModelRenderProperties;
 import net.minecraft.client.renderer.rendertype.RenderType;
-import net.minecraft.client.resources.model.BlockModelRotation;
 import net.minecraft.client.resources.model.ModelBaker;
 import net.minecraft.client.resources.model.ResolvedModel;
+import net.minecraft.client.resources.model.geometry.BakedQuad;
+import net.minecraft.client.resources.model.sprite.TextureSlots;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.ExtraCodecs;
 import net.minecraft.util.Util;
@@ -41,28 +42,26 @@ public record MergedRenderTypeModelWrapper(List<BakedQuad> quads, List<ItemTintS
 	public void update(ItemStackRenderState renderState, ItemStack stack, ItemModelResolver itemModelResolver,
 			ItemDisplayContext displayContext, @Nullable ClientLevel level, @Nullable ItemOwner owner, int seed) {
 		renderState.appendModelIdentityElement(this);
-
+		
 		ItemStackRenderState.LayerRenderState layerState = renderState.newLayer();
-
+		
 		if (stack.hasFoil()) {
 			layerState.setFoilType(ItemStackRenderState.FoilType.STANDARD);
 			renderState.appendModelIdentityElement(ItemStackRenderState.FoilType.STANDARD);
 			renderState.setAnimated();
 		}
-
+		
 		int tintSize = this.tints.size();
-		int[] tintLayers = layerState.prepareTintLayers(tintSize);
-
+		int[] tintLayers = new int[tintSize];
+		
 		for (int idx = 0; idx < tintSize; idx++) {
 			int tintColor = this.tints.get(idx).calculate(stack, level, owner.asLivingEntity());
 			tintLayers[idx] = tintColor;
 			renderState.appendModelIdentityElement(tintColor);
 		}
-
-		layerState.setExtents(() -> BlockModelWrapper.computeExtents(this.quads));
-
-		layerState.setRenderType(this.type);
-
+		
+		layerState.setExtents(() -> CuboidItemModelWrapper.computeExtents(this.quads));
+		
 		this.properties.applyToLayer(layerState, displayContext);
 
 		layerState.prepareQuadList().addAll(this.quads);
@@ -109,7 +108,7 @@ public record MergedRenderTypeModelWrapper(List<BakedQuad> quads, List<ItemTintS
 		}
 
 		@Override
-		public ItemModel bake(BakingContext context) {
+		public ItemModel bake(BakingContext context, Matrix4fc transformation) {
 			ModelBaker baker = context.blockModelBaker();
 			ResolvedModel resolvedModel = baker.getModel(this.model);
 			TextureSlots slots = resolvedModel.getTopTextureSlots();

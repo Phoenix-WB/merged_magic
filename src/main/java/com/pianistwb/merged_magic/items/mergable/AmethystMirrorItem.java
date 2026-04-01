@@ -49,9 +49,9 @@ public class AmethystMirrorItem extends MergableItem {
 				int radiusBlocks = radius.getStat(mergeLevel);
 				AABB radiusBox = MagicUtil.getSquareRadius(pos, radiusBlocks);
 				level.getEntities(livingEntity, radiusBox,
-						entity -> entity instanceof LivingEntity living
-								&& entity.getType().is(EntityTypeTags.BURN_IN_DAYLIGHT) && MagicUtil.livingCentreInLine(
-										livingEntity, living, ClipContext.Block.VISUAL, ClipContext.Fluid.ANY))
+						entity -> entity instanceof LivingEntity living && entity.is(EntityTypeTags.BURN_IN_DAYLIGHT)
+								&& MagicUtil.livingCentreInLine(livingEntity, living, ClipContext.Block.VISUAL,
+										ClipContext.Fluid.ANY))
 						.forEach(monster -> {
 							if (livingEntity.tickCount % 80 == 0) {
 								monster.hurt(level.damageSources().onFire(), getBaseLightingDamage(lighting)

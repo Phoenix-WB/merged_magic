@@ -6,6 +6,12 @@ import java.util.UUID;
 
 import org.jspecify.annotations.Nullable;
 
+import com.geckolib.animatable.GeoEntity;
+import com.geckolib.animatable.instance.AnimatableInstanceCache;
+import com.geckolib.animatable.manager.AnimatableManager.ControllerRegistrar;
+import com.geckolib.animation.AnimationController;
+import com.geckolib.animation.RawAnimation;
+import com.geckolib.util.GeckoLibUtil;
 import com.pianistwb.merged_magic.registry.DamageSources;
 import com.pianistwb.merged_magic.registry.MobEffectRegistry;
 
@@ -37,12 +43,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.animatable.manager.AnimatableManager.ControllerRegistrar;
-import software.bernie.geckolib.animation.AnimationController;
-import software.bernie.geckolib.animation.RawAnimation;
-import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class Trapjaw extends Monster implements GeoEntity {
 	private static final EntityDataAccessor<Byte> GRABBING_STATE_ID = SynchedEntityData.defineId(Trapjaw.class,
