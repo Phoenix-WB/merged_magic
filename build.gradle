@@ -133,6 +133,6 @@ idea {
 }
 
 def localBuild = file('build.local.gradle')
-if(localBuild.exists()) {
+if(System.properties.containsKey('eclipse.launcher') && localBuild.exists()) {
 	apply from: localBuild
 }
