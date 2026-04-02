@@ -22,6 +22,17 @@ repositories {
         }
         filter { includeGroupAndSubgroups('com.geckolib') }
     }
+	
+    exclusiveContent {
+        forRepository {
+            maven {
+                url "https://cursemaven.com"
+            }
+        }
+        filter {
+            includeGroup "curse.maven"
+        }
+    }
 }
 
 base {
@@ -87,6 +98,7 @@ configurations {
 dependencies {
 	implementation "com.geckolib:geckolib-neoforge-${minecraft_version}:${geckolib_version}"
 	interfaceInjectionData "com.geckolib:geckolib-neoforge-${minecraft_version}:${geckolib_version}"
+	implementation "curse.maven:itemcooldownfix-1502034:7859883"
 }
 
 var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
