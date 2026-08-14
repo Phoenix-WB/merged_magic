@@ -27,9 +27,9 @@ public class SimpleMagicAdditionLootModifier extends LootModifier {
 	private final int rolls;
 	private final int guarantees;
 
-	public SimpleMagicAdditionLootModifier(LootItemCondition[] conditionsIn, Item item, int rolls, int guarantees,
+	public SimpleMagicAdditionLootModifier(LootItemCondition[] conditionsIn, int priority, Item item, int rolls, int guarantees,
 			float probability) {
-		super(conditionsIn);
+		super(conditionsIn, priority);
 		this.item = item;
 		this.rolls = rolls;
 		this.guarantees = guarantees;
