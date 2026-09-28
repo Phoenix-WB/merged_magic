@@ -8,7 +8,7 @@ version="${mod_version}"
 
 displayName="${mod_name}"
 
-displayURL="https://www.curseforge.com/minecraft/mc-mods/merged_magic"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/merged-magic"
 
 logoFile="merged_magic_logo.png"
 
