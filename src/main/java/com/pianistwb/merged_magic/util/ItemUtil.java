@@ -21,6 +21,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.ProblemReporter;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySpawnReason;
+import net.minecraft.world.entity.EntitySpawnRequest;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -136,7 +137,7 @@ public class ItemUtil {
 
 		try (ProblemReporter.ScopedCollector collector = new ProblemReporter.ScopedCollector(LOGGER)) {
 			return EntityType.create(TagValueInput.create(collector, level.registryAccess(), entityTag), level,
-					EntitySpawnReason.TRIGGERED);
+					new EntitySpawnRequest(EntitySpawnReason.TRIGGERED, false));
 		} catch (Exception e) {
 			return Optional.empty();
 		}

@@ -1,7 +1,7 @@
 plugins {
     id 'java-library'
     id 'maven-publish'
-    id 'net.neoforged.moddev' version '2.0.141'
+    id 'net.neoforged.moddev' version '2.0.147'
     id 'idea'
 }
 
@@ -98,7 +98,7 @@ configurations {
 dependencies {
 	implementation "com.geckolib:geckolib-neoforge-${minecraft_version}:${geckolib_version}"
 	interfaceInjectionData "com.geckolib:geckolib-neoforge-${minecraft_version}:${geckolib_version}"
-	implementation "curse.maven:itemcooldownfix-1502034:8644782"
+	implementation "curse.maven:itemcooldownfix-1502034:8996325"
 }
 
 var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {

@@ -82,7 +82,6 @@
 	"statName.merged_magic.radius": "Radius",
 	"statName.merged_magic.damage_increase": "Damage Increase",
 	"statName.merged_magic.launch_velocity": "Launch Velocity",
-	"statName.merged_magic.burn_time": "Burn Time",
 	"statName.merged_magic.cooldown": "Cooldown",
 	"statName.merged_magic.effect_duration": "Effect Duration",
 	"statName.merged_magic.uses": "Uses",

@@ -1,10 +1,13 @@
 package com.pianistwb.merged_magic.loot;
 
+import java.util.Optional;
+
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -27,7 +30,7 @@ public class SimpleMagicAdditionLootModifier extends LootModifier {
 	private final int rolls;
 	private final int guarantees;
 
-	public SimpleMagicAdditionLootModifier(LootItemCondition[] conditionsIn, int priority, Item item, int rolls, int guarantees,
+	public SimpleMagicAdditionLootModifier(Optional<Holder<LootItemCondition>> conditionsIn, int priority, Item item, int rolls, int guarantees,
 			float probability) {
 		super(conditionsIn, priority);
 		this.item = item;

@@ -7,7 +7,6 @@ public class StatNames {
 	public static final MutableComponent RADIUS = register("radius");
 	public static final MutableComponent DAMAGE_INCREASE = register("damage_increase");
 	public static final MutableComponent LAUNCH_VELOCITY = register("launch_velocity");
-	public static final MutableComponent BURN_TIME = register("burn_time");
 	public static final MutableComponent COOLDOWN = register("cooldown");
 	public static final MutableComponent EFFECT_DURATION = register("effect_duration");
 	public static final MutableComponent USES = register("uses");

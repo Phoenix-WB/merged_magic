@@ -27,6 +27,7 @@ import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.client.resources.model.ModelBaker;
 import net.minecraft.client.resources.model.ResolvedModel;
 import net.minecraft.client.resources.model.geometry.BakedQuad;
+import net.minecraft.client.resources.model.geometry.ItemQuads;
 import net.minecraft.client.resources.model.sprite.TextureSlots;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.ExtraCodecs;
@@ -64,7 +65,7 @@ public record MergedRenderTypeModelWrapper(List<BakedQuad> quads, List<ItemTintS
 		
 		this.properties.applyToLayer(layerState, displayContext);
 
-		layerState.prepareQuadList().addAll(this.quads);
+		layerState.setQuads(ItemQuads.split(this.quads));
 
 		if (displayContext == ItemDisplayContext.GUI || displayContext == ItemDisplayContext.GROUND || displayContext == ItemDisplayContext.ON_SHELF) {
 			int mergeLevel = ItemUtil.getMergeLevel(stack);
@@ -87,7 +88,7 @@ public record MergedRenderTypeModelWrapper(List<BakedQuad> quads, List<ItemTintS
 
 		private static final BiMap<String, RenderType> RENDER_TYPES = Util.make(HashBiMap.create(), map -> {
 			map.put("translucent_item", Sheets.translucentItemSheet());
-			map.put("cutout_block", Sheets.cutoutBlockSheet());
+			map.put("cutout_block", Sheets.cutoutBlockItemSheet());
 		});
 
 		private static final Codec<RenderType> RENDER_TYPE_CODEC = ExtraCodecs.idResolverCodec(Codec.STRING,

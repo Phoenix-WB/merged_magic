@@ -10,7 +10,7 @@ displayName="${mod_name}"
 
 displayURL="https://www.curseforge.com/minecraft/mc-mods/merged-magic"
 
-logoFile="merged_magic_logo.png"
+bannerFile="merged_magic_logo.png"
 
 credits="Textures from: cebularz_, L200"
 
@@ -44,7 +44,7 @@ file="META-INF/accesstransformer.cfg"
 [[dependencies.${mod_id}]]
     modId="geckolib"
     type="required"
-    versionRange="5.5.2"
+    versionRange="5.5.7"
     ordering="NONE"
     side="BOTH"
     

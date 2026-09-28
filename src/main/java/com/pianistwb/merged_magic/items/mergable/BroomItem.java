@@ -1,9 +1,7 @@
 package com.pianistwb.merged_magic.items.mergable;
 
-import org.jspecify.annotations.Nullable;
-
-import com.pianistwb.merged_magic.util.LangUtil;
 import com.pianistwb.merged_magic.util.ItemUtil;
+import com.pianistwb.merged_magic.util.LangUtil;
 import com.pianistwb.merged_magic.util.MagicUtil;
 import com.pianistwb.merged_magic.util.MergeStat;
 import com.pianistwb.merged_magic.util.StatNames;
@@ -17,8 +15,6 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemCooldowns;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.level.block.entity.FuelValues;
 import net.minecraft.world.phys.Vec3;
 
 public class BroomItem extends MergableItem {
@@ -30,7 +26,6 @@ public class BroomItem extends MergableItem {
 		super(properties);
 		addMergeStat(StatNames.LAUNCH_VELOCITY, StatUnits.BLOCKS_PER_TICK, initial_velocity,
 				stat -> LangUtil.literal(stat));
-		addMergeStat(StatNames.BURN_TIME, StatUnits.SECONDS, burnTime, stat -> LangUtil.literal(stat / 20));
 		addMergeStat(StatNames.COOLDOWN, StatUnits.SECONDS, cooldown, stat -> LangUtil.literal(stat / 20));
 	}
 
@@ -55,11 +50,5 @@ public class BroomItem extends MergableItem {
 		}
 
 		return InteractionResult.PASS;
-	}
-
-	@Override
-	public int getBurnTime(ItemStack itemStack, @Nullable RecipeType<?> recipeType, FuelValues fuelValues) {
-		int mergeLevel = ItemUtil.getMergeLevel(itemStack);
-		return burnTime.getStat(mergeLevel);
 	}
 }

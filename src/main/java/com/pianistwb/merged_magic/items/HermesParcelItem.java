@@ -10,7 +10,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.behavior.BehaviorUtils;
 import net.minecraft.world.entity.player.Player;
@@ -37,7 +37,7 @@ public class HermesParcelItem extends Item {
 	@Override
 	public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity interactionTarget,
 			InteractionHand usedHand) {
-		if (interactionTarget.getType().equals(EntityType.VILLAGER)) {
+		if (interactionTarget.getType().equals(EntityTypes.VILLAGER)) {
 			Level level = player.level();
 
 			if (!level.isClientSide()) {

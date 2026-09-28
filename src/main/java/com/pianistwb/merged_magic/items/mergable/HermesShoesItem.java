@@ -42,7 +42,7 @@ public class HermesShoesItem extends MergableItem {
 
 			Vec3 mov = player.getDeltaMovement();
 			player.setDeltaMovement(mov.x(), 0.6D, mov.z());
-			player.hurtMarked = true;
+			player.syncVelocity = true;
 
 			Vec3 pos = player.position();
 			if (!level.isClientSide()) {

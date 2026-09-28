@@ -54,7 +54,7 @@ public class CopperFlame extends ThrowableProjectile {
 		super.onHitBlock(result);
 		if (!this.level().isClientSide()) {
 			BlockPos hitPos = result.getBlockPos().relative(result.getDirection());
-			CopperFlameSpire spire = new CopperFlameSpire(this.level(), hitPos.getBottomCenter(), despawnTicks);
+			CopperFlameSpire spire = new CopperFlameSpire(this.level(), Vec3.atBottomCenterOf(hitPos), despawnTicks);
 			this.level().addFreshEntity(spire);
 		}
 	}

@@ -113,7 +113,7 @@ public class Trapjaw extends Monster implements GeoEntity {
 	}
 
 	@Override
-	public void knockback(double strength, double x, double z) {
+	public void knockback(double power, double xd, double zd, DamageSource source, float damage) {
 	}
 
 	@Override

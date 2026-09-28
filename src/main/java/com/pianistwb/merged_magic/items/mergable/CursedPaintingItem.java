@@ -7,8 +7,8 @@ import java.util.function.Consumer;
 import com.pianistwb.merged_magic.client.ClientParticles;
 import com.pianistwb.merged_magic.datacomponent.IntegerData;
 import com.pianistwb.merged_magic.registry.DataComponentRegistry;
-import com.pianistwb.merged_magic.util.LangUtil;
 import com.pianistwb.merged_magic.util.ItemUtil;
+import com.pianistwb.merged_magic.util.LangUtil;
 import com.pianistwb.merged_magic.util.MergeStat;
 import com.pianistwb.merged_magic.util.StatNames;
 
@@ -21,6 +21,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
@@ -165,7 +166,7 @@ public class CursedPaintingItem extends MergableItem {
 
 	public static boolean isExcludedProjectiles(Entity entity) {
 		EntityType<?> type = entity.getType();
-		return type == EntityType.FISHING_BOBBER || type == EntityType.TRIDENT;
+		return type == EntityTypes.FISHING_BOBBER || type == EntityTypes.TRIDENT;
 	}
 
 	@Override

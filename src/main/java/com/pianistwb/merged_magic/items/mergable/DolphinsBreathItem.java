@@ -39,7 +39,7 @@ public class DolphinsBreathItem extends MergableItem {
 			int mergeLevel = ItemUtil.getMergeLevel(stack);
 
 			player.addDeltaMovement(new Vec3(0, 1, 0));
-			player.hurtMarked = true;
+			player.syncVelocity = true;
 
 			if (!level.isClientSide()) {
 				player.addEffect(

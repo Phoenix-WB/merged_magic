@@ -27,6 +27,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
@@ -62,7 +63,7 @@ public class ProspectorsPanItem extends MergableItem {
 				for (BlockPos pos : LevelUtil.getBlockPosIfLoaded(level, radiusBox)) {
 					BlockState state = level.getBlockState(pos);
 
-					if (state.is(BlockTags.MINEABLE_WITH_PICKAXE) && !state.is(BlockTags.REDSTONE_ORES)
+					if (state.is(BlockTags.MINEABLE_WITH_PICKAXE) && !(state.is(Blocks.REDSTONE_ORE) || state.is(Blocks.DEEPSLATE_REDSTONE_ORE))
 							&& (state.is(BlockTags.NEEDS_IRON_TOOL) || state.is(BlockTags.NEEDS_DIAMOND_TOOL))) {
 						double otherBlockDist = playerPos.distSqr(pos);
 
